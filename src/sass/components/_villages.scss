@@ -1,0 +1,149 @@
+.villages {
+  .container {
+    display: flex;
+    overflow-x: hidden;
+    @media screen and (max-width: $md) {
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+  }
+  .village {
+    margin: 0 auto;
+    max-width: 500px;
+    h2 {
+      margin: 30px 0 0;
+      padding: 30px 50px;
+    }
+    .section {
+      position: relative;
+      .anchor {
+        position: absolute;
+        top: -90px;
+      }
+    }
+
+    // Illustrations
+    .sct-illustration {
+      padding-top: 50%;
+      width: 100%;
+      max-width: 500px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      transform: scale(1);
+      transition: transform 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000);
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+    &.village-cerro_de_leones {
+      .section-community .sct-illustration { background-image: url(../assets/communities/cerro/cerro_community.svg); }
+      .section-school .sct-illustration { background-image: url(../assets/communities/cerro/cerro_school.svg); }
+      .section-distance .sct-illustration { background-image: url(../assets/communities/cerro/cerro_distance.svg); }
+      .section-waterMCL .sct-illustration { background-image: url(../assets/communities/cerro/cerro_waterMCL.svg); }
+      .section-solution .sct-illustration { background-image: url(../assets/communities/cerro/cerro_solution.svg); }
+      .section-coloring .sct-illustration { padding-top: 0; }
+    }
+    &.village-totoral-alto {
+      .section-community .sct-illustration { background-image: url(../assets/communities/totoral-alto/totoral-alto_community.svg); }
+      .section-school .sct-illustration { background-image: url(../assets/communities/totoral-alto/totoral-alto_school.svg); }
+      .section-distance .sct-illustration { background-image: url(../assets/communities/totoral-alto/totoral-alto_distance.svg); }
+      .section-waterMCL .sct-illustration { background-image: url(../assets/communities/totoral-alto/totoral-alto_waterMCL.svg); }
+      .section-solution .sct-illustration { background-image: url(../assets/communities/totoral-alto/totoral-alto_solution.svg); }
+      .section-coloring .sct-illustration { padding-top: 0; }
+    }
+    &.village-totoral-bajo {
+      .section-community .sct-illustration { background-image: url(../assets/communities/totoral-bajo/totoral-bajo_community.svg); }
+      .section-school .sct-illustration { background-image: url(../assets/communities/totoral-bajo/totoral-bajo_school.svg); }
+      .section-distance .sct-illustration { background-image: url(../assets/communities/totoral-bajo/totoral-bajo_distance.svg); }
+      .section-waterMCL .sct-illustration { background-image: url(../assets/communities/totoral-bajo/totoral-bajo_waterMCL.svg); }
+      .section-solution .sct-illustration { background-image: url(../assets/communities/totoral-bajo/totoral-bajo_solution.svg); }
+      .section-coloring .sct-illustration { padding-top: 0; }
+    }
+    &.village-la_merced {
+      .section-community .sct-illustration { background-image: url(../assets/communities/la-merced/la-merced_community.svg); }
+      .section-school .sct-illustration { background-image: url(../assets/communities/la-merced/la-merced_school.svg); }
+      .section-distance .sct-illustration { background-image: url(../assets/communities/la-merced/la-merced_distance.svg); }
+      .section-waterMCL .sct-illustration { background-image: url(../assets/communities/la-merced/la-merced_waterMCL.svg); }
+      .section-solution .sct-illustration { background-image: url(../assets/communities/la-merced/la-merced_solution.svg); }
+      .section-coloring .sct-illustration { padding-top: 0; }
+    }
+    &.village-las-mercedes {
+      .section-community .sct-illustration { background-image: url(../assets/communities/las-mercedes/las-mercedes_community.svg); }
+      .section-school .sct-illustration { background-image: url(../assets/communities/las-mercedes/las-mercedes_school.svg); }
+      .section-distance .sct-illustration { background-image: url(../assets/communities/las-mercedes/las-mercedes_distance.svg); }
+      .section-waterMCL .sct-illustration { background-image: url(../assets/communities/las-mercedes/las-mercedes_waterMCL.svg); }
+      .section-solution .sct-illustration { background-image: url(../assets/communities/las-mercedes/las-mercedes_solution.svg); }
+      .section-coloring .sct-illustration { padding-top: 0; }
+    }
+    &.village-las-mercedes-km11 {
+      .section-community .sct-illustration { background-image: url(../assets/communities/las-mercedes_km11/las-mercedes-km11_community.svg); }
+      .section-school .sct-illustration { background-image: url(../assets/communities/las-mercedes_km11/las-mercedes-km11_school.svg); }
+      .section-distance .sct-illustration { background-image: url(../assets/communities/las-mercedes_km11/las-mercedes-km11_distance.svg); }
+      .section-waterMCL .sct-illustration { background-image: url(../assets/communities/las-mercedes_km11/las-mercedes-km11_waterMCL.svg); }
+      .section-solution .sct-illustration { background-image: url(../assets/communities/las-mercedes_km11/las-mercedes-km11_solution.svg); }
+      .section-coloring .sct-illustration { padding-top: 0; }
+    }
+    &.village-carrizalillo {
+      .section-community .sct-illustration { background-image: url(../assets/communities/carizalillo/carrizalillo_community.svg); }
+      .section-school .sct-illustration { background-image: url(../assets/communities/carizalillo/carrizalillo_school.svg); }
+      .section-distance .sct-illustration { background-image: url(../assets/communities/carizalillo/carrizalillo_distance.svg); }
+      .section-waterMCL .sct-illustration { background-image: url(../assets/communities/carizalillo/carrizalillo_waterMCL.svg); }
+      .section-solution .sct-illustration { background-image: url(../assets/communities/carizalillo/carrizalillo_solution.svg); }
+      .section-coloring .sct-illustration { padding-top: 0; }
+    }
+
+    // Descriptions
+    .sct-description {
+      margin: -1.5rem auto;
+      max-width: 340px;
+    }
+    .section-community .sct-description { min-height: 76px; }
+    .section-school .sct-description { min-height: 141px; }
+    .section-distance .sct-description { min-height: 166px; }
+    .section-waterMCL .sct-description { min-height: 464px; }
+    .section-solution .sct-description { min-height: 416px; }
+    .section-coloring .sct-description { min-height: 308px; }
+  }
+}
+
+.villages-wrapper {
+  position: relative;
+}
+.current-village {
+  position: fixed;
+  z-index: 100;
+  top: -1px;
+  left: 0;
+  right: 0;
+  transform: translateY(-96px);
+  transition: transform 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940);
+  h2 {
+    margin: 0;
+    padding: 30px 0;
+  }
+  &.visible {
+    transform: translateY(0);
+  }
+}
+.village,
+.current-village {
+  h2 {
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 15%, rgba(255,255,255,1) 100%);
+  }
+}
+
+.illustration-instructions {
+  &.touch {
+    display: none;
+  }
+  @media screen and (max-width: $md) {
+    &.touch {
+      display: block;
+    }
+    &.mouse {
+      display: none;
+    }
+  }
+}

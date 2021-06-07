@@ -1,0 +1,23 @@
+.defs {
+  position: relative;
+  z-index: -1;
+  font-size: 1.7rem;
+  line-height: 1.3;
+  .row {
+    margin-left: -9px;
+    margin-right: -9px;
+    [class^="col-"],
+    [class*=" col-"] {
+      padding-right: 9px;
+      padding-left: 9px;
+    }
+  }
+}
+.villages {
+  .def {
+    margin: 20px 0;
+    p {
+      margin: 0.7rem 0;
+    }
+  }
+}

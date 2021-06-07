@@ -1,0 +1,111 @@
+.cover {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  .title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    text-align: right;
+    h1 {
+      span {
+        display: block;
+      }
+    }
+    .credentials {
+      margin-right: 96px;
+      font-size: 1.6rem;
+      color: $peach;
+    }
+  }
+  .intro-container {
+    display: flex;
+    justify-content: flex-end;
+    .intro {
+      max-width: 215px;
+      p {
+        text-indent: 35px;
+      }
+    }
+  }
+  .illustration {
+    position: absolute;
+    z-index: 0;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background-image: url(../assets/mayu.jpg);
+    background-repeat: no-repeat;
+    background-size: calc(110% - 700px) auto;
+    background-position: left bottom;
+    @media screen and (min-width: 3000px) and (min-height: 2000px) {
+      background-size: calc(110% - 900px) auto;
+    }
+    @media screen and (max-width: 1700px) {
+      background-size: calc(125% - 700px) auto;
+    }
+    @media screen and (max-width: 1400px) {
+      background-size: 75% auto;
+    }
+  }
+  @media screen and (max-height: 1000px) {
+    .title-container,
+    .intro-container {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+    .title-container {
+      margin-left: 0;
+      padding-right: 10%;
+    }
+    .illustration {
+      height: 100vh;
+      background-size: 85% auto;
+    }
+  }
+  @media screen and (max-width: $lg), (max-height: 1000px) {
+    height: auto;
+    .title {
+      justify-content: flex-start;
+      margin-right: 20px;
+      padding-top: 33vh;
+      height: 100vh;
+    }
+    .intro-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding-top: 40px;
+      .intro {
+        max-width: none;
+      }
+    }
+  }
+  @media screen and (max-width: $lg) {
+    .illustration {
+      bottom: auto;
+      height: 100vh;
+      background-image: url(../assets/mayu-mobile.jpg);
+      background-size: 100% auto;
+      background-position: center bottom;
+      @media (orientation: landscape) {
+        width: 60vw;
+      }
+      @media (orientation: landscape) and (min-width: 800px) {
+        width: 56vw;
+      }
+      @media (orientation: landscape) and (min-width: 1000px) {
+        width: 75vw;
+      }
+    }
+  }
+  @media screen and (max-width: $sm) {
+    .title {
+      .credentials {
+        margin-top: 2px;
+        margin-right: 18px;
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
