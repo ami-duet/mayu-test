@@ -1821,8 +1821,8 @@ button {
 /* line 3, src/sass/components/_about.scss */
 .about .container {
   max-width: 425px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 /* line 8, src/sass/components/_about.scss */
@@ -1908,8 +1908,8 @@ button {
 @media screen and (max-width: 768px) {
   /* line 2, src/sass/components/_villages.scss */
   .villages .container {
-    padding-right: 20px;
-    padding-left: 20px;
+    padding-right: 30px;
+    padding-left: 30px;
   }
 }
 
@@ -2264,8 +2264,8 @@ button {
 /* line 2, src/sass/components/_map.scss */
 .maps-section .container {
   max-width: 425px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 /* line 9, src/sass/components/_map.scss */
