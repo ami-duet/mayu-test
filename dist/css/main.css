@@ -1828,41 +1828,35 @@ button {
 /* line 8, src/sass/components/_about.scss */
 .about .logo {
   display: block;
-  margin: 0 auto;
-  width: 100px;
-  height: 50px;
-  background-image: url("../assets/logo.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
+  text-align: center;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 
-/* line 19, src/sass/components/_about.scss */
+/* line 13, src/sass/components/_about.scss */
 .about h2 {
   margin-bottom: 25px;
   text-align: left;
 }
 
-/* line 23, src/sass/components/_about.scss */
+/* line 17, src/sass/components/_about.scss */
 .about p {
   text-indent: 35px;
 }
 
-/* line 26, src/sass/components/_about.scss */
+/* line 20, src/sass/components/_about.scss */
 .about .duet-link {
   text-decoration: none;
 }
 
-/* line 28, src/sass/components/_about.scss */
+/* line 22, src/sass/components/_about.scss */
 .about .duet-link img {
   display: block;
   margin: 0 auto;
   width: 120px;
 }
 
-/* line 36, src/sass/components/_about.scss */
+/* line 30, src/sass/components/_about.scss */
 .about .bottom-links {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1875,7 +1869,7 @@ button {
   list-style: none;
 }
 
-/* line 43, src/sass/components/_about.scss */
+/* line 37, src/sass/components/_about.scss */
 .about .bottom-links li a {
   display: block;
   padding: 6px 0 3px;
@@ -1887,12 +1881,12 @@ button {
   transition-property: all;
 }
 
-/* line 51, src/sass/components/_about.scss */
+/* line 45, src/sass/components/_about.scss */
 .about .bottom-links li a:hover, .about .bottom-links li a:focus, .about .bottom-links li a.highlighted {
   color: #DD5F3D;
 }
 
-/* line 55, src/sass/components/_about.scss */
+/* line 49, src/sass/components/_about.scss */
 .about .bottom-links li a.highlighted {
   font-weight: 600;
 }
