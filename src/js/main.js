@@ -1,12 +1,28 @@
-const firstVillageId = 'cerro_de_leones';
-const currentVillageId = 'cerro_de_leones';
-const firstVillageIndex = villagesData.findIndex(village => village.village_id === firstVillageId);
 const arrowsToggle = document.querySelector('.arrows-toggle');
 const aboutToggle = document.querySelector('.about');
 const carouselArrows = document.querySelector('.glide__arrows');
-
 let largeScreen = window.innerWidth > 1100 ? true : false;
 let villageNameIsSticky = false;
+
+// Get url parameters
+const urlParams = new URLSearchParams(window.location.search);
+console.log('urlParams', urlParams);
+console.log(urlParams.get('community'));
+
+// Set first community
+let firstVillageId = '';
+if (urlParams.get('community')) {
+  firstVillageId = urlParams.get('community');
+} else {
+  firstVillageId = 'cerro_de_leones';
+}
+const firstVillageIndex = villagesData.findIndex(village => village.village_id === firstVillageId);
+const currentVillageId = firstVillageId;
+
+// Set project version
+if (urlParams.get('version') && urlParams.get('version') === 'youth') {
+  d3.select('body').classed('youth', true);
+}
 
 // Append villages illustrations and descriptions
 const villages = d3.select('.glide__slides')

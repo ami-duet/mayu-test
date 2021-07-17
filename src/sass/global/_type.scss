@@ -107,3 +107,9 @@ p {
     text-align: right;
   }
 }
+.youth {
+  .village .donate-link-wrapper,
+  .cover > .donate-link-wrapper {
+    display: none !important;
+  }
+}

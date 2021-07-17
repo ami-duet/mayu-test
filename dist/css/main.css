@@ -1288,6 +1288,12 @@ p {
   }
 }
 
+/* line 111, src/sass/global/_type.scss */
+.youth .village .donate-link-wrapper,
+.youth .cover > .donate-link-wrapper {
+  display: none !important;
+}
+
 /**
  * Base Styles
  */
