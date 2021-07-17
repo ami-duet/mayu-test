@@ -6,15 +6,13 @@ let villageNameIsSticky = false;
 
 // Get url parameters
 const urlParams = new URLSearchParams(window.location.search);
-console.log('urlParams', urlParams);
-console.log(urlParams.get('community'));
 
 // Set first community
 let firstVillageId = '';
 if (urlParams.get('community')) {
   firstVillageId = urlParams.get('community');
 } else {
-  firstVillageId = 'cerro_de_leones';
+  firstVillageId = 'cerro-de-leones';
 }
 const firstVillageIndex = villagesData.findIndex(village => village.village_id === firstVillageId);
 const firstVillageName = villagesData[firstVillageIndex].village_name;
