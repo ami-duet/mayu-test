@@ -1221,6 +1221,73 @@ p {
   right: -2px;
 }
 
+/* line 63, src/sass/global/_type.scss */
+.donate-link-wrapper {
+  text-align: center;
+}
+
+/* line 65, src/sass/global/_type.scss */
+.donate-link-wrapper a {
+  display: inline-block;
+  padding-left: 21px;
+  font-family: "garamond-premier-pro-display", serif;
+  font-size: 1.5rem;
+  line-height: 21px;
+  font-weight: 600;
+  text-transform: uppercase;
+  background-image: url(../assets/heart_red.svg);
+  background-repeat: no-repeat;
+  background-position: 0 1px;
+  background-size: auto 15px;
+}
+
+/* line 81, src/sass/global/_type.scss */
+.village .donate-link-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+  padding-right: 20px;
+}
+
+/* line 89, src/sass/global/_type.scss */
+.cover > .donate-link-wrapper {
+  position: absolute;
+  z-index: 100;
+  top: 20px;
+  left: 0;
+  right: 0;
+}
+
+@media screen and (min-width: 1201px) {
+  /* line 89, src/sass/global/_type.scss */
+  .cover > .donate-link-wrapper {
+    left: auto;
+    right: 40px;
+  }
+}
+
+@media screen and (min-height: 1001px) and (min-width: 1200px) {
+  /* line 89, src/sass/global/_type.scss */
+  .cover > .donate-link-wrapper {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    right: auto;
+    width: 100%;
+    max-width: 1400px;
+    padding-left: 45px;
+    padding-right: 50px;
+    text-align: right;
+  }
+}
+
 /**
  * Base Styles
  */
@@ -1858,36 +1925,41 @@ button {
 
 /* line 30, src/sass/components/_about.scss */
 .about .bottom-links {
+  margin-top: 45px;
+}
+
+/* line 32, src/sass/components/_about.scss */
+.about .bottom-links ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin: 35px 0 0;
+  margin: 17px 0 0;
   padding-left: 0;
   list-style: none;
 }
 
-/* line 37, src/sass/components/_about.scss */
-.about .bottom-links li a {
+/* line 39, src/sass/components/_about.scss */
+.about .bottom-links ul li a {
   display: block;
   padding: 6px 0 3px;
   font-family: "garamond-premier-pro-display", serif;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   color: #383838;
   text-transform: uppercase;
   -webkit-transition-property: all;
   transition-property: all;
 }
 
-/* line 45, src/sass/components/_about.scss */
-.about .bottom-links li a:hover, .about .bottom-links li a:focus, .about .bottom-links li a.highlighted {
+/* line 47, src/sass/components/_about.scss */
+.about .bottom-links ul li a:hover, .about .bottom-links ul li a:focus, .about .bottom-links ul li a.highlighted {
   color: #DD5F3D;
 }
 
-/* line 49, src/sass/components/_about.scss */
-.about .bottom-links li a.highlighted {
+/* line 51, src/sass/components/_about.scss */
+.about .bottom-links ul li a.highlighted {
   font-weight: 600;
 }
 
@@ -2376,30 +2448,29 @@ button {
 /* line 1, src/sass/components/_glossary.scss */
 .defs {
   position: relative;
-  z-index: -1;
   font-size: 1.7rem;
   line-height: 1.3;
 }
 
-/* line 6, src/sass/components/_glossary.scss */
+/* line 5, src/sass/components/_glossary.scss */
 .defs .row {
   margin-left: -9px;
   margin-right: -9px;
 }
 
-/* line 9, src/sass/components/_glossary.scss */
+/* line 8, src/sass/components/_glossary.scss */
 .defs .row [class^="col-"],
 .defs .row [class*=" col-"] {
   padding-right: 9px;
   padding-left: 9px;
 }
 
-/* line 17, src/sass/components/_glossary.scss */
+/* line 16, src/sass/components/_glossary.scss */
 .villages .def {
   margin: 20px 0;
 }
 
-/* line 19, src/sass/components/_glossary.scss */
+/* line 18, src/sass/components/_glossary.scss */
 .villages .def p {
   margin: 0.7rem 0;
 }

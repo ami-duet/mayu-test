@@ -28,26 +28,29 @@
 
   // Bottom menu
   .bottom-links {
-    display: flex;
-    justify-content: space-between;
-    margin: 35px 0 0;
-    padding-left: 0;
-    list-style: none;
-    li {
-      a {
-        display: block;
-        padding: 6px 0 3px;
-        font-family: $fontDisplay;
-        font-size: 1.4rem;
-        color: $text;
-        text-transform: uppercase;
-        transition-property: all;
-        &:hover, &:focus,
-        &.highlighted {
-          color: $peach;
-        }
-        &.highlighted {
-          font-weight: 600;
+    margin-top: 45px;
+    ul {
+      display: flex;
+      justify-content: space-between;
+      margin: 17px 0 0;
+      padding-left: 0;
+      list-style: none;
+      li {
+        a {
+          display: block;
+          padding: 6px 0 3px;
+          font-family: $fontDisplay;
+          font-size: 1.5rem;
+          color: $text;
+          text-transform: uppercase;
+          transition-property: all;
+          &:hover, &:focus,
+          &.highlighted {
+            color: $peach;
+          }
+          &.highlighted {
+            font-weight: 600;
+          }
         }
       }
     }
