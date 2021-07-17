@@ -17,7 +17,10 @@ if (urlParams.get('community')) {
   firstVillageId = 'cerro_de_leones';
 }
 const firstVillageIndex = villagesData.findIndex(village => village.village_id === firstVillageId);
+const firstVillageName = villagesData[firstVillageIndex].village_name;
 const currentVillageId = firstVillageId;
+d3.select('#first-community')
+  .text(firstVillageName);
 
 // Set project version
 if (urlParams.get('version') && urlParams.get('version') === 'youth') {
