@@ -55,14 +55,10 @@ section
     .attr('class', 'sct-description')
   .html(d => d.description);
 
-triggerCommunitiesAnimations();
-
 currentVillage = d3.select('.current-village');
 currentVillage
   .append('h2')
     .text(villagesData.find(village => village.village_id === currentVillageId).village_name);
-
-// animateVillages();
 
 // Initialize the carousel
 const carousel = new Glide('.glide', {
@@ -85,8 +81,18 @@ const updateCarouselButtons = (index) => {
 
 // Update name of current village
 const updateCurrentVillage = (index) => {
-  currentVillage.select('h2')
-    .text(villagesData[index].village_name);
+  const community = villagesData[index].village_name;
+  currentVillage.select('h2').text(community);
+  callAnimations(community);
+};
+
+// Call illustrations animations
+const callAnimations = (community) => {
+  switch (community) {
+    case 'Cerro de Leones':
+      triggerAnimationsCerro();
+      break;
+  }
 };
 
 if (window.innerWidth > 1100) {

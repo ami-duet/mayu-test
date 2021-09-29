@@ -1,4 +1,8 @@
-const triggerCommunitiesAnimations = () => {
+// Trigger animations for Cerro de Leones
+const triggerAnimationsCerro = () => {
+
+  const chickenPaths = document.querySelectorAll('#cerro-community-chicken path, #cerro-community-chicken line, #cerro-community-chicken polyline');
+  const cowPaths = document.querySelectorAll('#cerro-community-cow path, #cerro-community-cow line');
 
   // Animate cerro community illustration
   const cerroCommunityTl = gsap.timeline({
@@ -41,9 +45,11 @@ const triggerCommunitiesAnimations = () => {
     .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state2', x:'-=3', y='-=15', duration:0.2, ease:'none'}, '>')
     .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state1', x:'-=3', y='-=15', duration:0.2, ease:'none'}, '>')
     .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state2', x:'-=3', y='-=15', duration:0.2, ease:'none'}, '>')
-    .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state3', x:'-=3', y='-=15', duration:0.2, ease:'none'}, '>');
+    .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state3', x:'-=3', y='-=15', duration:0.2, ease:'none'}, '>')
     
-
+    // Trace animals
+    .from(chickenPaths, {drawSVG:0, duration:2}, 6)
+    .from(cowPaths, {drawSVG:0, duration:2}, 6.7)
 
     
   // Tractor animation
