@@ -48,11 +48,14 @@ const section = sections
 section
   .append('div')
     .attr('class', 'sct-illustration')
-  .html(d =>  d.sct_id === 'coloring' ? d.illustration : null );
+  // .html(d =>  d.sct_id === 'coloring' ? d.illustration : null );
+  .html(d =>  d.illustration );
 section
   .append('div')
     .attr('class', 'sct-description')
   .html(d => d.description);
+
+triggerCommunitiesAnimations();
 
 currentVillage = d3.select('.current-village');
 currentVillage
