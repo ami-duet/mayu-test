@@ -59,6 +59,16 @@ currentVillage
   .append('h2')
     .text(villagesData.find(village => village.village_id === currentVillageId).village_name);
 
+// Call illustrations animations
+const callAnimations = (community) => {
+  switch (community) {
+    case 'Cerro de Leones':
+      triggerAnimationsCerro();
+      break;
+  }
+};
+callAnimations(firstVillageName);
+
 // Initialize the carousel
 const carousel = new Glide('.glide', {
   type: 'carousel',
@@ -83,15 +93,6 @@ const updateCurrentVillage = (index) => {
   const community = villagesData[index].village_name;
   currentVillage.select('h2').text(community);
   callAnimations(community);
-};
-
-// Call illustrations animations
-const callAnimations = (community) => {
-  switch (community) {
-    case 'Cerro de Leones':
-      triggerAnimationsCerro();
-      break;
-  }
 };
 
 if (window.innerWidth > 1100) {
