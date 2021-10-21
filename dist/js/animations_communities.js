@@ -134,11 +134,28 @@ const triggerAnimationsCerro = () => {
       });
   }, hoursAnimationDelay * 1000);
 
+  const kids = document.querySelectorAll('#cerro-school-kids polygon, #cerro-school-kids polyline, #cerro-school-kids path, #cerro-school-kids ellipse');
+  const kidsSmile = document.querySelectorAll('#cerro-school-girl-mouth, #cerro-school-boy-mouth');
+  const smileTiming = 10;
   gsap.set('#cerro-school-clock-small-hand', {transformOrigin:"bottom center"}, 0);
   gsap.set('#cerro-school-clock-big-hand', {transformOrigin:"bottom center"}, 0);
+  gsap.set('#cerro-school-clock-mouth', {opacity:0});
+  gsap.set(kidsSmile, {opacity:0});
   cerroSchoolTl
+    // Clock hands are turning
     .to('#cerro-school-clock-small-hand', {rotation:450, duration:hoursAnimationDuration, ease:'none'}, hoursAnimationDelay)
     .to('#cerro-school-clock-big-hand', {rotation:5400, duration:hoursAnimationDuration, ease:'none'}, hoursAnimationDelay)
+    
+    // School doors open
+    .to('#cerro-school-door-left', {x:'-95%', duration:2, ease:'power2.in'}, smileTiming - 1)
+    .to('#cerro-school-door-right', {x:'95%', duration:2, ease:'power2.in'}, smileTiming - 1)
+
+    // Draw kids
+    .from(kids, {drawSVG:0, duration:2}, smileTiming)
+
+    // Kids and clock smile
+    .fromTo('#cerro-school-clock-mouth', {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, smileTiming + 1.5)
+    .fromTo(kidsSmile, {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, smileTiming + 1.5)
     
 
   const cerroTearLeft = document.querySelector('#cerro-school-clock-tear-left');
@@ -150,10 +167,10 @@ const triggerAnimationsCerro = () => {
     .from(cerroTearRight, {drawSVG:0, duration:0.7, ease:'none'}, 3.2)
     .to(cerroTearRight, {y:25, duration:1, ease:'power2.in'})
     .to(cerroTearRight, {drawSVG:'100% 100%', opacity:0, duration:0.1});
-
   cerroSchoolTearsTl
     .repeat(-1)
     .repeatDelay(1.5);
+  cerroSchoolTearsTl.addPause(smileTiming);
 
   
   gsap.set('#cerro-school-flag-top-state2', {opacity:0}, 0)
