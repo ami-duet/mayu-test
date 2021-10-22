@@ -167,9 +167,7 @@ const triggerAnimationsCerro = () => {
     .to(cerroTearRight, {y:25, duration:1, ease:'power2.in'})
     .to(cerroTearRight, {drawSVG:'100% 100%', opacity:0, duration:0.1});
   cerroSchoolTearsTl
-    .repeat(-1)
-    .repeatDelay(1.5);
-  cerroSchoolTearsTl.addPause(smileTiming);
+    .repeat(Math.floor(smileTiming / 4.2) - 1);
 
   
   gsap.set('#cerro-school-flag-top-state2', {opacity:0}, 0)
@@ -181,4 +179,13 @@ const triggerAnimationsCerro = () => {
     .to('#cerro-school-flag-bottom-state1', {morphSVG:'#cerro-school-flag-bottom-state1', duration:1.2, ease:'sine.inOut'}, '>');
   cerroSchoolFlagsTl
     .repeat(-1);
+
+
+
+  /****************************/
+  /*        Distance          */
+  /****************************/
+
+
+
 };
