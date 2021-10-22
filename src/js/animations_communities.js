@@ -5,8 +5,8 @@ const triggerAnimationsCerro = () => {
   /*         Community        */
   /****************************/
 
-  const chickenPaths = document.querySelectorAll('#cerro-community-chicken path, #cerro-community-chicken line, #cerro-community-chicken polyline');
-  const cowPaths = document.querySelectorAll('#cerro-community-cow path, #cerro-community-cow line');
+  const cerroCommunityChickenPaths = document.querySelectorAll('#cerro-community-chicken path, #cerro-community-chicken line, #cerro-community-chicken polyline');
+  const cerroCommunityCowPaths = document.querySelectorAll('#cerro-community-cow path, #cerro-community-cow line');
 
   // Animate cerro community illustration
   const cerroCommunityTl = gsap.timeline({
@@ -53,8 +53,8 @@ const triggerAnimationsCerro = () => {
     .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state3', x:'-=3', y='-=15', duration:0.2, ease:'none'}, '>')
     
     // Trace animals
-    .from(chickenPaths, {drawSVG:0, duration:2}, 6)
-    .from(cowPaths, {drawSVG:0, duration:2}, 6.7)
+    .from(cerroCommunityChickenPaths, {drawSVG:0, duration:2}, 6)
+    .from(cerroCommunityCowPaths, {drawSVG:0, duration:2}, 6.7);
 
     
   // Tractor animation timeline
@@ -185,7 +185,63 @@ const triggerAnimationsCerro = () => {
   /****************************/
   /*        Distance          */
   /****************************/
+  const scrollTriggerCerroDistance = {
+      trigger: '.village-cerro-de-leones .section-distance',
+      // markers: true,
+      start: 'top center',
+      end: 'bottom 0'
+    };
+  const cerroDistanceTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroDistance });
+  const cerroDistanceWalkTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroDistance });
+  const cerroDistanceTidesTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroDistance });
 
+  const cerroDistanceChickenPaths = document.querySelectorAll('#cerro-distance-chicken path, #cerro-distance-chicken line, #cerro-distance-chicken polyline');
+  const cerroDistanceCowPaths = document.querySelectorAll('#cerro-distance-cow path, #cerro-distance-cow line, #cerro-distance-cow polyline');
 
+  gsap.set('#text-distance', {opacity:0, scale:0.7, transformOrigin:'50% 50%'});
+  gsap.set('#cerro-distance-bird1-state2', {opacity:0});
+  gsap.set('#cerro-distance-bird2-state2', {opacity:0});
+  cerroDistanceTl
+    // Clouds move horizontally 
+    .fromTo('#cerro-distance-cloud1', {x:-200}, {x:800, duration:70, repeat:-1, ease:'none'}, 0)
+    .fromTo('#cerro-distance-cloud2', {x:-200}, {x:800, duration:80, repeat:-1, ease:'none'}, 0)
+
+    // Trace animals
+    .from(cerroDistanceChickenPaths, {drawSVG:0, duration:2}, 6)
+    .from(cerroDistanceCowPaths, {drawSVG:0, duration:2}, 6.7)
+
+    // Animate birds
+    .to('#cerro-distance-bird2-state1', {morphSVG:'#cerro-distance-bird2-state2', x:'+=10', y='-=15', duration:0.4, ease:'none'}, 7)
+    .to('#cerro-distance-bird2-state1', {morphSVG:'#cerro-distance-bird2-state1', x:'+=10', y='-=15', duration:0.4, ease:'none'})
+    .to('#cerro-distance-bird2-state1', {morphSVG:'#cerro-distance-bird2-state2', x:'+=10', y='-=15', duration:0.4, ease:'none'})
+    .to('#cerro-distance-bird2-state1', {morphSVG:'#cerro-distance-bird2-state1', x:'+=10', y='-=15', duration:0.4, ease:'none'})
+    .to('#cerro-distance-bird2-state1', {morphSVG:'#cerro-distance-bird2-state2', x:'+=10', y='-=15', duration:0.4, ease:'none'})
+    .to('#cerro-distance-bird2-state1', {morphSVG:'#cerro-distance-bird2-state1', x:'+=10', y='-=15', duration:0.4, ease:'none'})
+    
+    .to('#cerro-distance-bird1-state1', {morphSVG:'#cerro-distance-bird1-state2', x:'+=10', y='-=15', duration:0.4, ease:'none'}, 8)
+    .to('#cerro-distance-bird1-state1', {morphSVG:'#cerro-distance-bird1-state1', x:'+=10', y='-=15', duration:0.4, ease:'none'})
+    .to('#cerro-distance-bird1-state1', {morphSVG:'#cerro-distance-bird1-state2', x:'+=10', y='-=15', duration:0.4, ease:'none'})
+    .to('#cerro-distance-bird1-state1', {morphSVG:'#cerro-distance-bird1-state1', x:'+=10', y='-=15', duration:0.4, ease:'none'})
+    .to('#cerro-distance-bird1-state1', {morphSVG:'#cerro-distance-bird1-state2', x:'+=10', y='-=15', duration:0.4, ease:'none'})
+    .to('#cerro-distance-bird1-state1', {morphSVG:'#cerro-distance-bird1-state1', x:'+=10', y='-=15', duration:0.4, ease:'none'});
+  
+  // Trace path to river
+  gsap.set('#cerro-distance-arrowhead', {drawSVG:'50% 50%', opacity:0});
+  cerroDistanceWalkTl
+    .to('#cerro-distance-walk', {drawSVG:'100% 100%', duration:3, ease:'none'}, 2)
+    .to('#cerro-distance-arrowhead', {drawSVG:'0 100%', opacity:1, duration:0.5, ease:'power1.in'})
+    .to('#text-distance', {opacity:1, scale:1, duration:0.5, ease:'back.out(1.4)'}, '>-0.1');
+  setTimeout(() => {
+    cerroDistanceWalkTl.reverse();
+  }, 10000);
+  
+  // Animate river waves
+  cerroDistanceTidesTl
+    .set('#cerro-distance-river-tides', {opacity:0})
+    .to('#cerro-distance-river-tides', {x:'+30', opacity:1, duration:4, ease:'none'})
+    .to('#cerro-distance-river-tides', {x:'+60', opacity:0, duration:4, ease:'none'});
+  cerroDistanceTidesTl
+    .repeat(-1)
+    .repeatDelay(2);
 
 };
