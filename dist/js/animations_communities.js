@@ -245,4 +245,111 @@ const triggerAnimationsCerro = () => {
     .repeat(-1)
     .repeatDelay(2);
 
+
+  /****************************/
+  /*        WaterMCL          */
+  /****************************/
+  const scrollTriggerCerroWaterMCL = {
+    trigger: '.village-cerro-de-leones .section-waterMCL',
+    // markers: true,
+    start: 'top center',
+    end: 'bottom 0'
+  };
+  const cerroWaterTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroWaterMCL });
+  const cerroWaterEndTl = gsap.timeline();
+  const cerroWaterBiologicalFloatTl = gsap.timeline();
+  const cerroWaterInorganicFloatTl = gsap.timeline();
+  const cerroWaterLegTl = gsap.timeline();
+
+  const legs = document.querySelectorAll('#cerro-water-contaminants-biological path');
+  legs.forEach(leg => {
+    const datanameAttr = leg.getAttribute('data-name');
+    if (datanameAttr === 'leg-0' || (datanameAttr === null && leg.getAttribute('id') === 'leg-0')) {
+      leg.classList.add('leg-0');
+    } else if (datanameAttr === 'leg-3' || (datanameAttr === null && leg.getAttribute('id') === 'leg-3')) {
+      leg.classList.add('leg-3');
+    } else if (datanameAttr === 'leg-6' || (datanameAttr === null && leg.getAttribute('id') === 'leg-6')) {
+      leg.classList.add('leg-6');
+    } else if (datanameAttr === 'leg-9' || (datanameAttr === null && leg.getAttribute('id') === 'leg-9')) {
+      leg.classList.add('leg-9');
+    } 
+  });
+  
+  const numberOfBiologicalContaminants = 7;
+  for (let i = 1; i <= numberOfBiologicalContaminants; i++) {
+    document.querySelector(`#cerro-water-contaminant-biological-${i}`).classList.add('cerro-water-contaminant-biological');
+  }
+  const contaminantsBiologicalCircles = document.querySelectorAll('.cerro-water-contaminant-biological circle');
+  const contaminantsBiologicalLegs = document.querySelectorAll('.cerro-water-contaminant-biological .leg-0');
+  const contaminantsBiologicalBatch1 = document.querySelectorAll('#cerro-water-contaminant-biological-1, #cerro-water-contaminant-biological-4, #cerro-water-contaminant-biological-7');
+  const contaminantsBiologicalBatch2 = document.querySelectorAll('#cerro-water-contaminant-biological-2, #cerro-water-contaminant-biological-5');
+  const contaminantsBiologicalBatch3 = document.querySelectorAll('#cerro-water-contaminant-biological-3, #cerro-water-contaminant-biological-6');
+  gsap.set(contaminantsBiologicalCircles, {opacity:0, transformOrigin:'50% 50%'});
+  gsap.set(contaminantsBiologicalLegs, {drawSVG:'100% 100%'});
+  gsap.set('.leg-3, .leg-6, .leg-9', {opacity:0})
+
+  const contaminantsInorganic = document.querySelectorAll('#cerro-water-contaminants-inorganic rect');
+  const contaminantsInorganicBatch1 = document.querySelectorAll('#cerro-water-contaminant-inorganic-1, #cerro-water-contaminant-inorganic-4');
+  const contaminantsInorganicBatch2 = document.querySelectorAll('#cerro-water-contaminant-inorganic-2, #cerro-water-contaminant-inorganic-5');
+  const contaminantsInorganicBatch3 = document.querySelectorAll('#cerro-water-contaminant-inorganic-3, #cerro-water-contaminant-inorganic-6');
+  gsap.set(contaminantsInorganic, {opacity:0, scale:0, transformOrigin:'50% 50%'});
+
+
+  const inorganicFloat = () => {
+    const batches = [contaminantsInorganicBatch1, contaminantsInorganicBatch2, contaminantsInorganicBatch3];
+    batches.forEach((batch, i) => {
+      cerroWaterInorganicFloatTl
+        .to(batch, {x:'-=0.5', y:'+=0.5', duration:0.7, ease='linear'}, i * 0.25)
+        .to(batch, {x:'-=0.5', y:'-=0.5', duration:0.7, ease='linear'}, '>')
+        .to(batch, {x:'+=0.5', y:'+=0.5', duration:0.7, ease='linear'}, '>')
+        .to(batch, {x:'+=0.5', y:'-=0.5', duration:0.7, ease='linear'}, '>');
+      cerroWaterInorganicFloatTl.repeat(-1).yoyo(true);
+    });
+  };
+
+  const biologicalFloat = () => {
+    const batches = [contaminantsBiologicalBatch1, contaminantsBiologicalBatch2, contaminantsBiologicalBatch3];
+    batches.forEach((batch, i) => {
+      cerroWaterBiologicalFloatTl
+        .to(batch, {x:'-=0.7', y:'+=0.7', duration:0.8, ease='linear'}, i * 0.25)
+        .to(batch, {x:'-=0.7', y:'-=0.7', duration:0.8, ease='linear'}, '>')
+        .to(batch, {x:'+=0.7', y:'+=0.7', duration:0.8, ease='linear'}, '>')
+        .to(batch, {x:'+=0.7', y:'-=0.7', duration:0.8, ease='linear'}, '>');
+      cerroWaterBiologicalFloatTl.repeat(-1).yoyo(true);
+    });
+  };
+
+  const biologicalLegsMovement = () => {  
+    const legs = [1, 2, 3, 4, 5, 6, 7, 8];
+    for (let i = 1; i <= numberOfBiologicalContaminants; i++) {
+      legs.forEach(leg => {
+        cerroWaterLegTl
+          .to(`#cerro-water-contaminant-biological-${i} #leg-group-${i}-${leg} .leg-0`, {morphSVG:`#cerro-water-contaminant-biological-${i} #leg-group-${i}-${leg} .leg-3`, duration:0.5, ease:'none'}, 0)
+          .to(`#cerro-water-contaminant-biological-${i} #leg-group-${i}-${leg} .leg-0`, {morphSVG:`#cerro-water-contaminant-biological-${i} #leg-group-${i}-${leg} .leg-6`, duration:0.5, ease:'none'}, '>')
+          .to(`#cerro-water-contaminant-biological-${i} #leg-group-${i}-${leg} .leg-0`, {morphSVG:`#cerro-water-contaminant-biological-${i} #leg-group-${i}-${leg} .leg-9`, duration:0.5, ease:'none'}, '>')
+          .to(`#cerro-water-contaminant-biological-${i} #leg-group-${i}-${leg} .leg-0`, {morphSVG:`#cerro-water-contaminant-biological-${i} #leg-group-${i}-${leg} .leg-3`, duration:0.5, ease:'none'}, '>');
+        cerroWaterLegTl.repeat(-1).yoyo(true);
+      });
+    }
+  };
+
+  cerroWaterTl
+    .to(contaminantsInorganic, {opacity:1, scale:1, duration:0.2, ease:'back.out(1.7)', stagger:{each:0.1, from:'random'}}, 1)
+    .call(inorganicFloat)
+    .fromTo(contaminantsBiologicalCircles, {scale:0}, {scale:1, opacity:1, stagger:{each:0.05, from:'random'}, duration:0.2, ease:'back.out(1.4)'}, 2)
+    .to(contaminantsBiologicalLegs, {drawSVG:'0 100%', stagger:{each:0.03, from:'random'}, duration:0.5, ease:'sine.in'})
+    .call(biologicalLegsMovement)
+    .call(biologicalFloat);
+
+  setTimeout(() => {
+    cerroWaterBiologicalFloatTl.pause();
+    cerroWaterLegTl.pause();
+
+    cerroWaterEndTl
+    .to(contaminantsBiologicalLegs, {drawSVG:'100% 100%', opacity:0, stagger:{each:0.03, from:'random'}, duration:0.5, ease:'sine.in'})
+    .to(contaminantsBiologicalCircles, {scale:0, opacity:0, stagger:{each:0.1, from:'random'}, duration:0.2, ease:'back.in(1.4)'})
+    .to(contaminantsInorganic, {scale:0, opacity:0, stagger:{each:0.1, from:'random'}, duration:0.2, ease:'back.in(1.4)'});
+  
+  }, 15000);
+
 };
