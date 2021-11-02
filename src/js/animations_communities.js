@@ -172,13 +172,16 @@ const triggerAnimationsCerro = () => {
     .repeat(Math.floor(smileTiming / 4.2) - 1);
 
   
-  gsap.set('#cerro-school-flag-top-state2', {opacity:0}, 0)
-  gsap.set('#cerro-school-flag-bottom-state2', {opacity:0}, 0)
+  gsap.set('#cerro-school-flag-top-state2, #cerro-school-flag-top-state3, #cerro-school-flag-bottom-state2, #cerro-school-flag-bottom-state3', {opacity:0}, 0);
   cerroSchoolFlagsTl
-    .to('#cerro-school-flag-top-state1', {morphSVG:'#cerro-school-flag-top-state2', duration:1.2, ease:'sine.inOut'})
-    .to('#cerro-school-flag-top-state1', {morphSVG:'#cerro-school-flag-top-state1', duration:1.2, ease:'sine.inOut'})
-    .to('#cerro-school-flag-bottom-state1', {morphSVG:'#cerro-school-flag-bottom-state2', duration:1.2, ease:'sine.inOut'}, 0.1)
-    .to('#cerro-school-flag-bottom-state1', {morphSVG:'#cerro-school-flag-bottom-state1', duration:1.2, ease:'sine.inOut'}, '>');
+    .to('#cerro-school-flag-top-state1', {morphSVG:'#cerro-school-flag-top-state2', duration:0.8, ease:'none'})
+    .to('#cerro-school-flag-top-state1', {morphSVG:'#cerro-school-flag-top-state3', duration:0.8, ease:'none'}, '>')
+    .to('#cerro-school-flag-top-state1', {morphSVG:'#cerro-school-flag-top-state1', duration:0.8, ease:'none'}, '>')
+    
+    .to('#cerro-school-flag-bottom-state1', {morphSVG:'#cerro-school-flag-bottom-state2', duration:0.8, ease:'none'}, 0.2)
+    .to('#cerro-school-flag-bottom-state1', {morphSVG:'#cerro-school-flag-bottom-state3', duration:0.8, ease:'none'}, '>')
+    .to('#cerro-school-flag-bottom-state1', {morphSVG:'#cerro-school-flag-bottom-state1', duration:0.8, ease:'none'}, '>');
+    
   cerroSchoolFlagsTl
     .repeat(-1);
 
