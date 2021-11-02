@@ -23,17 +23,17 @@ const triggerAnimationsCerro = () => {
   const cerroCommunityCloudsTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroCommunity });
   const cerroCommunityTractorTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroCommunity });
 
-  const counterCommunity = d3.select('.village-cerro-de-leones .section-community')
-    .append('div')
-      .attr('class', 'counter')
-      .text('0%');
-
   const cerroCommunityChickenPaths = document.querySelectorAll('#cerro-community-chicken path, #cerro-community-chicken line, #cerro-community-chicken polyline');
   const cerroCommunityCowPaths = document.querySelectorAll('#cerro-community-cow path, #cerro-community-cow line');
 
   gsap.set('#cerro-community-bird1-state2, #cerro-community-bird2-state2', {opacity:0});
   gsap.set('#cloud-color-1, #cerro-community-clouds-back, #cerro-community-sun-color, #cerro-community-trees-color', {opacity:0});
 
+
+  const counterCommunity = d3.select('.village-cerro-de-leones .section-community')
+    .append('div')
+      .attr('class', 'counter')
+      .text('0%');
   const updateCommunityCounter = (percent) => {
     counterCommunity
       .transition(getTransition())
@@ -104,32 +104,29 @@ const triggerAnimationsCerro = () => {
   /****************************/
   /*          School          */
   /****************************/
+  const scrollTriggerCerroSchool = {
+    trigger: '.village-cerro-de-leones .section-school',
+    // markers: true,
+    start: 'top center',
+    end: 'bottom 0'
+  };
+  const cerroSchoolTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroSchool });
+  const cerroSchoolTearsTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroSchool });
+  const cerroSchoolFlagsTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroSchool });
 
-  // Animate cerro school illustration
-  const cerroSchoolTl = gsap.timeline({
-    scrollTrigger: {
-      trigger: '.village-cerro-de-leones .section-school',
-      // markers: true,
-      start: 'top center',
-      end: 'bottom 0'
-    }
-  });
-  const cerroSchoolTearsTl = gsap.timeline({
-    scrollTrigger: {
-      trigger: '.village-cerro-de-leones .section-school',
-      // markers: true,
-      start: 'top center',
-      end: 'bottom 0'
-    }
-  });
-  const cerroSchoolFlagsTl = gsap.timeline({
-    scrollTrigger: {
-      trigger: '.village-cerro-de-leones .section-school',
-      // markers: true,
-      start: 'top center',
-      end: 'bottom 0'
-    }
-  });
+  const counterSchool = d3.select('.village-cerro-de-leones .section-school')
+    .append('div')
+      .attr('class', 'counter')
+      .text('0%');
+  const updateSchoolCounter = (percent) => {
+    counterSchool
+      .transition(getTransition())
+        .style('opacity', 0)
+      .transition(getTransition())
+        .text(`${percent}%`)
+      .transition(getTransition())
+        .style('opacity', 1);
+  };
 
   const hoursAnimationDuration = 3;
   const hoursAnimationDelay = 2;
@@ -145,7 +142,7 @@ const triggerAnimationsCerro = () => {
       .ease(d3.easeQuadOut)
       .tween('atween', () => {
         return function (t) {
-          this.textContent = d3.interpolateRound(0, 12)(t);
+          this.textContent = d3.interpolateRound(0, minHours)(t);
         }
       });
     maxNumber
@@ -154,18 +151,34 @@ const triggerAnimationsCerro = () => {
       .ease(d3.easeQuadOut)
       .tween('atween', () => {
         return function (t) {
-          this.textContent = d3.interpolateRound(0, 15)(t);
+          this.textContent = d3.interpolateRound(0, maxHours)(t);
         }
       });
   };
 
   const kids = document.querySelectorAll('#cerro-school-kids polygon, #cerro-school-kids polyline, #cerro-school-kids path, #cerro-school-kids ellipse');
   const kidsSmile = document.querySelectorAll('#cerro-school-girl-mouth, #cerro-school-boy-mouth');
-  const smileTiming = 10;
+  
   gsap.set('#cerro-school-clock-small-hand', {transformOrigin:"bottom center"}, 0);
   gsap.set('#cerro-school-clock-big-hand', {transformOrigin:"bottom center"}, 0);
+  gsap.set('#cerro-school-flag-top-state2, #cerro-school-flag-top-state3, #cerro-school-flag-bottom-state2, #cerro-school-flag-bottom-state3', {opacity:0}, 0);
   gsap.set('#cerro-school-clock-mouth', {opacity:0});
   gsap.set(kidsSmile, {opacity:0});
+  
+  const makeFlagsFly = () => {
+    cerroSchoolFlagsTl
+      .to('#cerro-school-flag-top-state1', {morphSVG:'#cerro-school-flag-top-state2', duration:0.8, ease:'none'})
+      .to('#cerro-school-flag-top-state1', {morphSVG:'#cerro-school-flag-top-state3', duration:0.8, ease:'none'}, '>')
+      .to('#cerro-school-flag-top-state1', {morphSVG:'#cerro-school-flag-top-state1', duration:0.8, ease:'none'}, '>')
+      
+      .to('#cerro-school-flag-bottom-state1', {morphSVG:'#cerro-school-flag-bottom-state2', duration:0.8, ease:'none'}, 0.2)
+      .to('#cerro-school-flag-bottom-state1', {morphSVG:'#cerro-school-flag-bottom-state3', duration:0.8, ease:'none'}, '>')
+      .to('#cerro-school-flag-bottom-state1', {morphSVG:'#cerro-school-flag-bottom-state1', duration:0.8, ease:'none'}, '>');
+      
+    cerroSchoolFlagsTl
+      .repeat(-1);
+  };
+  
   cerroSchoolTl
     // Clock hands are turning
     .to('#cerro-school-clock-small-hand', {rotation:450, duration:hoursAnimationDuration, ease:'none'}, hoursAnimationDelay)
@@ -173,17 +186,24 @@ const triggerAnimationsCerro = () => {
 
     // Animate numbers
     .call(animateSchoolNumbers, null, hoursAnimationDelay)
-    
-    // School doors open
-    .to('#cerro-school-door-left', {x:'-95%', duration:2, ease:'power2.in'}, smileTiming - 1)
-    .to('#cerro-school-door-right', {x:'95%', duration:2, ease:'power2.in'}, smileTiming - 1)
+
+    // Call flags animation
+    .call(updateSchoolCounter, [25], start25)
+    .call(makeFlagsFly, null, start25)
 
     // Draw kids
-    .from(kids, {drawSVG:0, duration:2}, smileTiming)
+    .call(updateSchoolCounter, [50], start50)
+    .from(kids, {drawSVG:0, duration:2}, start50)
+    
+    // School doors open
+    .call(updateSchoolCounter, [75], start75)
+    .to('#cerro-school-door-left', {x:'-95%', duration:2, ease:'power2.in'}, start75)
+    .to('#cerro-school-door-right', {x:'95%', duration:2, ease:'power2.in'}, start75)
 
     // Kids and clock smile
-    .fromTo('#cerro-school-clock-mouth', {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, smileTiming + 1.5)
-    .fromTo(kidsSmile, {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, smileTiming + 1.5)
+    .call(updateSchoolCounter, [100], start100)
+    .fromTo('#cerro-school-clock-mouth', {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, start100)
+    .fromTo(kidsSmile, {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, start100);
     
 
   const cerroTearLeft = document.querySelector('#cerro-school-clock-tear-left');
@@ -196,21 +216,7 @@ const triggerAnimationsCerro = () => {
     .to(cerroTearRight, {y:25, duration:1, ease:'power2.in'})
     .to(cerroTearRight, {drawSVG:'100% 100%', opacity:0, duration:0.1});
   cerroSchoolTearsTl
-    .repeat(Math.floor(smileTiming / 4.2) - 1);
-
-  
-  gsap.set('#cerro-school-flag-top-state2, #cerro-school-flag-top-state3, #cerro-school-flag-bottom-state2, #cerro-school-flag-bottom-state3', {opacity:0}, 0);
-  cerroSchoolFlagsTl
-    .to('#cerro-school-flag-top-state1', {morphSVG:'#cerro-school-flag-top-state2', duration:0.8, ease:'none'})
-    .to('#cerro-school-flag-top-state1', {morphSVG:'#cerro-school-flag-top-state3', duration:0.8, ease:'none'}, '>')
-    .to('#cerro-school-flag-top-state1', {morphSVG:'#cerro-school-flag-top-state1', duration:0.8, ease:'none'}, '>')
-    
-    .to('#cerro-school-flag-bottom-state1', {morphSVG:'#cerro-school-flag-bottom-state2', duration:0.8, ease:'none'}, 0.2)
-    .to('#cerro-school-flag-bottom-state1', {morphSVG:'#cerro-school-flag-bottom-state3', duration:0.8, ease:'none'}, '>')
-    .to('#cerro-school-flag-bottom-state1', {morphSVG:'#cerro-school-flag-bottom-state1', duration:0.8, ease:'none'}, '>');
-    
-  cerroSchoolFlagsTl
-    .repeat(-1);
+    .repeat(Math.floor(start100 / 4.2) - 1);
 
 
 

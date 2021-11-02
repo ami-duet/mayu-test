@@ -2006,7 +2006,7 @@ button {
 /* line 20, src/sass/components/_villages.scss */
 .villages .village .section .counter {
   position: absolute;
-  top: 0;
+  top: 120px;
   left: 0;
   color: #DD5F3D;
 }
