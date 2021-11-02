@@ -406,6 +406,55 @@ const triggerAnimationsCerro = () => {
     
     // Draw water treatment facility
     .from(cerroSolutionWaterTreatmentFacility, {drawSVG:0, duration:2}, 10)
-    .to('#cerro-solution-water-treatment-faded', {opacity:0, duration:0.2}, '>');;
+    .to('#cerro-solution-water-treatment-faded', {opacity:0, duration:0.2}, '>');
+
+  
+  /****************************/
+  /*        Coloring          */
+  /****************************/
+  const scrollTriggerCerroColoring = {
+    trigger: '.village-cerro-de-leones .section-solution',
+    // markers: true,
+    start: 'top center',
+    end: 'bottom 0'
+  };
+  const cerroColoringTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroColoring });
+  const cerroColoringWindWheelTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroColoring });
+
+  const cerroColoringKids = document.querySelectorAll('#cerro-coloring-kids path, #cerro-coloring-kids ellipse, #cerro-coloring-kids line, #cerro-coloring-kids circle');
+  const cerroColoringKidsSmiles = document.querySelectorAll('#cerro-coloring-smile-1, #cerro-coloring-smile-2, #cerro-coloring-smile-3');
+  const cerroColoringErlenmeyers = document.querySelectorAll('#cerro-coloring-erlenmeyers path, #cerro-coloring-erlenmeyers line');
+  const cerroColoringDrops = document.querySelectorAll('#cerro-coloring-drops path');
+  const cerroColoringPencils = document.querySelectorAll('#cerro-coloring-pencil-1, #cerro-coloring-pencil-2, #cerro-coloring-pencil-3, #cerro-coloring-pencil-4, #cerro-coloring-pencil-5');
+
+  gsap.set(cerroColoringKidsSmiles, {opacity:0});
+  gsap.set(cerroColoringDrops, {opacity:0, transformOrigin:'50% 50%'});
+  gsap.set(cerroColoringPencils, {x:'-=10', y:'+=10', opacity:0});
+  gsap.set('#cerro-coloring-windwheel', {transformOrigin:'50% 50%'});
+
+  const startWindWheel = () => {
+    cerroColoringWindWheelTl
+      .to('#cerro-coloring-windwheel', {rotation:360, duration: 1.5, ease:'none'});
+    cerroColoringWindWheelTl.repeat(-1);
+  };
+
+  cerroColoringTl
+    // Draw kids
+    .from(cerroColoringKids, {drawSVG:0, duration:3}, 2)
+
+    // Draw erlenmeyers
+    .from(cerroColoringErlenmeyers, {drawSVG:0, duration:2}, 6)
+
+    // Make water drops appear
+    .fromTo(cerroColoringDrops, {scale:0}, {scale:1, opacity:1, stagger:{each:0.15, from:'random'}, duration:0.3, ease:'back.out(1.4)'}, 7.8)
+
+    // Make pencils appear
+    .to(cerroColoringPencils, {x:'+=10', y:'-=10', opacity:1, stagger:{each:0.2, from:'end'}, duration:0.3, ease:'back.out(1.4)'}, 10)
+    
+    // Make kids smile
+    .fromTo(cerroColoringKidsSmiles, {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, 12)
+
+    // Start windwheel
+    .call(startWindWheel, null, 12);
 
 };
