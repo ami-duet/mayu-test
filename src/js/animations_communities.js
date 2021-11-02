@@ -26,6 +26,9 @@ const triggerAnimationsCerro = () => {
     }
   });
 
+  gsap.set('#cerro-community-bird1-state2', {opacity:0});
+  gsap.set('#cerro-community-bird2-state2', {opacity:0});
+
   // Timeline
   cerroCommunityTl
     // Clouds move horizontally 
@@ -33,25 +36,21 @@ const triggerAnimationsCerro = () => {
     .fromTo('#cerro-community-clouds-back', {x:220}, {x:-300, duration:80, repeat:-1, ease:'none'}, 0)
 
     // Animate birds
-    .set('#cerro-community-bird1-state2', {opacity:0}, 0)
-    .set('#cerro-community-bird1-state3', {opacity:0}, 0)
-    .set('#cerro-community-bird2-state2', {opacity:0}, 0)
-    .set('#cerro-community-bird2-state3', {opacity:0}, 0)
+    .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state2', x:'-=10', y='-=15', duration:0.4, ease:'none'}, 4)
+    .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state1', x:'-=10', y='-=15', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state2', x:'-=10', y='-=15', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state1', x:'-=10', y='-=15', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state2', x:'-=10', y='-=15', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state1', x:'-=10', y='-=15', duration:0.4, ease:'none'}, '>')
     
-    .to('#cerro-community-bird1-state1', {morphSVG:'#cerro-community-bird1-state2', x:'-=3', y='-=15', duration:0.2, ease:'none'}, 4)
-    .to('#cerro-community-bird1-state1', {morphSVG:'#cerro-community-bird1-state3', x:'-=3', y='-=15', duration:0.2, ease:'none'}, '>')
-    .to('#cerro-community-bird1-state1', {morphSVG:'#cerro-community-bird1-state2', x:'-=3', y='-=15', duration:0.2, ease:'none'}, '>')
-    .to('#cerro-community-bird1-state1', {morphSVG:'#cerro-community-bird1-state1', x:'-=3', y='-=15', duration:0.2, ease:'none'}, '>')
-    .to('#cerro-community-bird1-state1', {morphSVG:'#cerro-community-bird1-state2', x:'-=3', y='-=15', duration:0.2, ease:'none'}, '>')
-    .to('#cerro-community-bird1-state1', {morphSVG:'#cerro-community-bird1-state3', x:'-=3', y='-=15', duration:0.2, ease:'none'}, '>')
+    .to('#cerro-community-bird1-state1', {morphSVG:'#cerro-community-bird1-state2', x:'-=15', y='-=10', duration:0.4, ease:'none'}, 5)
+    .to('#cerro-community-bird1-state1', {morphSVG:'#cerro-community-bird1-state1', x:'-=15', y='-=10', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-community-bird1-state1', {morphSVG:'#cerro-community-bird1-state2', x:'-=15', y='-=10', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-community-bird1-state1', {morphSVG:'#cerro-community-bird1-state1', x:'-=15', y='-=10', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-community-bird1-state1', {morphSVG:'#cerro-community-bird1-state2', x:'-=15', y='-=10', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-community-bird1-state1', {morphSVG:'#cerro-community-bird1-state1', x:'-=15', y='-=10', duration:0.4, ease:'none'}, '>')
+    
 
-    .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state2', x:'-=3', y='-=15', duration:0.2, ease:'none'}, 4.3)
-    .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state3', x:'-=3', y='-=15', duration:0.2, ease:'none'}, '>')
-    .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state2', x:'-=3', y='-=15', duration:0.2, ease:'none'}, '>')
-    .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state1', x:'-=3', y='-=15', duration:0.2, ease:'none'}, '>')
-    .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state2', x:'-=3', y='-=15', duration:0.2, ease:'none'}, '>')
-    .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state3', x:'-=3', y='-=15', duration:0.2, ease:'none'}, '>')
-    
     // Trace animals
     .from(cerroCommunityChickenPaths, {drawSVG:0, duration:2}, 6)
     .from(cerroCommunityCowPaths, {drawSVG:0, duration:2}, 6.7);
