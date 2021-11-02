@@ -112,7 +112,7 @@ const triggerAnimationsCerro = () => {
   let minNumber = d3.select('#cerro-school-hours-count-min').text(0);
   let maxNumber = d3.select('#cerro-school-hours-count-max').text(0);
 
-  setTimeout(() => {
+  const animateSchoolNumbers = () => {
     minNumber
       .transition()
       .duration(minHours * hoursAnimationDuration * 1000 / maxHours)
@@ -131,7 +131,7 @@ const triggerAnimationsCerro = () => {
           this.textContent = d3.interpolateRound(0, 15)(t);
         }
       });
-  }, hoursAnimationDelay * 1000);
+  };
 
   const kids = document.querySelectorAll('#cerro-school-kids polygon, #cerro-school-kids polyline, #cerro-school-kids path, #cerro-school-kids ellipse');
   const kidsSmile = document.querySelectorAll('#cerro-school-girl-mouth, #cerro-school-boy-mouth');
@@ -144,6 +144,9 @@ const triggerAnimationsCerro = () => {
     // Clock hands are turning
     .to('#cerro-school-clock-small-hand', {rotation:450, duration:hoursAnimationDuration, ease:'none'}, hoursAnimationDelay)
     .to('#cerro-school-clock-big-hand', {rotation:5400, duration:hoursAnimationDuration, ease:'none'}, hoursAnimationDelay)
+
+    // Animate numbers
+    .call(animateSchoolNumbers, null, hoursAnimationDelay)
     
     // School doors open
     .to('#cerro-school-door-left', {x:'-95%', duration:2, ease:'power2.in'}, smileTiming - 1)
@@ -227,13 +230,14 @@ const triggerAnimationsCerro = () => {
   
   // Trace path to river
   gsap.set('#cerro-distance-arrowhead', {drawSVG:'50% 50%', opacity:0});
+  const reverseDistanceWalk = () => {
+    cerroDistanceWalkTl.reverse();
+  };
   cerroDistanceWalkTl
     .to('#cerro-distance-walk', {drawSVG:'100% 100%', duration:3, ease:'none'}, 2)
     .to('#cerro-distance-arrowhead', {drawSVG:'0 100%', opacity:1, duration:0.5, ease:'power1.in'})
-    .to('#text-distance', {opacity:1, scale:1, duration:0.5, ease:'back.out(1.4)'}, '>-0.1');
-  setTimeout(() => {
-    cerroDistanceWalkTl.reverse();
-  }, 10000);
+    .to('#text-distance', {opacity:1, scale:1, duration:0.5, ease:'back.out(1.4)'}, '>-0.1')
+    .call(reverseDistanceWalk, null, 10);
   
   // Animate river waves
   cerroDistanceTidesTl
@@ -332,15 +336,7 @@ const triggerAnimationsCerro = () => {
     }
   };
 
-  cerroWaterTl
-    .to(contaminantsInorganic, {opacity:1, scale:1, duration:0.2, ease:'back.out(1.7)', stagger:{each:0.1, from:'random'}}, 1)
-    .call(inorganicFloat)
-    .fromTo(contaminantsBiologicalCircles, {scale:0}, {scale:1, opacity:1, stagger:{each:0.05, from:'random'}, duration:0.2, ease:'back.out(1.4)'}, 2)
-    .to(contaminantsBiologicalLegs, {drawSVG:'0 100%', stagger:{each:0.03, from:'random'}, duration:0.5, ease:'sine.in'})
-    .call(biologicalLegsMovement)
-    .call(biologicalFloat);
-
-  setTimeout(() => {
+  const stopWaterAnimations = () => {
     cerroWaterBiologicalFloatTl.pause();
     cerroWaterLegTl.pause();
 
@@ -348,7 +344,16 @@ const triggerAnimationsCerro = () => {
     .to(contaminantsBiologicalLegs, {drawSVG:'100% 100%', opacity:0, stagger:{each:0.03, from:'random'}, duration:0.5, ease:'sine.in'})
     .to(contaminantsBiologicalCircles, {scale:0, opacity:0, stagger:{each:0.1, from:'random'}, duration:0.2, ease:'back.in(1.4)'})
     .to(contaminantsInorganic, {scale:0, opacity:0, stagger:{each:0.1, from:'random'}, duration:0.2, ease:'back.in(1.4)'});
-  
-  }, 15000);
+  };
+
+  cerroWaterTl
+    .to(contaminantsInorganic, {opacity:1, scale:1, duration:0.2, ease:'back.out(1.7)', stagger:{each:0.1, from:'random'}}, 1)
+    .call(inorganicFloat)
+    .fromTo(contaminantsBiologicalCircles, {scale:0}, {scale:1, opacity:1, stagger:{each:0.05, from:'random'}, duration:0.2, ease:'back.out(1.4)'}, 2)
+    .to(contaminantsBiologicalLegs, {drawSVG:'0 100%', stagger:{each:0.03, from:'random'}, duration:0.5, ease:'sine.in'})
+    .call(biologicalLegsMovement)
+    .call(biologicalFloat)
+    .call(stopWaterAnimations, null, 15);
+
 
 };
