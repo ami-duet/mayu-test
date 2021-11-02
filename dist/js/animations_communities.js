@@ -2,72 +2,98 @@
 // Trigger animations for Cerro de Leones
 const triggerAnimationsCerro = () => {
 
+  const start25 = 5;
+  const start50 = 10;
+  const start75 = 15;
+  const start100 = 20;
+  const getTransition = () => {
+    return d3.transition().duration(200);
+  };
+
   /****************************/
   /*         Community        */
   /****************************/
+  const scrollTriggerCerroCommunity = {
+    trigger: '.village-cerro-de-leones .section-community',
+    // markers: true,
+    start: 'top center',
+    end: 'bottom 0'
+  };
+  const cerroCommunityTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroCommunity });
+  const cerroCommunityCloudsTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroCommunity });
+  const cerroCommunityTractorTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroCommunity });
+
+  const counterCommunity = d3.select('.village-cerro-de-leones .section-community')
+    .append('div')
+      .attr('class', 'counter')
+      .text('0%');
 
   const cerroCommunityChickenPaths = document.querySelectorAll('#cerro-community-chicken path, #cerro-community-chicken line, #cerro-community-chicken polyline');
   const cerroCommunityCowPaths = document.querySelectorAll('#cerro-community-cow path, #cerro-community-cow line');
 
-  // Animate cerro community illustration
-  const cerroCommunityTl = gsap.timeline({
-    scrollTrigger: {
-      trigger: '.village-cerro-de-leones .section-community',
-      // markers: true,
-      start: 'top center',
-      end: 'bottom 0'
-    }
-  });
-  const cerroCommunityTractorTl = gsap.timeline({
-    scrollTrigger: {
-      trigger: '.village-cerro-de-leones .section-community',
-      // markers: true,
-      start: 'top center',
-      end: 'bottom 0'
-    }
-  });
+  gsap.set('#cerro-community-bird1-state2, #cerro-community-bird2-state2', {opacity:0});
+  gsap.set('#cloud-color-1, #cerro-community-clouds-back, #cerro-community-sun-color, #cerro-community-trees-color', {opacity:0});
 
-  gsap.set('#cerro-community-bird1-state2', {opacity:0});
-  gsap.set('#cerro-community-bird2-state2', {opacity:0});
+  const updateCommunityCounter = (percent) => {
+    counterCommunity
+      .transition(getTransition())
+        .style('opacity', 0)
+      .transition(getTransition())
+        .text(`${percent}%`)
+      .transition(getTransition())
+        .style('opacity', 1);
+  };
+  
+  const cerroCommunityCloudsMove = () => {
+    gsap.to('#cloud-color-1, #cerro-community-clouds-back', {opacity:0.42, duration:1, ease:'power1.out'});
+    gsap.to('#cerro-community-sun-color', {opacity:0.8, duration:1, ease:'power1.out'});
+    cerroCommunityCloudsTl
+      .fromTo('#cerro-community-clouds-front', {x:220}, {x:-300, duration:50, repeat:-1, ease:'none'}, 0)
+      .fromTo('#cerro-community-clouds-back', {x:220}, {x:-300, duration:80, repeat:-1, ease:'none'}, 0);
+  };
 
   // Timeline
   cerroCommunityTl
-    // Clouds move horizontally 
-    .fromTo('#cerro-community-clouds-front', {x:220}, {x:-300, duration:50, repeat:-1, ease:'none'}, 0)
-    .fromTo('#cerro-community-clouds-back', {x:220}, {x:-300, duration:80, repeat:-1, ease:'none'}, 0)
+    // Clouds move horizontally
+    .call(updateCommunityCounter, [25], start25)
+    .call(cerroCommunityCloudsMove, null, start25)
 
-    // Animate birds
-    .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state2', x:'-=10', y='-=15', duration:0.4, ease:'none'}, 4)
-    .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state1', x:'-=10', y='-=15', duration:0.4, ease:'none'}, '>')
-    .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state2', x:'-=10', y='-=15', duration:0.4, ease:'none'}, '>')
-    .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state1', x:'-=10', y='-=15', duration:0.4, ease:'none'}, '>')
-    .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state2', x:'-=10', y='-=15', duration:0.4, ease:'none'}, '>')
-    .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state1', x:'-=10', y='-=15', duration:0.4, ease:'none'}, '>')
-    
-    .to('#cerro-community-bird1-state1', {morphSVG:'#cerro-community-bird1-state2', x:'-=15', y='-=10', duration:0.4, ease:'none'}, 5)
-    .to('#cerro-community-bird1-state1', {morphSVG:'#cerro-community-bird1-state1', x:'-=15', y='-=10', duration:0.4, ease:'none'}, '>')
-    .to('#cerro-community-bird1-state1', {morphSVG:'#cerro-community-bird1-state2', x:'-=15', y='-=10', duration:0.4, ease:'none'}, '>')
-    .to('#cerro-community-bird1-state1', {morphSVG:'#cerro-community-bird1-state1', x:'-=15', y='-=10', duration:0.4, ease:'none'}, '>')
-    .to('#cerro-community-bird1-state1', {morphSVG:'#cerro-community-bird1-state2', x:'-=15', y='-=10', duration:0.4, ease:'none'}, '>')
-    .to('#cerro-community-bird1-state1', {morphSVG:'#cerro-community-bird1-state1', x:'-=15', y='-=10', duration:0.4, ease:'none'}, '>')
-    
+    // Tractor starts
+    .call(updateCommunityCounter, [50], start50)
 
     // Trace animals
-    .from(cerroCommunityChickenPaths, {drawSVG:0, duration:2}, 6)
-    .from(cerroCommunityCowPaths, {drawSVG:0, duration:2}, 6.7);
+    .call(updateCommunityCounter, [75], start75)
+    .from(cerroCommunityChickenPaths, {drawSVG:0, duration:2}, start75)
+    .from(cerroCommunityCowPaths, {drawSVG:0, duration:2}, start75 + 0.7)
+
+    // Animate birds
+    .call(updateCommunityCounter, [100], start100)
+    .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state2', x:'-=10', y='-=15', duration:0.4, ease:'none'}, start100)
+    .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state1', x:'-=10', y='-=15', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state2', x:'-=10', y='-=15', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state1', x:'-=10', y='-=15', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state2', x:'-=10', y='-=15', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-community-bird2-state1', {morphSVG:'#cerro-community-bird2-state1', x:'-=10', y='-=15', duration:0.4, ease:'none'}, '>')
+    
+    .to('#cerro-community-bird1-state1', {morphSVG:'#cerro-community-bird1-state2', x:'-=15', y='-=10', duration:0.4, ease:'none'}, start100 + 1)
+    .to('#cerro-community-bird1-state1', {morphSVG:'#cerro-community-bird1-state1', x:'-=15', y='-=10', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-community-bird1-state1', {morphSVG:'#cerro-community-bird1-state2', x:'-=15', y='-=10', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-community-bird1-state1', {morphSVG:'#cerro-community-bird1-state1', x:'-=15', y='-=10', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-community-bird1-state1', {morphSVG:'#cerro-community-bird1-state2', x:'-=15', y='-=10', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-community-bird1-state1', {morphSVG:'#cerro-community-bird1-state1', x:'-=15', y='-=10', duration:0.4, ease:'none'}, '>');
 
     
   // Tractor animation timeline
   gsap.set('#cerro-community-wheel-back', {transformOrigin:"50% 50%"}, 0);
   gsap.set('#cerro-community-wheel-front', {transformOrigin:"50% 50%"}, 0);
   cerroCommunityTractorTl
-    .to('#cerro-community-wheel-back', {rotation:'+=458', duration:2, ease:'back.in(1.7)'}, 3)
-    .to('#cerro-community-wheel-front', {rotation:'+=573', duration:2, ease:'back.in(1.7)'}, 3)
-    .to('#cerro-community-tractor', {x:80, duration:2, ease:'back.in(1.7)'}, 3)
+    .to('#cerro-community-wheel-back', {rotation:'+=458', duration:2, ease:'back.in(1.7)'}, start50)
+    .to('#cerro-community-wheel-front', {rotation:'+=573', duration:2, ease:'back.in(1.7)'}, start50)
+    .to('#cerro-community-tractor', {x:80, duration:2, ease:'back.in(1.7)'}, start50)
 
-    .to('#cerro-community-wheel-back', {rotation:'-=458', duration:1, ease:'back.out(1.4)'}, 10)
-    .to('#cerro-community-wheel-front', {rotation:'-=573', duration:1, ease:'back.out(1.4)'}, 10)
-    .to('#cerro-community-tractor', {x:0, duration:1, ease:'back.out(1.4)'}, 10);
+    .to('#cerro-community-wheel-back', {rotation:'-=458', duration:1, ease:'back.out(1.4)'}, start50 + 7)
+    .to('#cerro-community-wheel-front', {rotation:'-=573', duration:1, ease:'back.out(1.4)'}, start50 + 7)
+    .to('#cerro-community-tractor', {x:0, duration:1, ease:'back.out(1.4)'}, start50 + 7);
 
   cerroCommunityTractorTl
     .repeat(-1)

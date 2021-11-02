@@ -17,6 +17,12 @@
     .section {
       position: relative;
       padding-top: 12px;
+      .counter {
+        position: absolute;
+        top: 0;
+        left: 0;
+        color: $peach;
+      }
       .anchor {
         position: absolute;
         top: -90px;
