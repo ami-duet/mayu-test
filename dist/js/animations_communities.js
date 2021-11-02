@@ -357,4 +357,56 @@ const triggerAnimationsCerro = () => {
     .call(stopWaterAnimations, null, 15);
 
 
+  /****************************/
+  /*        Solution          */
+  /****************************/
+  const scrollTriggerCerroSolution = {
+    trigger: '.village-cerro-de-leones .section-solution',
+    // markers: true,
+    start: 'top center',
+    end: 'bottom 0'
+  };
+  const cerroSolutionTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroSolution });
+  const cerroSolutionTidesTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroSolution });
+  
+  const cerroSolutionChickenPaths = document.querySelectorAll('#cerro-solution-chicken path, #cerro-solution-chicken line, #cerro-solution-chicken polyline');
+  const cerroSolutionCowPaths = document.querySelectorAll('#cerro-solution-cow path, #cerro-solution-cow line');
+  const cerroSolutionWaterTreatmentFacility = document.querySelectorAll('#cerro-solution-water-treatment path, #cerro-solution-water-treatment line, #cerro-solution-water-treatment polyline, #cerro-solution-water-treatment circle');
+  gsap.set('#cerro-solution-water-treatment-faded', {opacity:0.3});
+  gsap.set('#cerro-solution-bird1-state2', {opacity:0});
+  gsap.set('#cerro-solution-bird2-state2', {opacity:0});
+  
+  // Animate river waves
+  cerroSolutionTidesTl
+    .set('#cerro-solution-river-tides', {opacity:0})
+    .to('#cerro-solution-river-tides', {x:'+30', opacity:1, duration:4, ease:'none'})
+    .to('#cerro-solution-river-tides', {x:'+60', opacity:0, duration:4, ease:'none'});
+    cerroSolutionTidesTl
+    .repeat(-1)
+    .repeatDelay(2);
+
+  cerroSolutionTl
+    // Trace animals
+    .from(cerroSolutionChickenPaths, {drawSVG:0, duration:2}, 2)
+    .from(cerroSolutionCowPaths, {drawSVG:0, duration:2}, 2.7)
+
+    // Animate birds
+    .to('#cerro-solution-bird2-state1', {morphSVG:'#cerro-solution-bird2-state2', x:'-=10', y='-=15', duration:0.4, ease:'none'}, 7)
+    .to('#cerro-solution-bird2-state1', {morphSVG:'#cerro-solution-bird2-state1', x:'-=10', y='-=15', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-solution-bird2-state1', {morphSVG:'#cerro-solution-bird2-state2', x:'-=10', y='-=15', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-solution-bird2-state1', {morphSVG:'#cerro-solution-bird2-state1', x:'-=10', y='-=15', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-solution-bird2-state1', {morphSVG:'#cerro-solution-bird2-state2', x:'-=10', y='-=15', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-solution-bird2-state1', {morphSVG:'#cerro-solution-bird2-state1', x:'-=10', y='-=15', duration:0.4, ease:'none'}, '>')
+    
+    .to('#cerro-solution-bird1-state1', {morphSVG:'#cerro-solution-bird1-state2', x:'-=15', y='-=15', duration:0.4, ease:'none'}, 8)
+    .to('#cerro-solution-bird1-state1', {morphSVG:'#cerro-solution-bird1-state1', x:'-=15', y='-=15', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-solution-bird1-state1', {morphSVG:'#cerro-solution-bird1-state2', x:'-=15', y='-=15', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-solution-bird1-state1', {morphSVG:'#cerro-solution-bird1-state1', x:'-=15', y='-=15', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-solution-bird1-state1', {morphSVG:'#cerro-solution-bird1-state2', x:'-=15', y='-=15', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-solution-bird1-state1', {morphSVG:'#cerro-solution-bird1-state1', x:'-=15', y='-=15', duration:0.4, ease:'none'}, '>')
+    
+    // Draw water treatment facility
+    .from(cerroSolutionWaterTreatmentFacility, {drawSVG:0, duration:2}, 10)
+    .to('#cerro-solution-water-treatment-faded', {opacity:0, duration:0.2}, '>');;
+
 };
