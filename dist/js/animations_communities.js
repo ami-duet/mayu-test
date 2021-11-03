@@ -331,9 +331,24 @@ const triggerAnimationsCerro = () => {
   };
   const cerroWaterTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroWaterMCL });
   const cerroWaterEndTl = gsap.timeline();
+  const cerroWaterDropsFloatTl = gsap.timeline();
   const cerroWaterBiologicalFloatTl = gsap.timeline();
   const cerroWaterInorganicFloatTl = gsap.timeline();
   const cerroWaterLegTl = gsap.timeline();
+
+  const counterWater = d3.select('.village-cerro-de-leones .section-waterMCL')
+    .append('div')
+      .attr('class', 'counter')
+      .text('0%');
+  const updateWaterCounter = (percent) => {
+    counterWater
+      .transition(getTransition())
+        .style('opacity', 0)
+      .transition(getTransition())
+        .text(`${percent}%`)
+      .transition(getTransition())
+        .style('opacity', 1);
+  };
 
   const legs = document.querySelectorAll('#cerro-water-contaminants-biological path');
   legs.forEach(leg => {
@@ -368,15 +383,29 @@ const triggerAnimationsCerro = () => {
   const contaminantsInorganicBatch3 = document.querySelectorAll('#cerro-water-contaminant-inorganic-3, #cerro-water-contaminant-inorganic-6');
   gsap.set(contaminantsInorganic, {opacity:0, scale:0, transformOrigin:'50% 50%'});
 
+  const waterDrop1 = document.querySelector('#cerro-water-drop-small-1');
+  const waterDrop2 = document.querySelector('#cerro-water-drop-small-2');
+  const waterDrop3 = document.querySelector('#cerro-water-drop-small-3');
+  const dropsFloat = () => {
+    const batches = [waterDrop1, waterDrop2, waterDrop3];
+    batches.forEach((batch, i) => {
+      cerroWaterDropsFloatTl
+        .to(batch, {x:'-=0.5', y:'+=1', duration:0.7, ease='linear'}, i * 0.25)
+        .to(batch, {x:'-=0.5', y:'-=1', duration:0.7, ease='linear'}, '>')
+        .to(batch, {x:'+=1', y:'+=1', duration:0.7, ease='linear'}, '>')
+        .to(batch, {x:'+=1', y:'-=1', duration:0.7, ease='linear'}, '>');
+        cerroWaterDropsFloatTl.repeat(-1).yoyo(true);
+    });
+  };
 
   const inorganicFloat = () => {
     const batches = [contaminantsInorganicBatch1, contaminantsInorganicBatch2, contaminantsInorganicBatch3];
     batches.forEach((batch, i) => {
       cerroWaterInorganicFloatTl
-        .to(batch, {x:'-=0.5', y:'+=0.5', duration:0.7, ease='linear'}, i * 0.25)
-        .to(batch, {x:'-=0.5', y:'-=0.5', duration:0.7, ease='linear'}, '>')
-        .to(batch, {x:'+=0.5', y:'+=0.5', duration:0.7, ease='linear'}, '>')
-        .to(batch, {x:'+=0.5', y:'-=0.5', duration:0.7, ease='linear'}, '>');
+        .to(batch, {x:'-=0.5', y:'+=1', duration:0.7, ease='linear'}, i * 0.25)
+        .to(batch, {x:'-=0.5', y:'-=1', duration:0.7, ease='linear'}, '>')
+        .to(batch, {x:'+=1', y:'+=1', duration:0.7, ease='linear'}, '>')
+        .to(batch, {x:'+=1', y:'-=1', duration:0.7, ease='linear'}, '>');
       cerroWaterInorganicFloatTl.repeat(-1).yoyo(true);
     });
   };
@@ -385,10 +414,10 @@ const triggerAnimationsCerro = () => {
     const batches = [contaminantsBiologicalBatch1, contaminantsBiologicalBatch2, contaminantsBiologicalBatch3];
     batches.forEach((batch, i) => {
       cerroWaterBiologicalFloatTl
-        .to(batch, {x:'-=0.7', y:'+=0.7', duration:0.8, ease='linear'}, i * 0.25)
-        .to(batch, {x:'-=0.7', y:'-=0.7', duration:0.8, ease='linear'}, '>')
-        .to(batch, {x:'+=0.7', y:'+=0.7', duration:0.8, ease='linear'}, '>')
-        .to(batch, {x:'+=0.7', y:'-=0.7', duration:0.8, ease='linear'}, '>');
+        .to(batch, {x:'-=0.7', y:'+=1.3', duration:0.8, ease='linear'}, i * 0.25)
+        .to(batch, {x:'-=0.7', y:'-=1.3', duration:0.8, ease='linear'}, '>')
+        .to(batch, {x:'+=1.4', y:'+=1.3', duration:0.8, ease='linear'}, '>')
+        .to(batch, {x:'+=1.4', y:'-=1.3', duration:0.8, ease='linear'}, '>');
       cerroWaterBiologicalFloatTl.repeat(-1).yoyo(true);
     });
   };
@@ -419,12 +448,25 @@ const triggerAnimationsCerro = () => {
 
   cerroWaterTl
     .to(contaminantsInorganic, {opacity:1, scale:1, duration:0.2, ease:'back.out(1.7)', stagger:{each:0.1, from:'random'}}, 1)
-    .call(inorganicFloat)
     .fromTo(contaminantsBiologicalCircles, {scale:0}, {scale:1, opacity:1, stagger:{each:0.05, from:'random'}, duration:0.2, ease:'back.out(1.4)'}, 2)
     .to(contaminantsBiologicalLegs, {drawSVG:'0 100%', stagger:{each:0.03, from:'random'}, duration:0.5, ease:'sine.in'})
-    .call(biologicalLegsMovement)
-    .call(biologicalFloat)
-    .call(stopWaterAnimations, null, 15);
+    
+    // Make inorganic contaminants float
+    .call(updateWaterCounter, [25], start25)
+    .call(inorganicFloat, null, start25)
+
+    // Make biologic contaminants float
+    .call(updateWaterCounter, [50], start50)
+    .call(biologicalLegsMovement, null, start50)
+    .call(biologicalFloat, null, start50)
+
+    // Make drops flot
+    .call(updateWaterCounter, [75], start75)
+    .call(dropsFloat, null, start75)
+
+    .call(updateWaterCounter, [100], start100)
+    .to([contaminantsInorganic, contaminantsBiologicalCircles, contaminantsBiologicalLegs], {opacity:0.4, duration:1}, start100)
+    // .call(stopWaterAnimations, null, 15);
 
 
   /****************************/
