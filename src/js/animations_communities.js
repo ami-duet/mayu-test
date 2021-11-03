@@ -231,56 +231,92 @@ const triggerAnimationsCerro = () => {
   const cerroDistanceTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroDistance });
   const cerroDistanceWalkTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroDistance });
   const cerroDistanceTidesTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroDistance });
+  const cerroDistanceCloudsTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroDistance });
+
+  const counterDistance = d3.select('.village-cerro-de-leones .section-distance')
+    .append('div')
+      .attr('class', 'counter')
+      .text('0%');
+  const updateDistanceCounter = (percent) => {
+    counterDistance
+      .transition(getTransition())
+        .style('opacity', 0)
+      .transition(getTransition())
+        .text(`${percent}%`)
+      .transition(getTransition())
+        .style('opacity', 1);
+  };
 
   const cerroDistanceChickenPaths = document.querySelectorAll('#cerro-distance-chicken path, #cerro-distance-chicken line, #cerro-distance-chicken polyline');
   const cerroDistanceCowPaths = document.querySelectorAll('#cerro-distance-cow path, #cerro-distance-cow line, #cerro-distance-cow polyline');
 
   gsap.set('#text-distance', {opacity:0, scale:0.7, transformOrigin:'50% 50%'});
-  gsap.set('#cerro-distance-bird1-state2', {opacity:0});
-  gsap.set('#cerro-distance-bird2-state2', {opacity:0});
-  cerroDistanceTl
-    // Clouds move horizontally 
-    .fromTo('#cerro-distance-cloud1', {x:-200}, {x:800, duration:70, repeat:-1, ease:'none'}, 0)
-    .fromTo('#cerro-distance-cloud2', {x:-200}, {x:800, duration:80, repeat:-1, ease:'none'}, 0)
-
-    // Trace animals
-    .from(cerroDistanceChickenPaths, {drawSVG:0, duration:2}, 6)
-    .from(cerroDistanceCowPaths, {drawSVG:0, duration:2}, 6.7)
-
-    // Animate birds
-    .to('#cerro-distance-bird2-state1', {morphSVG:'#cerro-distance-bird2-state2', x:'+=10', y='-=15', duration:0.4, ease:'none'}, 7)
-    .to('#cerro-distance-bird2-state1', {morphSVG:'#cerro-distance-bird2-state1', x:'+=10', y='-=15', duration:0.4, ease:'none'})
-    .to('#cerro-distance-bird2-state1', {morphSVG:'#cerro-distance-bird2-state2', x:'+=10', y='-=15', duration:0.4, ease:'none'})
-    .to('#cerro-distance-bird2-state1', {morphSVG:'#cerro-distance-bird2-state1', x:'+=10', y='-=15', duration:0.4, ease:'none'})
-    .to('#cerro-distance-bird2-state1', {morphSVG:'#cerro-distance-bird2-state2', x:'+=10', y='-=15', duration:0.4, ease:'none'})
-    .to('#cerro-distance-bird2-state1', {morphSVG:'#cerro-distance-bird2-state1', x:'+=10', y='-=15', duration:0.4, ease:'none'})
-    
-    .to('#cerro-distance-bird1-state1', {morphSVG:'#cerro-distance-bird1-state2', x:'+=10', y='-=15', duration:0.4, ease:'none'}, 8)
-    .to('#cerro-distance-bird1-state1', {morphSVG:'#cerro-distance-bird1-state1', x:'+=10', y='-=15', duration:0.4, ease:'none'})
-    .to('#cerro-distance-bird1-state1', {morphSVG:'#cerro-distance-bird1-state2', x:'+=10', y='-=15', duration:0.4, ease:'none'})
-    .to('#cerro-distance-bird1-state1', {morphSVG:'#cerro-distance-bird1-state1', x:'+=10', y='-=15', duration:0.4, ease:'none'})
-    .to('#cerro-distance-bird1-state1', {morphSVG:'#cerro-distance-bird1-state2', x:'+=10', y='-=15', duration:0.4, ease:'none'})
-    .to('#cerro-distance-bird1-state1', {morphSVG:'#cerro-distance-bird1-state1', x:'+=10', y='-=15', duration:0.4, ease:'none'});
-  
-  // Trace path to river
   gsap.set('#cerro-distance-arrowhead', {drawSVG:'50% 50%', opacity:0});
-  const reverseDistanceWalk = () => {
-    cerroDistanceWalkTl.reverse();
+  gsap.set('#cerro-distance-river-tides', {x:'+=20'});
+  gsap.set('#cerro-distance-bird1-state2, #cerro-distance-bird2-state2', {opacity:0});
+ 
+  // Trace path to river
+  const fadeDistanceWalk = () => {
+    gsap.set('#cerro-distance-walk', {opacity:0});
+    gsap.to('#cerro-distance-points, #cerro-distance-arrowhead, #text-distance', {opacity:0.4, duration:1, ease:'power2.out'});
   };
   cerroDistanceWalkTl
     .to('#cerro-distance-walk', {drawSVG:'100% 100%', duration:3, ease:'none'}, 2)
     .to('#cerro-distance-arrowhead', {drawSVG:'0 100%', opacity:1, duration:0.5, ease:'power1.in'})
-    .to('#text-distance', {opacity:1, scale:1, duration:0.5, ease:'back.out(1.4)'}, '>-0.1')
-    .call(reverseDistanceWalk, null, 10);
+    .to('#text-distance', {opacity:1, scale:1, duration:0.5, ease:'back.out(1.4)'}, '>-0.1');
+    
+  const animateRiverTides = () => {
+    cerroDistanceTidesTl
+      .set('#cerro-distance-river-tides', {x:0, opacity:0})
+      .to('#cerro-distance-river-tides', {x:'+30', opacity:1, duration:4, ease:'none'})
+      .to('#cerro-distance-river-tides', {x:'+60', opacity:0, duration:4, ease:'none'});
+    cerroDistanceTidesTl
+      .repeat(-1)
+      .repeatDelay(2);
+  };
+
+  const animateDistanceClouds = () => {
+    cerroDistanceCloudsTl
+      .fromTo('#cerro-distance-cloud1', {x:-100}, {x:500, duration:70, repeat:-1, ease:'none'}, 0)
+      .fromTo('#cerro-distance-cloud2', {x:-100}, {x:500, duration:80, repeat:-1, ease:'none'}, 0);
+  };
   
-  // Animate river waves
-  cerroDistanceTidesTl
-    .set('#cerro-distance-river-tides', {opacity:0})
-    .to('#cerro-distance-river-tides', {x:'+30', opacity:1, duration:4, ease:'none'})
-    .to('#cerro-distance-river-tides', {x:'+60', opacity:0, duration:4, ease:'none'});
-  cerroDistanceTidesTl
-    .repeat(-1)
-    .repeatDelay(2);
+  cerroDistanceTl
+    // Animate river waves
+    .call(updateDistanceCounter, [25], start25)
+    .to('#cerro-distance-river-tides', {opacity:0, duration:0.2})
+    .to('#cerro-distance-river-tides', {x:'-=20'})
+    .call(animateRiverTides, null, start25)
+
+    // Clouds move horizontally
+    .call(updateDistanceCounter, [50], start50)
+    .to('#cerro-distance-cloud1, #cerro-distance-cloud2', {opacity:0, duration:0.2}, start50)
+    .set('#cerro-distance-cloud1, #cerro-distance-cloud2', {x:-100, opacity:1}, '>')
+    .call(animateDistanceClouds, null, start50 + 0.3)
+
+    // Trace animals
+    .call(updateDistanceCounter, [75], start75)
+    .from(cerroDistanceChickenPaths, {drawSVG:0, duration:2}, start75)
+    .from(cerroDistanceCowPaths, {drawSVG:0, duration:2}, start75 + 0.7)
+
+    // Fade distance walk
+    .call(updateDistanceCounter, [100], start100)
+    .call(fadeDistanceWalk, null, start100)
+
+    // Animate birds
+    .to('#cerro-distance-bird2-state1', {morphSVG:'#cerro-distance-bird2-state2', x:'+=10', y='-=15', duration:0.4, ease:'none'}, start100 + 2)
+    .to('#cerro-distance-bird2-state1', {morphSVG:'#cerro-distance-bird2-state1', x:'+=10', y='-=15', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-distance-bird2-state1', {morphSVG:'#cerro-distance-bird2-state2', x:'+=10', y='-=15', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-distance-bird2-state1', {morphSVG:'#cerro-distance-bird2-state1', x:'+=10', y='-=15', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-distance-bird2-state1', {morphSVG:'#cerro-distance-bird2-state2', x:'+=10', y='-=15', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-distance-bird2-state1', {morphSVG:'#cerro-distance-bird2-state1', x:'+=10', y='-=15', duration:0.4, ease:'none'}, '>')
+    
+    .to('#cerro-distance-bird1-state1', {morphSVG:'#cerro-distance-bird1-state2', x:'+=10', y='-=15', duration:0.4, ease:'none'}, start100 + 3)
+    .to('#cerro-distance-bird1-state1', {morphSVG:'#cerro-distance-bird1-state1', x:'+=10', y='-=15', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-distance-bird1-state1', {morphSVG:'#cerro-distance-bird1-state2', x:'+=10', y='-=15', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-distance-bird1-state1', {morphSVG:'#cerro-distance-bird1-state1', x:'+=10', y='-=15', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-distance-bird1-state1', {morphSVG:'#cerro-distance-bird1-state2', x:'+=10', y='-=15', duration:0.4, ease:'none'}, '>')
+    .to('#cerro-distance-bird1-state1', {morphSVG:'#cerro-distance-bird1-state1', x:'+=10', y='-=15', duration:0.4, ease:'none'}, '>');
 
 
   /****************************/

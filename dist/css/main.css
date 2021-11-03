@@ -2007,7 +2007,7 @@ button {
 .villages .village .section .counter {
   position: absolute;
   top: 120px;
-  left: 0;
+  left: -50px;
   color: #DD5F3D;
 }
 
