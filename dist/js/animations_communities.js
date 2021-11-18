@@ -8,15 +8,6 @@ const getTransition = () => {
   return d3.transition().duration(200);
 };
 const illustrations = ['community', 'school', 'distance', 'waterMCL', 'solution', 'coloring'];
-const illustrationsInfo = [
-  {community:'cerro-de-leones', animals:[{id:'cow', selector:''}, {id:'chicken', selector:''}]},
-  {community:'las-mercedes-km11', animals:[{id:'chicken1', selector:''}, {id:'chicken2', selector:''}]},
-  {community:'la-merced', animals:[{id:'chicken1', selector:''}, {id:'chicken2', selector:''}]},
-  {community:'totoral-bajo', animals:[{id:'chicken1', selector:''}, {id:'chicken2', selector:''}]},
-  {community:'las-mercedes', animals:[{id:'cow1', selector:''}, {id:'cow2', selector:''}]},
-  {community:'totoral-alto', animals:{id:'cow', selector:''}},
-  {community:'carizalillo', animals:{id:'cow', selector:''}}
-];
 
 const triggerAnimations = (communityId) => {
   const illustrationInfo = illustrationsInfo.find(info => info.community === communityId);
@@ -50,6 +41,29 @@ const triggerAnimations = (communityId) => {
       .to(birdState1, {morphSVG:birdState1, x:'-=10', y='-=15', duration:0.4, ease:'none'}, '>');
   };
 
+  // Vehicles animation
+  const vehicleAnimation = (section, distance, direction, rotationWheelBack, rotationWheelFront) => {
+    gsap.set(`#${communityId}-${section}-wheel-back, #${communityId}-${section}-wheel-front`, {transformOrigin:"50% 50%"}, 0);
+    const easeIn = 'back.in(1.7)';
+    const easeOut = 'back.out(1.4)';
+    const directionOpposite = direction === '+' ? '-' : '+';
+
+    const vehicleTl = gsap.timeline();
+    vehicleTl
+      .to(`#${communityId}-${section}-wheel-back`, {rotation:`${direction}=${rotationWheelBack}`, duration:2, ease:easeIn}, 0)
+      .to(`#${communityId}-${section}-wheel-front`, {rotation:`${direction}=${rotationWheelFront}`, duration:2, ease:easeIn}, 0)
+      .to(`#${communityId}-${section}-tractor`, {x:`${direction}${distance}`, duration:2, ease:easeIn}, 0)
+  
+      .to(`#${communityId}-${section}-wheel-back`, {rotation:`${directionOpposite}=${rotationWheelBack}`, duration:1, ease:easeOut}, 7)
+      .to(`#${communityId}-${section}-wheel-front`, {rotation:`${directionOpposite}=${rotationWheelFront}`, duration:1, ease:easeOut}, start50 + 7)
+      .to(`#${communityId}-${section}-tractor`, {x:0, duration:1, ease:easeOut}, 7);
+  
+    vehicleTl
+      .repeat(-1)
+      .repeatDelay(10)
+      .yoyo(true);
+  }
+
   /****************************/
   /*         Community        */
   /****************************/
@@ -64,11 +78,10 @@ const triggerAnimations = (communityId) => {
   const communityTl = gsap.timeline({ scrollTrigger: stCommunity });
 
   // Trace animals
-  illustrationInfo.animals.forEach(animal => {
+  illustrationInfo.animalsCommunity.forEach(animal => {
     animal.selector = document.querySelectorAll(`#${communityId}-community-${animal.id} path, #${communityId}-community-${animal.id} line, #${communityId}-community-${animal.id} polyline`);
     gsap.set(animal.selector, {drawSVG:0});
   });
-  console.log(illustrationInfo.animals)
   const traceAnimals = (animals) => {
     animals.forEach(animal => {
       gsap.to(animal.selector, {drawSVG:'100%', duration:2});
@@ -85,23 +98,6 @@ const triggerAnimations = (communityId) => {
       .fromTo(`#${communityId}-community-clouds-back`, {x:220}, {x:-300, duration:80, repeat:-1, ease:'none'}, 0);
   };
 
-  // Tractor animation
-  gsap.set(`#${communityId}-community-wheel-back, #${communityId}-community-wheel-front`, {transformOrigin:"50% 50%"}, 0);
-  const communityTractorAnimation = () => {
-    const communityTractorTl = gsap.timeline();
-    communityTractorTl
-      .to(`#${communityId}-community-wheel-back`, {rotation:'+=458', duration:2, ease:'back.in(1.7)'}, 0)
-      .to(`#${communityId}-community-tractor`, {x:80, duration:2, ease:'back.in(1.7)'}, 0)
-  
-      .to(`#${communityId}-community-wheel-back`, {rotation:'-=458', duration:1, ease:'back.out(1.4)'}, 7)
-      .to(`#${communityId}-community-tractor`, {x:0, duration:1, ease:'back.out(1.4)'}, 7);
-  
-    communityTractorTl
-      .repeat(-1)
-      .repeatDelay(10)
-      .yoyo(true);
-  }
-
   // Timelines
   communityTl
     // Clouds move horizontally
@@ -110,11 +106,11 @@ const triggerAnimations = (communityId) => {
 
     // Tractor starts moving
     .call(updateCounter, ['community', 50], start50)
-    .call(communityTractorAnimation, null, start50)
+    .call(vehicleAnimation, ['community', illustrationInfo.vehicleCommunity.distance, illustrationInfo.vehicleCommunity.direction, illustrationInfo.vehicleCommunity.rotationWheelBack, illustrationInfo.vehicleCommunity.rotationWheelFront], start50)
 
     // Trace animals
     .call(updateCounter, ['community', 75], start75)
-    .call(traceAnimals, [illustrationInfo.animals], start75)
+    .call(traceAnimals, [illustrationInfo.animalsCommunity], start75)
 
     // Animate birds
     .call(updateCounter, ['community', 100], start100)
