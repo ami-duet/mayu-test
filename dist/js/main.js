@@ -64,7 +64,7 @@ currentVillage
 const callAnimations = (community) => {
   switch (community) {
     case 'Cerro de Leones':
-      triggerAnimationsCerro();
+      triggerAnimations('cerro-de-leones', 'cerro');
       break;
   }
 };
