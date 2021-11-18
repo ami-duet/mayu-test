@@ -60,14 +60,7 @@ currentVillage
     .text(villagesData.find(village => village.village_id === currentVillageId).village_name);
 
 // Call illustrations animations
-const callAnimations = (community) => {
-  switch (community) {
-    case 'Cerro de Leones':
-      triggerAnimations('cerro-de-leones', 'cerro');
-      break;
-  }
-};
-callAnimations(firstVillageName);
+triggerAnimations(firstVillageId);
 
 // Initialize the carousel
 const carousel = new Glide('.glide', {
@@ -90,9 +83,10 @@ const updateCarouselButtons = (index) => {
 
 // Update name of current village
 const updateCurrentVillage = (index) => {
-  const community = villagesData[index].village_name;
-  currentVillage.select('h2').text(community);
-  callAnimations(community);
+  const community = villagesData[index];
+  currentVillage.select('h2').text(community.village_name);
+  gsap.globalTimeline.clear();
+  triggerAnimations(community.village_id);
 };
 
 if (window.innerWidth > 1100) {
