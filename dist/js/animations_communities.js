@@ -11,14 +11,16 @@ const illustrations = ['community', 'school', 'distance', 'waterMCL', 'solution'
 
 const triggerAnimations = (communityId) => {
   const illustrationInfo = illustrationsInfo.find(info => info.community === communityId);
-
+  
   // Temporary counters
-  illustrations.forEach(illustration => {
-    d3.select(`.village-${communityId} .section-${illustration}`)
-      .append('div')
-        .attr('class', 'counter')
-        .text('0%');
-  });
+  if (document.querySelector(`.village-${communityId} .section-community .counter`) === null) {
+    illustrations.forEach(illustration => {
+      d3.select(`.village-${communityId} .section-${illustration}`)
+        .append('div')
+          .attr('class', 'counter')
+          .text('0%');
+    });
+  }
   const updateCounter = (section, percent) => {
     d3.select(`.village-${communityId} .section-${section} .counter`)
       .transition(getTransition())
@@ -69,7 +71,6 @@ const triggerAnimations = (communityId) => {
   /****************************/
   const stCommunity = {
     trigger: `.village-${communityId} .section-community svg`,
-    // markers: true,
     start: 'top center',
     end: 'bottom 0',
     onEnterBack: () => communityTl.restart(),
@@ -118,124 +119,97 @@ const triggerAnimations = (communityId) => {
     .call(makeBirdFly, [`#${communityId}-community-bird1-state1`, `#${communityId}-community-bird1-state2`], start100 + 1);
 
 
-  // /****************************/
-  // /*          School          */
-  // /****************************/
-  // const scrollTriggerCerroSchool = {
-  //   trigger: '.village-cerro-de-leones .section-school svg',
-  //   // markers: true,
-  //   start: 'top center',
-  //   end: 'bottom 0'
-  // };
-  // const cerroSchoolTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroSchool });
-  // const cerroSchoolTearsTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroSchool });
-  // const cerroSchoolFlagsTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroSchool });
+  /****************************/
+  /*          School          */
+  /****************************/
+  const stSchool = {
+    trigger: `.village-${communityId} .section-school svg`,
+    start: 'top center',
+    end: 'bottom 0',
+    onEnterBack: () => schoolTl.restart(),
+    onLeave: () => schoolTl.pause()
+  };
+  const schoolTl = gsap.timeline({ scrollTrigger: stSchool });
 
-  // const counterSchool = d3.select('.village-cerro-de-leones .section-school')
-  //   .append('div')
-  //     .attr('class', 'counter')
-  //     .text('0%');
-  // const updateSchoolCounter = (percent) => {
-  //   counterSchool
-  //     .transition(getTransition())
-  //       .style('opacity', 0)
-  //     .transition(getTransition())
-  //       .text(`${percent}%`)
-  //     .transition(getTransition())
-  //       .style('opacity', 1);
-  // };
-
-  // const hoursAnimationDuration = 3;
-  // const hoursAnimationDelay = 2;
-  // const minHours = 12;
-  // const maxHours = 15;
-  // let minNumber = d3.select('#cerro-school-hours-count-min').text(0);
-  // let maxNumber = d3.select('#cerro-school-hours-count-max').text(0);
-
-  // const animateSchoolNumbers = () => {
-  //   minNumber
-  //     .transition()
-  //     .duration(minHours * hoursAnimationDuration * 1000 / maxHours)
-  //     .ease(d3.easeQuadOut)
-  //     .tween('atween', () => {
-  //       return function (t) {
-  //         this.textContent = d3.interpolateRound(0, minHours)(t);
-  //       }
-  //     });
-  //   maxNumber
-  //     .transition()
-  //     .duration(hoursAnimationDuration * 1000)
-  //     .ease(d3.easeQuadOut)
-  //     .tween('atween', () => {
-  //       return function (t) {
-  //         this.textContent = d3.interpolateRound(0, maxHours)(t);
-  //       }
-  //     });
-  // };
-
-  // const kids = document.querySelectorAll('#cerro-school-kids polygon, #cerro-school-kids polyline, #cerro-school-kids path, #cerro-school-kids ellipse');
-  // const kidsSmile = document.querySelectorAll('#cerro-school-kid1-mouth, #cerro-school-kid2-mouth');
+  const clockAnimationDuration = 3;
+  const clockAnimationDelay = 2;
+  const kids = document.querySelectorAll(`#${communityId}-school-kids polygon, #${communityId}-school-kids polyline, #${communityId}-school-kids path, #${communityId}-school-kids ellipse`);
+  const kidsSmile = document.querySelectorAll(`#${communityId}-school-kid1-mouth, #${communityId}-school-kid2-mouth`);
   
-  // gsap.set('#cerro-school-clock-small-hand', {transformOrigin:"bottom center"}, 0);
-  // gsap.set('#cerro-school-clock-big-hand', {transformOrigin:"bottom center"}, 0);
-  // gsap.set('#cerro-school-flag-top-state2, #cerro-school-flag-top-state3, #cerro-school-flag-bottom-state2, #cerro-school-flag-bottom-state3', {opacity:0}, 0);
-  // gsap.set('#cerro-school-clock-mouth', {opacity:0});
-  // gsap.set(kidsSmile, {opacity:0});
+  gsap.set(`#${communityId}-school-clock-small-hand`, {transformOrigin:"bottom center"}, 0);
+  gsap.set(`#${communityId}-school-clock-big-hand`, {transformOrigin:"bottom center"}, 0);
+  gsap.set(`#${communityId}-school-clock-mouth`, {opacity:0});
+  gsap.set(kidsSmile, {opacity:0});
+
+  if (illustrationInfo.hasTwoSchools) {
+    gsap.set(`#${communityId}-school-flag-top-state2, #${communityId}-school-flag-top-state3, #${communityId}-school-flag-bottom-state2, #${communityId}-school-flag-bottom-state3`, {opacity:0}, 0);
+  } else {
+    gsap.set(`#${communityId}-school-flag-state2, #${communityId}-school-flag-state3`, {opacity:0}, 0);
+  }
+
+  const makeClockCry = () => {
+    const tearLeft = document.querySelector(`#${communityId}-school-clock-tear-left`);
+    const tearRight = document.querySelector(`#${communityId}-school-clock-tear-right`);
+    schoolTearsTl = gsap.timeline();
+    schoolTearsTl
+      .from(tearLeft, {drawSVG:0, duration:0.7, ease:'none'}, 0)
+      .to(tearLeft, {y:25, duration:1, ease:'power2.in'})
+      .to(tearLeft, {drawSVG:'100% 100%', opacity:0, duration:0.1})
+      .from(tearRight, {drawSVG:0, duration:0.7, ease:'none'}, 3.2)
+      .to(tearRight, {y:25, duration:1, ease:'power2.in'})
+      .to(tearRight, {drawSVG:'100% 100%', opacity:0, duration:0.1});
+    schoolTearsTl
+      .repeat(Math.floor(start100 / 4.2) - 1);
+  };
   
-  // const makeFlagsFly = () => {
-  //   cerroSchoolFlagsTl
-  //     .to('#cerro-school-flag-top-state1', {morphSVG:'#cerro-school-flag-top-state2', duration:0.8, ease:'none'})
-  //     .to('#cerro-school-flag-top-state1', {morphSVG:'#cerro-school-flag-top-state3', duration:0.8, ease:'none'}, '>')
-  //     .to('#cerro-school-flag-top-state1', {morphSVG:'#cerro-school-flag-top-state1', duration:0.8, ease:'none'}, '>')
-      
-  //     .to('#cerro-school-flag-bottom-state1', {morphSVG:'#cerro-school-flag-bottom-state2', duration:0.8, ease:'none'}, 0.2)
-  //     .to('#cerro-school-flag-bottom-state1', {morphSVG:'#cerro-school-flag-bottom-state3', duration:0.8, ease:'none'}, '>')
-  //     .to('#cerro-school-flag-bottom-state1', {morphSVG:'#cerro-school-flag-bottom-state1', duration:0.8, ease:'none'}, '>');
-      
-  //   cerroSchoolFlagsTl
-  //     .repeat(-1);
-  // };
+  const makeFlagsFly = () => {
+    schoolFlagsTl = gsap.timeline();
+
+    if (illustrationInfo.hasTwoSchools) {
+      schoolFlagsTl
+        .to(`#${communityId}-school-flag-top-state1`, {morphSVG:`#${communityId}-school-flag-top-state2`, duration:0.8, ease:'none'})
+        .to(`#${communityId}-school-flag-top-state1`, {morphSVG:`#${communityId}-school-flag-top-state3`, duration:0.8, ease:'none'}, '>')
+        .to(`#${communityId}-school-flag-top-state1`, {morphSVG:`#${communityId}-school-flag-top-state1`, duration:0.8, ease:'none'}, '>')
+        
+        .to(`#${communityId}-school-flag-bottom-state1`, {morphSVG:`#${communityId}-school-flag-bottom-state2`, duration:0.8, ease:'none'}, 0.2)
+        .to(`#${communityId}-school-flag-bottom-state1`, {morphSVG:`#${communityId}-school-flag-bottom-state3`, duration:0.8, ease:'none'}, '>')
+        .to(`#${communityId}-school-flag-bottom-state1`, {morphSVG:`#${communityId}-school-flag-bottom-state1`, duration:0.8, ease:'none'}, '>');  
+    } else {
+      schoolFlagsTl
+        .to(`#${communityId}-school-flag-state1`, {morphSVG:`#${communityId}-school-flag-state2`, duration:0.8, ease:'none'})
+        .to(`#${communityId}-school-flag-state1`, {morphSVG:`#${communityId}-school-flag-state3`, duration:0.8, ease:'none'}, '>')
+        .to(`#${communityId}-school-flag-state1`, {morphSVG:`#${communityId}-school-flag-state1`, duration:0.8, ease:'none'}, '>')
+    }
+
+    schoolFlagsTl
+      .repeat(-1);
+  };
   
-  // cerroSchoolTl
-  //   // Clock hands are turning
-  //   .to('#cerro-school-clock-small-hand', {rotation:450, duration:hoursAnimationDuration, ease:'none'}, hoursAnimationDelay)
-  //   .to('#cerro-school-clock-big-hand', {rotation:5400, duration:hoursAnimationDuration, ease:'none'}, hoursAnimationDelay)
+  schoolTl
+    // Clock hands are turning
+    .to(`#${communityId}-school-clock-small-hand`, {rotation:illustrationInfo.missedSchoolHours.max*360/12, duration:clockAnimationDuration, ease:'none'}, clockAnimationDelay)
+    .to(`#${communityId}-school-clock-big-hand`, {rotation:illustrationInfo.missedSchoolHours.max*360, duration:clockAnimationDuration, ease:'none'}, clockAnimationDelay)
+    .call(makeClockCry, null, clockAnimationDelay)
 
-  //   // Animate numbers
-  //   .call(animateSchoolNumbers, null, hoursAnimationDelay)
+    // Call flags animation
+    .call(updateCounter, ['school', 25], start25)
+    .call(makeFlagsFly, null, start25)
 
-  //   // Call flags animation
-  //   .call(updateSchoolCounter, [25], start25)
-  //   .call(makeFlagsFly, null, start25)
-
-  //   // Draw kids
-  //   .call(updateSchoolCounter, [50], start50)
-  //   .from(kids, {drawSVG:0, duration:2}, start50)
+    // Draw kids
+    .call(updateCounter, ['school', 50], start50)
+    .from(kids, {drawSVG:0, duration:2}, start50)
     
-  //   // School doors open
-  //   .call(updateSchoolCounter, [75], start75)
-  //   .to('#cerro-school-door-left', {x:'-95%', duration:2, ease:'power2.in'}, start75)
-  //   .to('#cerro-school-door-right', {x:'95%', duration:2, ease:'power2.in'}, start75)
+    // School doors open
+    .call(updateCounter, ['school', 75], start75)
+    .to(`#${communityId}-school-door-left`, {x:'-95%', duration:2, ease:'power2.in'}, start75)
+    .to(`#${communityId}-school-door-right`, {x:'95%', duration:2, ease:'power2.in'}, start75)
 
-  //   // Kids and clock smile
-  //   .call(updateSchoolCounter, [100], start100)
-  //   .fromTo('#cerro-school-clock-mouth', {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, start100)
-  //   .fromTo(kidsSmile, {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, start100);
+    // Kids and clock smile
+    .call(updateCounter, ['school', 100], start100)
+    .fromTo(`#${communityId}-school-clock-mouth`, {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, start100)
+    .fromTo(kidsSmile, {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, start100);
+  
     
-
-  // const cerroTearLeft = document.querySelector('#cerro-school-clock-tear-left');
-  // const cerroTearRight = document.querySelector('#cerro-school-clock-tear-right');
-  // cerroSchoolTearsTl
-  //   .from(cerroTearLeft, {drawSVG:0, duration:0.7, ease:'none'}, 2)
-  //   .to(cerroTearLeft, {y:25, duration:1, ease:'power2.in'})
-  //   .to(cerroTearLeft, {drawSVG:'100% 100%', opacity:0, duration:0.1})
-  //   .from(cerroTearRight, {drawSVG:0, duration:0.7, ease:'none'}, 3.2)
-  //   .to(cerroTearRight, {y:25, duration:1, ease:'power2.in'})
-  //   .to(cerroTearRight, {drawSVG:'100% 100%', opacity:0, duration:0.1});
-  // cerroSchoolTearsTl
-  //   .repeat(Math.floor(start100 / 4.2) - 1);
-
-
 
   // /****************************/
   // /*        Distance          */
