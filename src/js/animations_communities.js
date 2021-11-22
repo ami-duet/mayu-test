@@ -31,15 +31,37 @@ const triggerAnimations = (communityId) => {
   };
 
   // Birds flying animation
-  const makeBirdFly = (birdState1, birdState2) => {
+  const makeBirdFly = (birdState1, birdState2, direction) => {
     const birdTl = gsap.timeline();
+    const xDirection = direction === 'left' ? '-' : '+';
+    
     birdTl
-      .to(birdState1, {morphSVG:birdState2, x:'-=10', y='-=15', duration:0.4, ease:'none'}, 0)
-      .to(birdState1, {morphSVG:birdState1, x:'-=10', y='-=15', duration:0.4, ease:'none'}, '>')
-      .to(birdState1, {morphSVG:birdState2, x:'-=10', y='-=15', duration:0.4, ease:'none'}, '>')
-      .to(birdState1, {morphSVG:birdState1, x:'-=10', y='-=15', duration:0.4, ease:'none'}, '>')
-      .to(birdState1, {morphSVG:birdState2, x:'-=10', y='-=15', duration:0.4, ease:'none'}, '>')
-      .to(birdState1, {morphSVG:birdState1, x:'-=10', y='-=15', duration:0.4, ease:'none'}, '>');
+      .to(birdState1, {morphSVG:birdState2, x:`${xDirection}=10`, y='-=15', duration:0.4, ease:'none'}, 0)
+      .to(birdState1, {morphSVG:birdState1, x:`${xDirection}=10`, y='-=15', duration:0.4, ease:'none'}, '>')
+      .to(birdState1, {morphSVG:birdState2, x:`${xDirection}=10`, y='-=15', duration:0.4, ease:'none'}, '>')
+      .to(birdState1, {morphSVG:birdState1, x:`${xDirection}=10`, y='-=15', duration:0.4, ease:'none'}, '>')
+      .to(birdState1, {morphSVG:birdState2, x:`${xDirection}=10`, y='-=15', duration:0.4, ease:'none'}, '>')
+      .to(birdState1, {morphSVG:birdState1, x:`${xDirection}=10`, y='-=15', duration:0.4, ease:'none'}, '>');
+  };
+  const callBirdsAnimations = (selector, section, direction) => {
+    const numOfBirds = illustrationInfo[selector];
+    const directionBird = illustrationInfo[direction];
+    const birdsTl = gsap.timeline();
+
+    switch (numOfBirds) {
+      case 2:
+        birdsTl
+          .call(makeBirdFly, [`#${communityId}-${section}-bird1-state1`, `#${communityId}-${section}-bird1-state2`, directionBird])
+          .call(makeBirdFly, [`#${communityId}-${section}-bird2-state1`, `#${communityId}-${section}-bird2-state2`, directionBird], '>+1');
+        break;
+      case 4:
+        birdsTl
+          .call(makeBirdFly, [`#${communityId}-${section}-bird1-state1`, `#${communityId}-${section}-bird1-state2`, directionBird])
+          .call(makeBirdFly, [`#${communityId}-${section}-bird2-state1`, `#${communityId}-${section}-bird2-state2`, directionBird], '>+1')
+          .call(makeBirdFly, [`#${communityId}-${section}-bird3-state1`, `#${communityId}-${section}-bird3-state2`, directionBird], '>+1')
+          .call(makeBirdFly, [`#${communityId}-${section}-bird4-state1`, `#${communityId}-${section}-bird4-state2`, directionBird], '>+1');
+        break;
+    }
   };
 
   // Vehicles animation
@@ -65,6 +87,26 @@ const triggerAnimations = (communityId) => {
       .yoyo(true);
   }
 
+  // Rive waves animation
+  const animateRiverTides = (section) => {
+    const tidesTl = gsap.timeline();
+    tidesTl
+      .set(`#${communityId}-${section}-river-tides`, {x:'-=20', opacity:0})
+      .to(`#${communityId}-${section}-river-tides`, {x:'+=30', opacity:1, duration:4, ease:'none'})
+      .to(`#${communityId}-${section}-river-tides`, {x:'+=30', opacity:0, duration:4, ease:'none'});
+    tidesTl
+      .repeat(-1)
+      .repeatDelay(2);
+  };
+
+  // Trace animals
+  const traceAnimals = (animals) => {
+    animals.forEach(animal => {
+      gsap.to(animal.selector, {drawSVG:'100%', duration:2});
+    });
+  };
+
+
   /****************************/
   /*         Community        */
   /****************************/
@@ -77,16 +119,11 @@ const triggerAnimations = (communityId) => {
   };
   const communityTl = gsap.timeline({ scrollTrigger: stCommunity });
 
-  // Trace animals
+  // Get animals selectors
   illustrationInfo.animalsCommunity.forEach(animal => {
     animal.selector = document.querySelectorAll(`#${communityId}-community-${animal.id} path, #${communityId}-community-${animal.id} line, #${communityId}-community-${animal.id} polyline`);
     gsap.set(animal.selector, {drawSVG:0});
   });
-  const traceAnimals = (animals) => {
-    animals.forEach(animal => {
-      gsap.to(animal.selector, {drawSVG:'100%', duration:2});
-    });
-  };
   
   // Clouds animations
   const communityCloudsMove = () => {
@@ -114,8 +151,8 @@ const triggerAnimations = (communityId) => {
 
     // Animate birds
     .call(updateCounter, ['community', 100], start100)
-    .call(makeBirdFly, [`#${communityId}-community-bird2-state1`, `#${communityId}-community-bird2-state2`], start100)
-    .call(makeBirdFly, [`#${communityId}-community-bird1-state1`, `#${communityId}-community-bird1-state2`], start100 + 1);
+    .call(makeBirdFly, [`#${communityId}-community-bird2-state1`, `#${communityId}-community-bird2-state2`, 'left'], start100)
+    .call(makeBirdFly, [`#${communityId}-community-bird1-state1`, `#${communityId}-community-bird1-state2`, 'left'], start100 + 1);
 
 
   /****************************/
@@ -208,106 +245,60 @@ const triggerAnimations = (communityId) => {
     .fromTo(`#${communityId}-school-clock-mouth`, {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, start100)
     .fromTo(kidsSmile, {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, start100);
   
-    
 
-  // /****************************/
-  // /*        Distance          */
-  // /****************************/
-  // const scrollTriggerCerroDistance = {
-  //     trigger: '.village-cerro-de-leones .section-distance svg',
-  //     // markers: true,
-  //     start: 'top center',
-  //     end: 'bottom 0'
-  //   };
-  // const cerroDistanceTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroDistance });
-  // const cerroDistanceWalkTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroDistance });
-  // const cerroDistanceTidesTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroDistance });
-  // const cerroDistanceCloudsTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroDistance });
 
-  // const counterDistance = d3.select('.village-cerro-de-leones .section-distance')
-  //   .append('div')
-  //     .attr('class', 'counter')
-  //     .text('0%');
-  // const updateDistanceCounter = (percent) => {
-  //   counterDistance
-  //     .transition(getTransition())
-  //       .style('opacity', 0)
-  //     .transition(getTransition())
-  //       .text(`${percent}%`)
-  //     .transition(getTransition())
-  //       .style('opacity', 1);
-  // };
+  /****************************/
+  /*        Distance          */
+  /****************************/
+  const stDistance = {
+    trigger: `.village-${communityId} .section-distance svg`,
+    start: 'top center',
+    end: 'bottom 0',
+    onEnterBack: () => distanceTl.restart(),
+    onLeave: () => distanceTl.pause()
+  };
+  const distanceTl = gsap.timeline({ scrollTrigger: stDistance });
 
-  // const cerroDistanceChickenPaths = document.querySelectorAll('#cerro-distance-chicken path, #cerro-distance-chicken line, #cerro-distance-chicken polyline');
-  // const cerroDistanceCowPaths = document.querySelectorAll('#cerro-distance-cow path, #cerro-distance-cow line, #cerro-distance-cow polyline');
-
-  // gsap.set('#text-distance', {opacity:0, scale:0.7, transformOrigin:'50% 50%'});
-  // gsap.set('#cerro-distance-arrowhead', {drawSVG:'50% 50%', opacity:0});
-  // gsap.set('#cerro-distance-river-tides', {x:'+=20'});
-  // gsap.set('#cerro-distance-bird1-state2, #cerro-distance-bird2-state2', {opacity:0});
+  gsap.set(`#${communityId}-distance-text`, {opacity:0, scale:0.7, transformOrigin:'50% 50%'});
+  gsap.set(`#${communityId}-distance-walk`, {drawSVG:'0% 100%'});
+  gsap.set(`#${communityId}-distance-arrowhead`, {drawSVG:'50% 50%', opacity:0});
+  gsap.set(`#${communityId}-distance-bird1-state2, #${communityId}-distance-bird2-state2`, {opacity:0});
  
-  // // Trace path to river
-  // const fadeDistanceWalk = () => {
-  //   gsap.set('#cerro-distance-walk', {opacity:0});
-  //   gsap.to('#cerro-distance-points, #cerro-distance-arrowhead, #text-distance', {opacity:0.4, duration:1, ease:'power2.out'});
-  // };
-  // cerroDistanceWalkTl
-  //   .to('#cerro-distance-walk', {drawSVG:'100% 100%', duration:3, ease:'none'}, 2)
-  //   .to('#cerro-distance-arrowhead', {drawSVG:'0 100%', opacity:1, duration:0.5, ease:'power1.in'})
-  //   .to('#text-distance', {opacity:1, scale:1, duration:0.5, ease:'back.out(1.4)'}, '>-0.1');
-    
-  // const animateRiverTides = () => {
-  //   cerroDistanceTidesTl
-  //     .set('#cerro-distance-river-tides', {x:0, opacity:0})
-  //     .to('#cerro-distance-river-tides', {x:'+30', opacity:1, duration:4, ease:'none'})
-  //     .to('#cerro-distance-river-tides', {x:'+60', opacity:0, duration:4, ease:'none'});
-  //   cerroDistanceTidesTl
-  //     .repeat(-1)
-  //     .repeatDelay(2);
-  // };
-
-  // const animateDistanceClouds = () => {
-  //   cerroDistanceCloudsTl
-  //     .fromTo('#cerro-distance-cloud1', {x:-100}, {x:500, duration:70, repeat:-1, ease:'none'}, 0)
-  //     .fromTo('#cerro-distance-cloud2', {x:-100}, {x:500, duration:80, repeat:-1, ease:'none'}, 0);
-  // };
+  // Get animals selectors
+  illustrationInfo.animalsDistance.forEach(animal => {
+    animal.selector = document.querySelectorAll(`#${communityId}-distance-${animal.id} path, #${communityId}-distance-${animal.id} line, #${communityId}-distance-${animal.id} polyline`);
+    gsap.set(animal.selector, {drawSVG:0});
+  });
   
-  // cerroDistanceTl
-  //   // Animate river waves
-  //   .call(updateDistanceCounter, [25], start25)
-  //   .to('#cerro-distance-river-tides', {opacity:0, duration:0.2})
-  //   .to('#cerro-distance-river-tides', {x:'-=20'})
-  //   .call(animateRiverTides, null, start25)
+  // Fade path to river
+  const fadeDistanceWalk = () => {
+    gsap.set(`#${communityId}-distance-walk`, {opacity:0});
+    gsap.to(`#${communityId}-distance-points, #${communityId}-distance-arrowhead, #${communityId}-distance-text`, {opacity:0.4, duration:1, ease:'power2.out'});
+  };
+  
+  distanceTl
+    // Trace path to river
+    .to(`#${communityId}-distance-walk`, {drawSVG:'100% 100%', duration:3, ease:'none'}, 2)
+    .to(`#${communityId}-distance-arrowhead`, {drawSVG:'0 100%', opacity:1, duration:0.5, ease:'power1.in'})
+    .to(`#${communityId}-distance-text`, {opacity:1, scale:1, duration:0.5, ease:'back.out(1.4)'}, '>-0.1')
 
-  //   // Clouds move horizontally
-  //   .call(updateDistanceCounter, [50], start50)
-  //   .to('#cerro-distance-cloud1, #cerro-distance-cloud2', {opacity:0, duration:0.2}, start50)
-  //   .set('#cerro-distance-cloud1, #cerro-distance-cloud2', {x:-100, opacity:1}, '>')
-  //   .call(animateDistanceClouds, null, start50 + 0.3)
+    // Animate river waves
+    .call(updateCounter, ['distance', 25], start25)
+    .to(`#${communityId}-distance-river-tides`, {opacity:0, duration:0.2})
+    .call(animateRiverTides, ['distance'], start25)
 
-  //   // Trace animals
-  //   .call(updateDistanceCounter, [75], start75)
-  //   .from(cerroDistanceChickenPaths, {drawSVG:0, duration:2}, start75)
-  //   .from(cerroDistanceCowPaths, {drawSVG:0, duration:2}, start75 + 0.7)
-
-  //   // Fade distance walk
-  //   .call(updateDistanceCounter, [100], start100)
-  //   .call(fadeDistanceWalk, null, start100)
-
-  //   // Animate birds
-  //   .to('#cerro-distance-bird2-state1', {morphSVG:'#cerro-distance-bird2-state2', x:'+=10', y='-=15', duration:0.4, ease:'none'}, start100 + 2)
-  //   .to('#cerro-distance-bird2-state1', {morphSVG:'#cerro-distance-bird2-state1', x:'+=10', y='-=15', duration:0.4, ease:'none'}, '>')
-  //   .to('#cerro-distance-bird2-state1', {morphSVG:'#cerro-distance-bird2-state2', x:'+=10', y='-=15', duration:0.4, ease:'none'}, '>')
-  //   .to('#cerro-distance-bird2-state1', {morphSVG:'#cerro-distance-bird2-state1', x:'+=10', y='-=15', duration:0.4, ease:'none'}, '>')
-  //   .to('#cerro-distance-bird2-state1', {morphSVG:'#cerro-distance-bird2-state2', x:'+=10', y='-=15', duration:0.4, ease:'none'}, '>')
-  //   .to('#cerro-distance-bird2-state1', {morphSVG:'#cerro-distance-bird2-state1', x:'+=10', y='-=15', duration:0.4, ease:'none'}, '>')
+    // Animate birds
+    .call(updateCounter, ['distance', 50], start50)
+    .call(callBirdsAnimations, ['numberOfBirdsDistance', 'distance', 'directionBirdsDistance'], start50)
     
-  //   .to('#cerro-distance-bird1-state1', {morphSVG:'#cerro-distance-bird1-state2', x:'+=10', y='-=15', duration:0.4, ease:'none'}, start100 + 3)
-  //   .to('#cerro-distance-bird1-state1', {morphSVG:'#cerro-distance-bird1-state1', x:'+=10', y='-=15', duration:0.4, ease:'none'}, '>')
-  //   .to('#cerro-distance-bird1-state1', {morphSVG:'#cerro-distance-bird1-state2', x:'+=10', y='-=15', duration:0.4, ease:'none'}, '>')
-  //   .to('#cerro-distance-bird1-state1', {morphSVG:'#cerro-distance-bird1-state1', x:'+=10', y='-=15', duration:0.4, ease:'none'}, '>')
-  //   .to('#cerro-distance-bird1-state1', {morphSVG:'#cerro-distance-bird1-state2', x:'+=10', y='-=15', duration:0.4, ease:'none'}, '>')
-  //   .to('#cerro-distance-bird1-state1', {morphSVG:'#cerro-distance-bird1-state1', x:'+=10', y='-=15', duration:0.4, ease:'none'}, '>');
+    // Trace animals
+    .call(updateCounter, ['distance', 75], start75)
+    .call(traceAnimals, [illustrationInfo.animalsDistance], start75)
+
+    // Fade distance walk
+    .call(updateCounter, ['distance', 100], start100)
+    .call(fadeDistanceWalk, null, start100);
+
 
 
   // /****************************/
