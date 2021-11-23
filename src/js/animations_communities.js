@@ -530,68 +530,55 @@ const triggerAnimations = (communityId) => {
     }
 
   
-  // /****************************/
-  // /*        Coloring          */
-  // /****************************/
-  // const scrollTriggerCerroColoring = {
-  //   trigger: '.village-cerro-de-leones .section-solution svg',
-  //   // markers: true,
-  //   start: 'top center',
-  //   end: 'bottom 0'
-  // };
-  // const cerroColoringTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroColoring });
-  // const cerroColoringWindWheelTl = gsap.timeline({ scrollTrigger: scrollTriggerCerroColoring });
+  /****************************/
+  /*        Coloring          */
+  /****************************/
+  const stColoring = {
+    trigger: `.village-${communityId} .section-coloring svg`,
+    start: 'top center',
+    end: 'bottom 0',
+    onEnterBack: () => coloringTl.restart(),
+    onLeave: () => coloringTl.pause()
+  };
+  const coloringTl = gsap.timeline({ scrollTrigger: stColoring });
 
-  // const counterColoring = d3.select('.village-cerro-de-leones .section-coloring')
-  //   .append('div')
-  //     .attr('class', 'counter')
-  //     .text('0%');
-  // const updateColoringCounter = (percent) => {
-  //   counterColoring
-  //     .transition(getTransition())
-  //       .style('opacity', 0)
-  //     .transition(getTransition())
-  //       .text(`${percent}%`)
-  //     .transition(getTransition())
-  //       .style('opacity', 1);
-  // };
+  const coloringKids = document.querySelectorAll(`#${communityId}-coloring-kids path, #${communityId}-coloring-kids ellipse, #${communityId}-coloring-kids line, #${communityId}-coloring-kids circle`);
+  const coloringKidsSmiles = document.querySelectorAll(`#${communityId}-coloring-smile-1, #${communityId}-coloring-smile-2, #${communityId}-coloring-smile-3`);
+  const coloringErlenmeyers = document.querySelectorAll(`#${communityId}-coloring-erlenmeyers path, #${communityId}-coloring-erlenmeyers line`);
+  const coloringDrops = document.querySelectorAll(`#${communityId}-coloring-drops path`);
+  const coloringPencils = document.querySelectorAll(`#${communityId}-coloring-pencil-1, #${communityId}-coloring-pencil-2, #${communityId}-coloring-pencil-3, #${communityId}-coloring-pencil-4, #${communityId}-coloring-pencil-5`);
 
-  // const cerroColoringKids = document.querySelectorAll('#cerro-coloring-kids path, #cerro-coloring-kids ellipse, #cerro-coloring-kids line, #cerro-coloring-kids circle');
-  // const cerroColoringKidsSmiles = document.querySelectorAll('#cerro-coloring-smile-1, #cerro-coloring-smile-2, #cerro-coloring-smile-3');
-  // const cerroColoringErlenmeyers = document.querySelectorAll('#cerro-coloring-erlenmeyers path, #cerro-coloring-erlenmeyers line');
-  // const cerroColoringDrops = document.querySelectorAll('#cerro-coloring-drops path');
-  // const cerroColoringPencils = document.querySelectorAll('#cerro-coloring-pencil-1, #cerro-coloring-pencil-2, #cerro-coloring-pencil-3, #cerro-coloring-pencil-4, #cerro-coloring-pencil-5');
+  gsap.set(coloringKidsSmiles, {opacity:0});
+  gsap.set(coloringDrops, {opacity:0, transformOrigin:'50% 50%'});
+  gsap.set(coloringPencils, {x:'-=10', y:'+=10', opacity:0});
+  gsap.set(`#${communityId}-coloring-windwheel`, {transformOrigin:'50% 50%'});
 
-  // gsap.set(cerroColoringKidsSmiles, {opacity:0});
-  // gsap.set(cerroColoringDrops, {opacity:0, transformOrigin:'50% 50%'});
-  // gsap.set(cerroColoringPencils, {x:'-=10', y:'+=10', opacity:0});
-  // gsap.set('#cerro-coloring-windwheel', {transformOrigin:'50% 50%'});
+  const startWindWheel = () => {
+    const coloringWindWheelTl = gsap.timeline();
+    coloringWindWheelTl
+      .to(`#${communityId}-coloring-windwheel`, {rotation:360, duration: 1.5, ease:'none'});
+    coloringWindWheelTl.repeat(-1);
+  };
 
-  // const startWindWheel = () => {
-  //   cerroColoringWindWheelTl
-  //     .to('#cerro-coloring-windwheel', {rotation:360, duration: 1.5, ease:'none'});
-  //   cerroColoringWindWheelTl.repeat(-1);
-  // };
+  coloringTl
+    // Draw kids
+    .from(coloringKids, {drawSVG:0, duration:3}, 2)
 
-  // cerroColoringTl
-  //   // Draw kids
-  //   .from(cerroColoringKids, {drawSVG:0, duration:3}, 2)
+    // Draw erlenmeyers + Make water drops appear
+    .call(updateCounter, ['coloring', 25], start25)
+    .from(coloringErlenmeyers, {drawSVG:0, duration:2}, start25)
+    .fromTo(coloringDrops, {scale:0}, {scale:1, opacity:1, stagger:{each:0.15, from:'random'}, duration:0.3, ease:'back.out(1.4)'}, start25 + 1.8)
 
-  //   // Draw erlenmeyers + Make water drops appear
-  //   .call(updateColoringCounter, [25], start25)
-  //   .from(cerroColoringErlenmeyers, {drawSVG:0, duration:2}, start25)
-  //   .fromTo(cerroColoringDrops, {scale:0}, {scale:1, opacity:1, stagger:{each:0.15, from:'random'}, duration:0.3, ease:'back.out(1.4)'}, start25 + 1.8)
-
-  //   // Make pencils appear
-  //   .call(updateColoringCounter, [50], start50)
-  //   .to(cerroColoringPencils, {x:'+=10', y:'-=10', opacity:1, stagger:{each:0.2, from:'end'}, duration:0.3, ease:'back.out(1.4)'}, start50)
+    // Make pencils appear
+    .call(updateCounter, ['coloring', 50], start50)
+    .to(coloringPencils, {x:'+=10', y:'-=10', opacity:1, stagger:{each:0.2, from:'end'}, duration:0.3, ease:'back.out(1.4)'}, start50)
     
-  //   // Start windwheel
-  //   .call(updateColoringCounter, [75], start75)
-  //   .call(startWindWheel, null, start75)
+    // Start windwheel
+    .call(updateCounter, ['coloring', 75], start75)
+    .call(startWindWheel, null, start75)
     
-  //   // Make kids smile
-  //   .call(updateColoringCounter, [100], start100)
-  //   .fromTo(cerroColoringKidsSmiles, {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, start100);
+    // Make kids smile
+    .call(updateCounter, ['coloring', 100], start100)
+    .fromTo(coloringKidsSmiles, {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, start100);
 
 };
