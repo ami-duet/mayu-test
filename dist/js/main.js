@@ -69,7 +69,7 @@ const appendCommunities = () => {
       .text(villagesData.find(village => village.village_id === currentVillageId).village_name);
   
   // Call illustrations animations
-  triggerAnimations(firstVillageId, dataFundraising.find(d => d.community === firstVillageId).fundraising_level);
+  triggerAnimations(firstVillageId, +dataFundraising.find(d => d.community === firstVillageId).fundraising_level);
   
   // Initialize the carousel
   const carousel = new Glide('.glide', {
@@ -95,7 +95,7 @@ const appendCommunities = () => {
     const community = villagesData[index];
     currentVillage.select('h2').text(community.village_name);
     gsap.globalTimeline.clear();
-    triggerAnimations(community.village_id, dataFundraising.find(d => d.community === community.village_id).fundraising_level);
+    triggerAnimations(community.village_id, +dataFundraising.find(d => d.community === community.village_id).fundraising_level);
   };
   
   if (window.innerWidth > 1100) {
