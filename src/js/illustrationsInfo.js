@@ -7,7 +7,8 @@ const illustrationsInfo = [
     directionBirdsDistance:'right',
     vehicleCommunity:{distance:80, direction:'+', rotationWheelBack:456, rotationWheelFront:599},
     missedSchoolHours:{min:12, max:15},
-    hasTwoSchools:true
+    hasTwoSchools:true,
+    waterContaminants:{biological:7, inorganic:6}
   },
   {
     community:'las-mercedes-km11',
@@ -17,7 +18,8 @@ const illustrationsInfo = [
     directionBirdsDistance:'left',
     vehicleCommunity:{distance:60, direction:'+', rotationWheelBack:814, rotationWheelFront:814},
     missedSchoolHours:{min:3, max:3},
-    hasTwoSchools:false
+    hasTwoSchools:false,
+    waterContaminants:{biological:6, inorganic:5}
   },
   {
     community:'la-merced',
@@ -27,7 +29,8 @@ const illustrationsInfo = [
     directionBirdsDistance:'right',
     vehicleCommunity:{distance:120, direction:'+', rotationWheelBack:1378, rotationWheelFront:1378},
     missedSchoolHours:{min:4, max:7},
-    hasTwoSchools:true
+    hasTwoSchools:true,
+    waterContaminants:{biological:6, inorganic:3}
   },
   {
     community:'totoral-bajo',
@@ -37,7 +40,8 @@ const illustrationsInfo = [
     directionBirdsDistance:'left',
     vehicleCommunity:{distance:62, direction:'-', rotationWheelBack:362, rotationWheelFront:476},
     missedSchoolHours:{min:8, max:11},
-    hasTwoSchools:true
+    hasTwoSchools:true,
+    waterContaminants:{biological:7, inorganic:3}
   },
   {
     community:'las-mercedes',
@@ -47,7 +51,8 @@ const illustrationsInfo = [
     directionBirdsDistance:'left',
     vehicleCommunity:{distance:260, direction:'-', rotationWheelBack:1519, rotationWheelFront:1997},
     missedSchoolHours:{min:3, max:3},
-    hasTwoSchools:false
+    hasTwoSchools:false,
+    waterContaminants:{biological:6, inorganic:2}
   },
   {
     community:'totoral-alto',
@@ -57,7 +62,8 @@ const illustrationsInfo = [
     directionBirdsDistance:'',
     vehicleCommunity:{distance:120, direction:'+', rotationWheelBack:1378, rotationWheelFront:1378},
     missedSchoolHours:{min:3, max:3},
-    hasTwoSchools:false
+    hasTwoSchools:false,
+    waterContaminants:{biological:7, inorganic:3}
   },
   {
     community:'carrizalillo',
@@ -67,6 +73,7 @@ const illustrationsInfo = [
     directionBirdsDistance:'left',
     vehicleCommunity:{distance:106, direction:'-', rotationWheelBack:1438, rotationWheelFront:1438},
     missedSchoolHours:{min:3, max:3},
-    hasTwoSchools:false
+    hasTwoSchools:false,
+    waterContaminants:{biological:6, inorganic:5}
   }
 ];
