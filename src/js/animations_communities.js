@@ -8,27 +8,8 @@ const getTransition = () => {
 };
 const illustrations = ['community', 'school', 'distance', 'waterMCL', 'solution', 'coloring'];
 
-const triggerAnimations = (communityId) => {
+const triggerAnimations = (communityId, fundraisingLevel) => {
   const illustrationInfo = illustrationsInfo.find(info => info.community === communityId);
-  
-  // Temporary counters
-  if (document.querySelector(`.village-${communityId} .section-community .counter`) === null) {
-    illustrations.forEach(illustration => {
-      d3.select(`.village-${communityId} .section-${illustration}`)
-        .append('div')
-          .attr('class', 'counter')
-          .text('0%');
-    });
-  }
-  const updateCounter = (section, percent) => {
-    d3.select(`.village-${communityId} .section-${section} .counter`)
-      .transition(getTransition())
-        .style('opacity', 0)
-      .transition(getTransition())
-        .text(`${percent}%`)
-      .transition(getTransition())
-        .style('opacity', 1);
-  };
 
   // Birds flying animation
   const makeBirdFly = (birdState1, birdState2, direction) => {
@@ -138,19 +119,15 @@ const triggerAnimations = (communityId) => {
   // Timelines
   communityTl
     // Clouds move horizontally
-    .call(updateCounter, ['community', 25], start25)
     .call(communityCloudsMove, null, start25)
 
     // Tractor starts moving
-    .call(updateCounter, ['community', 50], start50)
     .call(vehicleAnimation, ['community', illustrationInfo.vehicleCommunity.distance, illustrationInfo.vehicleCommunity.direction, illustrationInfo.vehicleCommunity.rotationWheelBack, illustrationInfo.vehicleCommunity.rotationWheelFront], start50)
 
     // Trace animals
-    .call(updateCounter, ['community', 75], start75)
     .call(traceAnimals, [illustrationInfo.animalsCommunity], start75)
 
     // Animate birds
-    .call(updateCounter, ['community', 100], start100)
     .call(makeBirdFly, [`#${communityId}-community-bird2-state1`, `#${communityId}-community-bird2-state2`, 'left'], start100)
     .call(makeBirdFly, [`#${communityId}-community-bird1-state1`, `#${communityId}-community-bird1-state2`, 'left'], start100 + 1);
 
@@ -228,20 +205,16 @@ const triggerAnimations = (communityId) => {
     .call(makeClockCry, null, clockAnimationDelay)
 
     // Call flags animation
-    .call(updateCounter, ['school', 25], start25)
     .call(makeFlagsFly, null, start25)
 
     // Draw kids
-    .call(updateCounter, ['school', 50], start50)
     .from(kids, {drawSVG:0, duration:2}, start50)
     
     // School doors open
-    .call(updateCounter, ['school', 75], start75)
     .to(`#${communityId}-school-door-left`, {x:'-95%', duration:2, ease:'power2.in'}, start75)
     .to(`#${communityId}-school-door-right`, {x:'95%', duration:2, ease:'power2.in'}, start75)
 
     // Kids and clock smile
-    .call(updateCounter, ['school', 100], start100)
     .fromTo(`#${communityId}-school-clock-mouth`, {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, start100)
     .fromTo(kidsSmile, {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, start100);
   
@@ -283,20 +256,16 @@ const triggerAnimations = (communityId) => {
     .to(`#${communityId}-distance-text`, {opacity:1, scale:1, duration:0.5, ease:'back.out(1.4)'}, '>-0.1')
 
     // Animate river waves
-    .call(updateCounter, ['distance', 25], start25)
     .to(`#${communityId}-distance-river-tides`, {opacity:0, duration:0.2})
     .call(animateRiverTides, ['distance'], start25)
 
     // Animate birds
-    .call(updateCounter, ['distance', 50], start50)
     .call(callBirdsAnimations, ['numberOfBirdsDistance', 'distance', 'directionBirdsDistance'], start50)
     
     // Trace animals
-    .call(updateCounter, ['distance', 75], start75)
     .call(traceAnimals, [illustrationInfo.animalsDistance], start75)
 
     // Fade distance walk
-    .call(updateCounter, ['distance', 100], start100)
     .call(fadeDistanceWalk, null, start100);
 
 
@@ -459,20 +428,16 @@ const triggerAnimations = (communityId) => {
     .to(contaminantsBiologicalLegs, {drawSVG:'0 100%', stagger:{each:0.03, from:'random'}, duration:0.5, ease:'sine.in'})
     
     // Make inorganic contaminants float
-    .call(updateCounter, ['waterMCL', 25], start25)
     .call(inorganicFloat, null, start25)
 
     // Make biologic contaminants float
-    .call(updateCounter, ['waterMCL', 50], start50)
     .call(biologicalLegsMovement, null, start50)
     .call(biologicalFloat, null, start50)
 
     // Make drops flot
-    .call(updateCounter, ['waterMCL', 75], start75)
     .call(dropsFloat, null, start75)
 
     // To reconsider
-    // .call(updateCounter, ['waterMCL', 100], start100)
     // .to([contaminantsInorganic, contaminantsBiologicalCircles, contaminantsBiologicalLegs], {opacity:0.4, duration:1}, start100)
     // .call(stopWaterAnimations, null, 15);
 
@@ -509,22 +474,17 @@ const triggerAnimations = (communityId) => {
 
   solutionTl
     // Animate river waves
-    .call(updateCounter, ['solution', 25], start25)
     .to(`#${communityId}-solution-river-tides`, {opacity:0, duration:0.2})
     .call(animateRiverTides, ['solution'], start25)
 
     // Trace animals
-    .call(updateCounter, ['solution', 50], start50)
     .call(traceAnimals, [illustrationInfo.animalsSolution], start50)
-
-    // Animate birds
-    .call(updateCounter, ['solution', 75], start75)
   
     // Draw water treatment facility
-    .call(updateCounter, ['solution', 100], start100)
     .to(solutionWaterTreatmentFacility, {drawSVG:'100%', duration:2}, start100)
     .to(`#${communityId}-solution-water-treatment-faded`, {opacity:0, duration:0.2}, '>');
 
+    // Animate birds
     if (illustrationInfo.numberOfBirdsSolution > 0) {
       solutionTl.add(solutionBirdsAnimation, start75);
     }
@@ -565,20 +525,16 @@ const triggerAnimations = (communityId) => {
     .from(coloringKids, {drawSVG:0, duration:3}, 2)
 
     // Draw erlenmeyers + Make water drops appear
-    .call(updateCounter, ['coloring', 25], start25)
     .from(coloringErlenmeyers, {drawSVG:0, duration:2}, start25)
     .fromTo(coloringDrops, {scale:0}, {scale:1, opacity:1, stagger:{each:0.15, from:'random'}, duration:0.3, ease:'back.out(1.4)'}, start25 + 1.8)
 
     // Make pencils appear
-    .call(updateCounter, ['coloring', 50], start50)
     .to(coloringPencils, {x:'+=10', y:'-=10', opacity:1, stagger:{each:0.2, from:'end'}, duration:0.3, ease:'back.out(1.4)'}, start50)
     
     // Start windwheel
-    .call(updateCounter, ['coloring', 75], start75)
     .call(startWindWheel, null, start75)
     
     // Make kids smile
-    .call(updateCounter, ['coloring', 100], start100)
     .fromTo(coloringKidsSmiles, {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, start100);
 
 };
