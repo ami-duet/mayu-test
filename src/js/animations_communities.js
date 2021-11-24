@@ -10,7 +10,6 @@ const illustrations = ['community', 'school', 'distance', 'waterMCL', 'solution'
 
 const triggerAnimations = (communityId, fundraisingLevel) => {
   const illustrationInfo = illustrationsInfo.find(info => info.community === communityId);
-  console.log(fundraisingLevel);
 
   // Birds flying animation
   const makeBirdFly = (birdState1, birdState2, direction) => {
@@ -110,9 +109,9 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
     }
     
     // Clouds animations
+    gsap.set(`#cloud-color-1, #${communityId}-community-clouds-back`, {opacity:0.42});
+    gsap.set(`#${communityId}-community-sun-color`, {opacity:0.8});
     const communityCloudsMove = () => {
-      gsap.to(`#cloud-color-1, #${communityId}-community-clouds-back`, {opacity:0.42, duration:1, ease:'power1.out'});
-      gsap.to(`#${communityId}-community-sun-color`, {opacity:0.8, duration:1, ease:'power1.out'});
       const communityCloudsTl = gsap.timeline();
       communityCloudsTl
         .fromTo(`#${communityId}-community-clouds-front`, {x:220}, {x:-300, duration:50, repeat:-1, ease:'none'}, 0)
@@ -138,16 +137,16 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
 
     communityTl
       // Clouds move horizontally
-      .call(communityCloudsMove, null, 0);
+      .call(communityCloudsMove, null, 0.1);
 
       // Tractor starts moving
-      if (fundraisingLevel >= 50) { communityTl.add(community50, 3) }
+      if (fundraisingLevel >= 50) { communityTl.add(community50, 2) }
 
       // Trace animals
-      if (fundraisingLevel >= 75) { communityTl.add(community75, 7) }
+      if (fundraisingLevel >= 75) { communityTl.add(community75, 4) }
 
       // Animate birds
-      if (fundraisingLevel = 100) { communityTl.add(community100, 12) }
+      if (fundraisingLevel === 100) { communityTl.add(community100, 6) }
   }
 
 
@@ -165,17 +164,20 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
 
   const clockAnimationDuration = illustrationInfo.missedSchoolHours.max / 3;
   const clockAnimationDelay = 2;
+  const tearsEnd = 9;
   
   gsap.set(`#${communityId}-school-clock-small-hand`, {transformOrigin:"bottom center"}, 0);
   gsap.set(`#${communityId}-school-clock-big-hand`, {transformOrigin:"bottom center"}, 0);
   gsap.set(`#${communityId}-school-clock-mouth`, {opacity:0});
+  if (fundraisingLevel < 25) {
+    gsap.set(`#${communityId}-school-clock-small-hand`, {rotation:7*360/12});
+    gsap.set(`#${communityId}-school-clock-big-hand`, {rotation:4.5*360/12});
+  }
 
-  let kids;
-  let kidsSmile;
+  let kids = document.querySelectorAll(`#${communityId}-school-kids polygon, #${communityId}-school-kids polyline, #${communityId}-school-kids path, #${communityId}-school-kids ellipse`);
+  let kidsSmile = document.querySelectorAll(`#${communityId}-school-kid1-mouth, #${communityId}-school-kid2-mouth`);
+  gsap.set(kidsSmile, {opacity:0});
   if (fundraisingLevel >= 50) {
-    kids = document.querySelectorAll(`#${communityId}-school-kids polygon, #${communityId}-school-kids polyline, #${communityId}-school-kids path, #${communityId}-school-kids ellipse`);
-    kidsSmile = document.querySelectorAll(`#${communityId}-school-kid1-mouth, #${communityId}-school-kid2-mouth`);
-    gsap.set(kidsSmile, {opacity:0});
     gsap.set(kids, {drawSVG:0});
   }
 
@@ -196,8 +198,10 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
       .from(tearRight, {drawSVG:0, duration:0.7, ease:'none'}, 3.2)
       .to(tearRight, {y:25, duration:1, ease:'power2.in'})
       .to(tearRight, {drawSVG:'100% 100%', opacity:0, duration:0.1});
+    
+    const clockTearsRepeatFactor = (fundraisingLevel < 100) ? -1 : (Math.floor(tearsEnd / 4.2) - 1);
     schoolTearsTl
-      .repeat(Math.floor(start100 / 4.2) - 1);
+      .repeat(clockTearsRepeatFactor);
   };
   
   const makeFlagsFly = () => {
@@ -221,9 +225,17 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
       .repeat(-1);
   };
 
+  const school25 = () => {
+    const tl = gsap.timeline();
+    tl
+      .to(`#${communityId}-school-clock-small-hand`, {rotation:illustrationInfo.missedSchoolHours.max*360/12, duration:clockAnimationDuration, ease:'none'}, 0)
+      .to(`#${communityId}-school-clock-big-hand`, {rotation:illustrationInfo.missedSchoolHours.max*360, duration:clockAnimationDuration, ease:'none'}, 0)
+      .call(makeClockCry, null, 0);
+  };
+
   const school50 = () => {
     const tl = gsap.timeline();
-    tl.to(kids, {drawSVG:'100%', duration:2});
+    tl
   };
 
   const school75 = () => {
@@ -236,33 +248,32 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
   const school100 = () => {
     const tl = gsap.timeline();
     tl
-      .fromTo(`#${communityId}-school-clock-mouth`, {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, 0)
-      .fromTo(kidsSmile, {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, 0);
+      .to(kids, {drawSVG:'100%', duration:2})
+      .fromTo(`#${communityId}-school-clock-mouth`, {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, '>-0.8')
+      .fromTo(kidsSmile, {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, '>-0.8');
   };
-  
-  schoolTl
+
+  // Timeline
     // Clock hands are turning
-    .to(`#${communityId}-school-clock-small-hand`, {rotation:illustrationInfo.missedSchoolHours.max*360/12, duration:clockAnimationDuration, ease:'none'}, clockAnimationDelay)
-    .to(`#${communityId}-school-clock-big-hand`, {rotation:illustrationInfo.missedSchoolHours.max*360, duration:clockAnimationDuration, ease:'none'}, clockAnimationDelay)
-    .call(makeClockCry, null, clockAnimationDelay);
+    if (fundraisingLevel >= 25) { schoolTl.add(school25, clockAnimationDelay) }
     
     // Call flags animation
-    if (fundraisingLevel >= 25) { schoolTl.add(makeFlagsFly, 0) }
+    if (fundraisingLevel >= 50) { schoolTl.add(makeFlagsFly, 0) }
 
-    // Draw kids
-    if (fundraisingLevel >= 50) { schoolTl.add(school50, 8) }
-    
     // School doors open
-    if (fundraisingLevel >= 75) { schoolTl.add(school75, 12) }
+    if (fundraisingLevel >= 75) { schoolTl.add(school75, 6) }
 
-    // Kids and clock smile
-    if (fundraisingLevel = 100) { schoolTl.add(school100, 15) }
+    // Draw Kids and make clock smile
+    if (fundraisingLevel === 100) { schoolTl.add(school100, tearsEnd) }
     
 
 
   /****************************/
   /*        Distance          */
   /****************************/
+  gsap.set(`#${communityId}-distance-walk`, {opacity:0});
+  gsap.set(`#${communityId}-distance-bird1-state2, #${communityId}-distance-bird2-state2`, {opacity:0});
+
   if (fundraisingLevel >= 25) {
     const stDistance = {
       trigger: `.village-${communityId} .section-distance svg`,
@@ -274,9 +285,8 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
     const distanceTl = gsap.timeline({ scrollTrigger: stDistance });
 
     gsap.set(`#${communityId}-distance-text`, {opacity:0, scale:0.7, transformOrigin:'50% 50%'});
-    gsap.set(`#${communityId}-distance-walk`, {drawSVG:'0% 100%'});
+    gsap.set(`#${communityId}-distance-walk`, {drawSVG:'0% 100%', opacity:1});
     gsap.set(`#${communityId}-distance-arrowhead`, {drawSVG:'50% 50%', opacity:0});
-    gsap.set(`#${communityId}-distance-bird1-state2, #${communityId}-distance-bird2-state2`, {opacity:0});
 
     if (fundraisingLevel >= 50) {
       gsap.set(`#${communityId}-distance-river-tides`, {opacity:0});
@@ -284,7 +294,7 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
     }
 
     // Get animals selectors
-    if (fundraisingLevel = 100) {
+    if (fundraisingLevel === 100) {
       illustrationInfo.animalsDistance.forEach(animal => {
         animal.selector = document.querySelectorAll(`#${communityId}-distance-${animal.id} path, #${communityId}-distance-${animal.id} line, #${communityId}-distance-${animal.id} polyline`);
         gsap.set(animal.selector, {drawSVG:0});
@@ -319,7 +329,7 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
       if (fundraisingLevel >= 75) { distanceTl.add(distance75, 6) }
       
       // Trace animals
-      if (fundraisingLevel = 100) { distanceTl.add(distance100, 9) }
+      if (fundraisingLevel === 100) { distanceTl.add(distance100, 9) }
   }
 
 
@@ -493,7 +503,7 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
       if (fundraisingLevel >= 75) { waterMCLTl.add(waterMCL75, 7) }
 
       // Make drops flot
-      if (fundraisingLevel = 100) { waterMCLTl.add(dropsFloat, 10) }
+      if (fundraisingLevel === 100) { waterMCLTl.add(dropsFloat, 10) }
 
   }
 
@@ -546,7 +556,7 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
 
     solutionTl
       // Animate river waves
-      .call(animateRiverTides, ['solution']);
+      .call(animateRiverTides, ['solution'], 0.1);
 
       // Trace animals
       if (fundraisingLevel >= 50) { solutionTl.add(solution50, 4) }
@@ -555,7 +565,7 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
       if (fundraisingLevel >= 75 && illustrationInfo.numberOfBirdsSolution > 0) { solutionTl.add(solutionBirdsAnimation, 8) }
     
       // Draw water treatment facility
-      if (fundraisingLevel = 100) { solutionTl.add(solution100, 12) }
+      if (fundraisingLevel === 100) { solutionTl.add(solution100, 12) }
 
   }
 
@@ -586,7 +596,7 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
     if (fundraisingLevel >= 75) {
       gsap.set(`#${communityId}-coloring-windwheel`, {transformOrigin:'50% 50%'});
     }
-    if (fundraisingLevel = 100) {
+    if (fundraisingLevel === 100) {
       gsap.set(coloringKids, {drawSVG:0});
       gsap.set(coloringKidsSmiles, {opacity:0});
     }
@@ -622,7 +632,7 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
       if (fundraisingLevel >= 75) { coloringTl.add(startWindWheel, 4) }
       
       // Draw and Make kids smile
-      if (fundraisingLevel >= 75) { coloringTl.add(coloring100, 5) }
+      if (fundraisingLevel >= 100) { coloringTl.add(coloring100, 5) }
 
   }
 };
