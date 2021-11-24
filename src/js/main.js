@@ -13,6 +13,7 @@ d3.csv('../data/fundraising_level_per_community.csv').then(data => {
 
 // Get url parameters
 const urlParams = new URLSearchParams(window.location.search);
+let fundLevelParam = urlParams.get('fund-level');
 
 const appendCommunities = () => {
   // Set first community
@@ -68,7 +69,8 @@ const appendCommunities = () => {
       .text(villagesData.find(village => village.village_id === currentVillageId).village_name);
   
   // Call illustrations animations
-  triggerAnimations(firstVillageId, +dataFundraising.find(d => d.community === firstVillageId).fundraising_level);
+  let fundLevel = fundLevelParam !== null ? +fundLevelParam : +dataFundraising.find(d => d.community === firstVillageId).fundraising_level;
+  triggerAnimations(firstVillageId, fundLevel);
   
   // Initialize the carousel
   const carousel = new Glide('.glide', {
@@ -94,7 +96,9 @@ const appendCommunities = () => {
     const community = villagesData[index];
     currentVillage.select('h2').text(community.village_name);
     gsap.globalTimeline.clear();
-    triggerAnimations(community.village_id, +dataFundraising.find(d => d.community === community.village_id).fundraising_level);
+
+    fundLevel = fundLevelParam !== null ? +fundLevelParam : +dataFundraising.find(d => d.community === community.village_id).fundraising_level;
+    triggerAnimations(community.village_id, fundLevel);
   };
   
   if (window.innerWidth > 1100) {

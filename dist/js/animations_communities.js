@@ -11,6 +11,7 @@ const illustrations = ['community', 'school', 'distance', 'waterMCL', 'solution'
 
 const triggerAnimations = (communityId, fundraisingLevel) => {
   const illustrationInfo = illustrationsInfo.find(info => info.community === communityId);
+  console.log(fundraisingLevel);
 
   // Birds flying animation
   const makeBirdFly = (birdState1, birdState2, direction) => {
