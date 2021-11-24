@@ -1,6 +1,7 @@
 /*! project-name v0.0.1 | (c) 2021 YOUR NAME | MIT License | http://link-to-your-git-repo.com */
 gsap.registerPlugin(ScrollTrigger);
 
+// Pin Peru map
 ScrollTrigger.create({
   trigger: '.map-image',
   endTrigger: '.map-description-third',
@@ -15,35 +16,22 @@ ScrollTrigger.create({
   pinSpacing: false
 });
 
-gsap.to('.piura-region', {
-  scrollTrigger: {
-    trigger: '.map-description-second',
-    start: () => {
-      const mapHeight = document.querySelector('.map-peru .map-image').offsetHeight;
-      return `top ${2 * mapHeight / 5}px`;
-    },
-    toggleActions: 'play none none reverse'
-  },
-  fill: '#EA7753',
-  duration: 0.3,
-  ease: 'power3.easeOut'
-});
+// Animate communities on Piura map
+gsap.set('.map-piura-dots path', {scale:0, transformOrigin:'50% 50%'});
+gsap.set('.map-piura-paths polyline, .map-piura-paths line', {drawSVG:'100% 100%'});
+gsap.set('.map-piura-community, .piura-communities-cerro .community-cerro', {y:'+=5', opacity:0});
 
-const animateVillages = () => {
-  const cdlIllustrations = document.querySelectorAll('.village-cerro_de_leones .sct-illustration');
-  cdlIllustrations.forEach(illustration => {
-    gsap.from(illustration, {
-      scrollTrigger: {
-        trigger: illustration,
-        start: 'center center'
-      },
-      duration: 0.2,
-      scale: 0.7,
-      opacity: 0,
-      ease: Power3.easeOut
-    });
-  });
+const stPiuraMap = {
+  trigger: '.map-piura',
+  start: 'top center',
+  end: 'bottom 0',
 };
+const piuraMapTl = gsap.timeline({ scrollTrigger: stPiuraMap });
+
+piuraMapTl
+  .to('.map-piura-community, .piura-communities-cerro .community-cerro', {y:'0', opacity:1, duration:0.4, ease:'back.out(1.4)', stagger:{each:0.1, from:'random'}}, 0.2)
+  .to('.map-piura-paths polyline, .map-piura-paths line', {drawSVG:'0 100%', duration:1, ease:'none'})
+  .to('.map-piura-dots path', {scale:1, ease:'back.out(1.7)', duration:0.3});
 
 // Animate path on Piura's map on click
 var path = document.querySelector('#pathRecrut');
@@ -53,13 +41,6 @@ path.style.strokeDashoffset = pathLength;
 
 const animatePiuraPath = () => {
   d3.select('#pathRecrut').classed('animate', true);
-  // gsap.to('.cdl-circle', {
-  //   scale: 1.5,
-  //   x: -1,
-  //   duration: 0.2,
-  //   delay: 0.7,
-  //   ease: Power2.easeOut
-  // });
   gsap.to('.community-cerro', {
     fill: '#DD5F3D',
     duration: 0.2,
