@@ -91,7 +91,7 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
   /****************************/
   /*         Community        */
   /****************************/
-  if (fundraisingLevel > 0) {
+  if (fundraisingLevel >= 25) {
     const stCommunity = {
       trigger: `.village-${communityId} .section-community svg`,
       start: 'top center',
@@ -221,11 +221,6 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
       .repeat(-1);
   };
 
-  const school25 = () => {
-    const tl = gsap.timeline();
-    tl.call(makeFlagsFly, null);
-  };
-
   const school50 = () => {
     const tl = gsap.timeline();
     tl.to(kids, {drawSVG:'100%', duration:2});
@@ -252,7 +247,7 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
     .call(makeClockCry, null, clockAnimationDelay);
     
     // Call flags animation
-    if (fundraisingLevel >= 25) { schoolTl.add(school25, 0) }
+    if (fundraisingLevel >= 25) { schoolTl.add(makeFlagsFly, 0) }
 
     // Draw kids
     if (fundraisingLevel >= 50) { schoolTl.add(school50, 8) }
@@ -268,7 +263,7 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
   /****************************/
   /*        Distance          */
   /****************************/
-  if (fundraisingLevel > 0) {
+  if (fundraisingLevel >= 25) {
     const stDistance = {
       trigger: `.village-${communityId} .section-distance svg`,
       start: 'top center',
@@ -351,7 +346,7 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
   });
   gsap.set('.leg-3, .leg-6, .leg-9', {opacity:0});
 
-  if (fundraisingLevel > 0) {
+  if (fundraisingLevel >= 25) {
     const stWaterMCL = {
       trigger: `.village-${communityId} .section-waterMCL svg`,
       start: 'top center',
@@ -479,21 +474,11 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
       });
     };
 
-    const waterMCL50 = () => {
-      const tl = gsap.timeline();
-      tl.call(inorganicFloat, null, 0);
-    };
-
     const waterMCL75 = () => {
       const tl = gsap.timeline();
       tl
         .call(biologicalLegsMovement, null, 0)
         .call(biologicalFloat, null, 0);
-    };
-
-    const waterMCL100 = () => {
-      const tl = gsap.timeline();
-      tl.call(dropsFloat, null);
     };
     
     waterMCLTl
@@ -502,13 +487,13 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
       .to(contaminantsBiologicalLegs, {drawSVG:'0 100%', stagger:{each:0.03, from:'random'}, duration:0.5, ease:'sine.in'});
 
       // Make inorganic contaminants float
-      if (fundraisingLevel >= 50) { waterMCLTl.add(waterMCL50, 5) }
+      if (fundraisingLevel >= 50) { waterMCLTl.add(inorganicFloat, 5) }
       
       // Make biologic contaminants float
       if (fundraisingLevel >= 75) { waterMCLTl.add(waterMCL75, 7) }
 
       // Make drops flot
-      if (fundraisingLevel = 100) { waterMCLTl.add(waterMCL100, 10) }
+      if (fundraisingLevel = 100) { waterMCLTl.add(dropsFloat, 10) }
 
   }
 
@@ -516,98 +501,128 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
   /****************************/
   /*        Solution          */
   /****************************/
-  const stSolution = {
-    trigger: `.village-${communityId} .section-solution svg`,
-    start: 'top center',
-    end: 'bottom 0',
-    onEnterBack: () => solutionTl.restart(),
-    onLeave: () => solutionTl.pause()
-  };
-  const solutionTl = gsap.timeline({ scrollTrigger: stSolution });
-  
   const solutionWaterTreatmentFacility = document.querySelectorAll(`#${communityId}-solution-water-treatment path, #${communityId}-solution-water-treatment line, #${communityId}-solution-water-treatment polyline, #${communityId}-solution-water-treatment circle`);
   gsap.set(solutionWaterTreatmentFacility, {drawSVG:0});
   gsap.set(`#${communityId}-solution-water-treatment-faded`, {opacity:0.3});
   if (document.querySelector(`#${communityId}-solution-bird1-state2`)) { gsap.set(`#${communityId}-solution-bird1-state2`, {opacity:0}); }
   if (document.querySelector(`#${communityId}-solution-bird2-state2`)) { gsap.set(`#${communityId}-solution-bird2-state2`, {opacity:0}); }
   if (document.querySelector(`#${communityId}-solution-bird3-state2`)) { gsap.set(`#${communityId}-solution-bird3-state2`, {opacity:0}); }
-  
+
   if (fundraisingLevel >= 25) {
+    const stSolution = {
+      trigger: `.village-${communityId} .section-solution svg`,
+      start: 'top center',
+      end: 'bottom 0',
+      onEnterBack: () => solutionTl.restart(),
+      onLeave: () => solutionTl.pause()
+    };
+    const solutionTl = gsap.timeline({ scrollTrigger: stSolution });
+    
     gsap.set(`#${communityId}-solution-river-tides`, {opacity:0});
     gsap.set(`#${communityId}-solution-river-tides`, {x:'-=20'});
+
+    // Get animals selectors
+    illustrationInfo.animalsSolution.forEach(animal => {
+      animal.selector = document.querySelectorAll(`#${communityId}-solution-${animal.id} path, #${communityId}-solution-${animal.id} line, #${communityId}-solution-${animal.id} polyline`);
+      gsap.set(animal.selector, {drawSVG:0});
+    });
+
+    const solutionBirdsAnimation = () => {
+      const solutionBirdsTl = gsap.timeline();
+      solutionBirdsTl.call(callBirdsAnimations, ['numberOfBirdsSolution', 'solution', 'directionBirdsSolution']);
+    };
+
+    const solution50 = () => {
+      const tl = gsap.timeline();
+      tl.call(traceAnimals, [illustrationInfo.animalsSolution])
+    };
+
+    const solution100 = () => {
+      const tl = gsap.timeline();
+      tl
+        .to(solutionWaterTreatmentFacility, {drawSVG:'100%', duration:2})
+        .to(`#${communityId}-solution-water-treatment-faded`, {opacity:0, duration:0.2});
+    };
+
+    solutionTl
+      // Animate river waves
+      .call(animateRiverTides, ['solution']);
+
+      // Trace animals
+      if (fundraisingLevel >= 50) { solutionTl.add(solution50, 4) }
+      
+      // Animate birds
+      if (fundraisingLevel >= 75 && illustrationInfo.numberOfBirdsSolution > 0) { solutionTl.add(solutionBirdsAnimation, 8) }
+    
+      // Draw water treatment facility
+      if (fundraisingLevel = 100) { solutionTl.add(solution100, 12) }
+
   }
-
-  // Get animals selectors
-  illustrationInfo.animalsSolution.forEach(animal => {
-    animal.selector = document.querySelectorAll(`#${communityId}-solution-${animal.id} path, #${communityId}-solution-${animal.id} line, #${communityId}-solution-${animal.id} polyline`);
-    gsap.set(animal.selector, {drawSVG:0});
-  });
-
-  const solutionBirdsAnimation = () => {
-    const solutionBirdsTl = gsap.timeline();
-    solutionBirdsTl.call(callBirdsAnimations, ['numberOfBirdsSolution', 'solution', 'directionBirdsSolution']);
-  };
-
-  solutionTl
-    // Animate river waves
-    .call(animateRiverTides, ['solution'], start25)
-
-    // Trace animals
-    .call(traceAnimals, [illustrationInfo.animalsSolution], start50)
-  
-    // Draw water treatment facility
-    .to(solutionWaterTreatmentFacility, {drawSVG:'100%', duration:2}, start100)
-    .to(`#${communityId}-solution-water-treatment-faded`, {opacity:0, duration:0.2}, '>');
-
-    // Animate birds
-    if (illustrationInfo.numberOfBirdsSolution > 0) {
-      solutionTl.add(solutionBirdsAnimation, start75);
-    }
 
     
   /****************************/
   /*        Coloring          */
   /****************************/
-  const stColoring = {
-    trigger: `.village-${communityId} .section-coloring svg`,
-    start: 'top center',
-    end: 'bottom 0',
-    onEnterBack: () => coloringTl.restart(),
-    onLeave: () => coloringTl.pause()
-  };
-  const coloringTl = gsap.timeline({ scrollTrigger: stColoring });
+  if (fundraisingLevel >= 25) {
+    const stColoring = {
+      trigger: `.village-${communityId} .section-coloring svg`,
+      start: 'top center',
+      end: 'bottom 0',
+      onEnterBack: () => coloringTl.restart(),
+      onLeave: () => coloringTl.pause()
+    };
+    const coloringTl = gsap.timeline({ scrollTrigger: stColoring });
 
-  const coloringKids = document.querySelectorAll(`#${communityId}-coloring-kids path, #${communityId}-coloring-kids ellipse, #${communityId}-coloring-kids line, #${communityId}-coloring-kids circle`);
-  const coloringKidsSmiles = document.querySelectorAll(`#${communityId}-coloring-smile-1, #${communityId}-coloring-smile-2, #${communityId}-coloring-smile-3`);
-  const coloringErlenmeyers = document.querySelectorAll(`#${communityId}-coloring-erlenmeyers path, #${communityId}-coloring-erlenmeyers line`);
-  const coloringDrops = document.querySelectorAll(`#${communityId}-coloring-drops path`);
-  const coloringPencils = document.querySelectorAll(`#${communityId}-coloring-pencil-1, #${communityId}-coloring-pencil-2, #${communityId}-coloring-pencil-3, #${communityId}-coloring-pencil-4, #${communityId}-coloring-pencil-5`);
-  
-  gsap.set(coloringKidsSmiles, {opacity:0});
-  gsap.set(coloringDrops, {opacity:0, transformOrigin:'50% 50%'});
-  gsap.set(coloringPencils, {x:'-=10', y:'+=10', opacity:0});
-  gsap.set(`#${communityId}-coloring-windwheel`, {transformOrigin:'50% 50%'});
-  
-  const startWindWheel = () => {
-    const coloringWindWheelTl = gsap.timeline();
-    coloringWindWheelTl
-      .to(`#${communityId}-coloring-windwheel`, {rotation:360, duration: 1.5, ease:'none'});
-    coloringWindWheelTl.repeat(-1);
-  };
-
-  coloringTl
-    // Draw kids
-    .from(coloringKids, {drawSVG:0, duration:3}, 2)
-    // Draw erlenmeyers + Make water drops appear
-    .from(coloringErlenmeyers, {drawSVG:0, duration:2}, start25)
-    .fromTo(coloringDrops, {scale:0}, {scale:1, opacity:1, stagger:{each:0.15, from:'random'}, duration:0.3, ease:'back.out(1.4)'}, start25 + 1.8)
-    // Make pencils appear
-    .to(coloringPencils, {x:'+=10', y:'-=10', opacity:1, stagger:{each:0.2, from:'end'}, duration:0.3, ease:'back.out(1.4)'}, start50)
+    const coloringKids = document.querySelectorAll(`#${communityId}-coloring-kids path, #${communityId}-coloring-kids ellipse, #${communityId}-coloring-kids line, #${communityId}-coloring-kids circle`);
+    const coloringKidsSmiles = document.querySelectorAll(`#${communityId}-coloring-smile-1, #${communityId}-coloring-smile-2, #${communityId}-coloring-smile-3`);
+    const coloringErlenmeyers = document.querySelectorAll(`#${communityId}-coloring-erlenmeyers path, #${communityId}-coloring-erlenmeyers line`);
+    const coloringDrops = document.querySelectorAll(`#${communityId}-coloring-drops path`);
+    const coloringPencils = document.querySelectorAll(`#${communityId}-coloring-pencil-1, #${communityId}-coloring-pencil-2, #${communityId}-coloring-pencil-3, #${communityId}-coloring-pencil-4, #${communityId}-coloring-pencil-5`);
     
-    // Start windwheel
-    .call(startWindWheel, null, start75)
+    gsap.set(coloringDrops, {opacity:0, transformOrigin:'50% 50%'});
+    if (fundraisingLevel >= 50) {
+      gsap.set(coloringPencils, {x:'-=10', y:'+=10', opacity:0});
+    }
+    if (fundraisingLevel >= 75) {
+      gsap.set(`#${communityId}-coloring-windwheel`, {transformOrigin:'50% 50%'});
+    }
+    if (fundraisingLevel = 100) {
+      gsap.set(coloringKids, {drawSVG:0});
+      gsap.set(coloringKidsSmiles, {opacity:0});
+    }
     
-    // Make kids smile
-    .fromTo(coloringKidsSmiles, {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, start100);
+    const startWindWheel = () => {
+      const coloringWindWheelTl = gsap.timeline();
+      coloringWindWheelTl
+        .to(`#${communityId}-coloring-windwheel`, {rotation:360, duration: 1.5, ease:'none'});
+      coloringWindWheelTl.repeat(-1);
+    };
 
+    const coloring50 = () => {
+      const tl = gsap.timeline();
+      tl.to(coloringPencils, {x:'+=10', y:'-=10', opacity:1, stagger:{each:0.2, from:'end'}, duration:0.3, ease:'back.out(1.4)'});
+    };
+
+    const coloring100 = () => {
+      const tl = gsap.timeline();
+      tl
+        .to(coloringKids, {drawSVG:'100%', duration:3})
+        .fromTo(coloringKidsSmiles, {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, '>-0.8');
+    };
+
+    coloringTl
+      // Draw erlenmeyers + Make water drops appear
+      .from(coloringErlenmeyers, {drawSVG:0, duration:2}, 2)
+      .fromTo(coloringDrops, {scale:0}, {scale:1, opacity:1, stagger:{each:0.15, from:'random'}, duration:0.3, ease:'back.out(1.4)'}, '<+=1.8');
+      
+      // Make pencils appear
+      if (fundraisingLevel >= 50) { coloringTl.add(coloring50, 3) }
+      
+      // Start windwheel
+      if (fundraisingLevel >= 75) { coloringTl.add(startWindWheel, 4) }
+      
+      // Draw and Make kids smile
+      if (fundraisingLevel >= 75) { coloringTl.add(coloring100, 5) }
+
+  }
 };
