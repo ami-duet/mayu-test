@@ -59,7 +59,7 @@ const appendCommunities = () => {
   section
     .append('div')
       .attr('class', 'sct-description')
-    .html(d => d.description);
+    .html(d => lang === 'es' ? d.description_es : d.description_en);
   
   currentVillage = d3.select('.current-village');
   currentVillage
