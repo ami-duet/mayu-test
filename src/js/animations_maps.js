@@ -15,6 +15,21 @@ ScrollTrigger.create({
   pinSpacing: false
 });
 
+// Make Piura region appear on scroll
+gsap.to('.piura-region', {
+  scrollTrigger: {
+    trigger: '.map-description-second',
+    start: () => {
+      const mapHeight = document.querySelector('.map-peru .map-image').offsetHeight;
+      return `top ${2 * mapHeight / 5}px`;
+    },
+    toggleActions: 'play none none reverse'
+  },
+  fill: '#EA7753',
+  duration: 0.3,
+  ease: 'power3.easeOut'
+});
+
 // Animate communities on Piura map
 gsap.set('.map-piura-dots path', {scale:0, transformOrigin:'50% 50%'});
 gsap.set('.map-piura-paths polyline, .map-piura-paths line', {drawSVG:'100% 100%'});
