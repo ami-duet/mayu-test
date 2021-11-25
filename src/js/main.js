@@ -11,8 +11,6 @@ d3.csv('../data/fundraising_level_per_community.csv').then(data => {
   appendCommunities();
 });
 
-// Get url parameters
-const urlParams = new URLSearchParams(window.location.search);
 let fundLevelParam = urlParams.get('fund-level');
 
 const appendCommunities = () => {
