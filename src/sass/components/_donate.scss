@@ -38,15 +38,23 @@
   }
 }
 // Donate link on welcome screen
-.cover > .donate-link-wrapper {
+.cover .cover-links-wrapper {
+  display: flex;
+  justify-content: flex-end;
   position: absolute;
   z-index: 100;
   top: 20px;
   left: 0;
   right: 0;
-  @media screen and (min-width: 1201px) {
-    left: auto;
-    right: 40px;
+  .donate-link-wrapper {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    z-index: 100;
+  }
+  .language-switcher {
+    position: relative;
+    z-index: 101;
   }
   @media screen and (min-height: 1001px) and (min-width: $lg) {
     left: 50%;
@@ -57,11 +65,19 @@
     padding-left: 45px;
     padding-right: 50px;
     text-align: right;
+    .donate-link-wrapper {
+      position: static;
+      width: auto;
+      margin-right: 15px;
+    }
+    .language-switcher {
+      padding-right: 0;
+    }
   }
 }
 .youth {
   .village .donate-link-wrapper,
-  .cover > .donate-link-wrapper {
+  .cover .donate-link-wrapper {
     display: none !important;
   }
 }

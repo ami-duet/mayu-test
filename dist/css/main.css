@@ -1648,6 +1648,11 @@ button {
 }
 
 /* line 7, src/sass/components/_cover.scss */
+.cover .intro-content {
+  width: 100vw;
+}
+
+/* line 10, src/sass/components/_cover.scss */
 .cover .title {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1663,19 +1668,19 @@ button {
   text-align: right;
 }
 
-/* line 14, src/sass/components/_cover.scss */
+/* line 17, src/sass/components/_cover.scss */
 .cover .title h1 span {
   display: block;
 }
 
-/* line 18, src/sass/components/_cover.scss */
+/* line 21, src/sass/components/_cover.scss */
 .cover .title .credentials {
   margin-right: 96px;
   font-size: 1.6rem;
   color: #DD5F3D;
 }
 
-/* line 24, src/sass/components/_cover.scss */
+/* line 27, src/sass/components/_cover.scss */
 .cover .intro-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1685,17 +1690,17 @@ button {
           justify-content: flex-end;
 }
 
-/* line 27, src/sass/components/_cover.scss */
+/* line 30, src/sass/components/_cover.scss */
 .cover .intro-container .intro {
   max-width: 215px;
 }
 
-/* line 29, src/sass/components/_cover.scss */
+/* line 32, src/sass/components/_cover.scss */
 .cover .intro-container .intro p {
   text-indent: 35px;
 }
 
-/* line 34, src/sass/components/_cover.scss */
+/* line 37, src/sass/components/_cover.scss */
 .cover .illustration {
   position: absolute;
   z-index: 0;
@@ -1710,28 +1715,28 @@ button {
 }
 
 @media screen and (min-width: 3000px) and (min-height: 2000px) {
-  /* line 34, src/sass/components/_cover.scss */
+  /* line 37, src/sass/components/_cover.scss */
   .cover .illustration {
     background-size: calc(110% - 900px) auto;
   }
 }
 
 @media screen and (max-width: 1700px) {
-  /* line 34, src/sass/components/_cover.scss */
+  /* line 37, src/sass/components/_cover.scss */
   .cover .illustration {
     background-size: calc(125% - 700px) auto;
   }
 }
 
 @media screen and (max-width: 1400px) {
-  /* line 34, src/sass/components/_cover.scss */
+  /* line 37, src/sass/components/_cover.scss */
   .cover .illustration {
     background-size: 75% auto;
   }
 }
 
 @media screen and (max-height: 1000px) {
-  /* line 53, src/sass/components/_cover.scss */
+  /* line 56, src/sass/components/_cover.scss */
   .cover .title-container,
   .cover .intro-container {
     -webkit-box-flex: 0;
@@ -1739,12 +1744,12 @@ button {
             flex: 0 0 100%;
     max-width: 100%;
   }
-  /* line 58, src/sass/components/_cover.scss */
+  /* line 61, src/sass/components/_cover.scss */
   .cover .title-container {
     margin-left: 0;
     padding-right: 10%;
   }
-  /* line 62, src/sass/components/_cover.scss */
+  /* line 65, src/sass/components/_cover.scss */
   .cover .illustration {
     height: 100vh;
     background-size: 85% auto;
@@ -1756,7 +1761,7 @@ button {
   .cover {
     height: auto;
   }
-  /* line 69, src/sass/components/_cover.scss */
+  /* line 72, src/sass/components/_cover.scss */
   .cover .title {
     -webkit-box-pack: start;
         -ms-flex-pack: start;
@@ -1765,20 +1770,20 @@ button {
     padding-top: 33vh;
     height: 100vh;
   }
-  /* line 75, src/sass/components/_cover.scss */
+  /* line 78, src/sass/components/_cover.scss */
   .cover .intro-container {
     max-width: 900px;
     margin: 0 auto;
     padding-top: 40px;
   }
-  /* line 79, src/sass/components/_cover.scss */
+  /* line 82, src/sass/components/_cover.scss */
   .cover .intro-container .intro {
     max-width: none;
   }
 }
 
 @media screen and (max-width: 1200px) {
-  /* line 85, src/sass/components/_cover.scss */
+  /* line 88, src/sass/components/_cover.scss */
   .cover .illustration {
     bottom: auto;
     height: 100vh;
@@ -1789,28 +1794,28 @@ button {
 }
 
 @media screen and (max-width: 1200px) and (orientation: landscape) {
-  /* line 85, src/sass/components/_cover.scss */
+  /* line 88, src/sass/components/_cover.scss */
   .cover .illustration {
     width: 60vw;
   }
 }
 
 @media screen and (max-width: 1200px) and (orientation: landscape) and (min-width: 800px) {
-  /* line 85, src/sass/components/_cover.scss */
+  /* line 88, src/sass/components/_cover.scss */
   .cover .illustration {
     width: 56vw;
   }
 }
 
 @media screen and (max-width: 1200px) and (orientation: landscape) and (min-width: 1000px) {
-  /* line 85, src/sass/components/_cover.scss */
+  /* line 88, src/sass/components/_cover.scss */
   .cover .illustration {
     width: 75vw;
   }
 }
 
 @media screen and (max-width: 576px) {
-  /* line 104, src/sass/components/_cover.scss */
+  /* line 107, src/sass/components/_cover.scss */
   .cover .title .credentials {
     margin-top: 2px;
     margin-right: 18px;
@@ -1872,7 +1877,13 @@ button {
 }
 
 /* line 41, src/sass/components/_donate.scss */
-.cover > .donate-link-wrapper {
+.cover .cover-links-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
   position: absolute;
   z-index: 100;
   top: 20px;
@@ -1880,17 +1891,23 @@ button {
   right: 0;
 }
 
-@media screen and (min-width: 1201px) {
-  /* line 41, src/sass/components/_donate.scss */
-  .cover > .donate-link-wrapper {
-    left: auto;
-    right: 40px;
-  }
+/* line 49, src/sass/components/_donate.scss */
+.cover .cover-links-wrapper .donate-link-wrapper {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  z-index: 100;
+}
+
+/* line 55, src/sass/components/_donate.scss */
+.cover .cover-links-wrapper .language-switcher {
+  position: relative;
+  z-index: 101;
 }
 
 @media screen and (min-height: 1001px) and (min-width: 1200px) {
   /* line 41, src/sass/components/_donate.scss */
-  .cover > .donate-link-wrapper {
+  .cover .cover-links-wrapper {
     left: 50%;
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%);
@@ -1901,11 +1918,21 @@ button {
     padding-right: 50px;
     text-align: right;
   }
+  /* line 68, src/sass/components/_donate.scss */
+  .cover .cover-links-wrapper .donate-link-wrapper {
+    position: static;
+    width: auto;
+    margin-right: 15px;
+  }
+  /* line 73, src/sass/components/_donate.scss */
+  .cover .cover-links-wrapper .language-switcher {
+    padding-right: 0;
+  }
 }
 
-/* line 63, src/sass/components/_donate.scss */
+/* line 79, src/sass/components/_donate.scss */
 .youth .village .donate-link-wrapper,
-.youth .cover > .donate-link-wrapper {
+.youth .cover .donate-link-wrapper {
   display: none !important;
 }
 
@@ -1988,6 +2015,62 @@ button {
     -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
   }
+}
+
+/* line 1, src/sass/components/_language-switcher.scss */
+.language-switcher {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+  padding-right: 22px;
+  padding-left: 0;
+  list-style: none;
+}
+
+/* line 8, src/sass/components/_language-switcher.scss */
+.language-switcher li button {
+  position: relative;
+  display: inline-block;
+  padding: 0 8px;
+  font-family: "garamond-premier-pro-display", serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 21px;
+  color: #383838;
+  background: transparent;
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  -webkit-transition-property: color;
+  transition-property: color;
+  cursor: pointer;
+}
+
+/* line 22, src/sass/components/_language-switcher.scss */
+.language-switcher li button:hover, .language-switcher li button:focus, .language-switcher li button.active {
+  color: #DD5F3D;
+}
+
+/* line 26, src/sass/components/_language-switcher.scss */
+.language-switcher li button.active {
+  cursor: default;
+}
+
+/* line 30, src/sass/components/_language-switcher.scss */
+.language-switcher li:first-of-type button {
+  padding-right: 9px;
+}
+
+/* line 32, src/sass/components/_language-switcher.scss */
+.language-switcher li:first-of-type button:after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  right: 0;
+  width: 1px;
+  height: 14px;
+  background-color: #383838;
 }
 
 /* line 1, src/sass/components/_about.scss */

@@ -1,0 +1,43 @@
+.language-switcher {
+  display: flex;
+  margin: 0;
+  padding-right: 22px;
+  padding-left: 0;
+  list-style: none;
+  li {
+    button {
+      position: relative;
+      display: inline-block;
+      padding: 0 8px;
+      font-family: $fontDisplay;
+      font-size: 1.5rem;
+      font-weight: 600;
+      line-height: 21px;
+      color: $text;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      transition-property: color;
+      cursor: pointer;
+      &:hover, &:focus,
+      &.active {
+        color: $peach;
+      }
+      &.active {
+        cursor: default;
+      }
+    }
+    &:first-of-type button {
+      padding-right: 9px;
+      &:after {
+        content: '';
+        position: absolute;
+        top: 3px;
+        right: 0;
+        width: 1px;
+        height: 14px;
+        background-color: $text;
+      }
+    }
+  }
+}
