@@ -1823,6 +1823,11 @@ button {
   }
 }
 
+/* line 117, src/sass/components/_cover.scss */
+.lang-es .cover .title .credentials {
+  margin-right: 85px;
+}
+
 /* line 2, src/sass/components/_donate.scss */
 .donate-link-wrapper {
   text-align: center;
