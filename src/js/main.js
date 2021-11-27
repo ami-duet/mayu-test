@@ -6,7 +6,7 @@ let villageNameIsSticky = false;
 
 // Load fundraising level data
 let dataFundraising;
-d3.csv('../data/fundraising_level_per_community.csv').then(data => {
+d3.csv('../data_fund/fundraising_level_per_community.csv').then(data => {
   dataFundraising = data;
   appendCommunities();
 });
