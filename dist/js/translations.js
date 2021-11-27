@@ -37,6 +37,14 @@ const appendContent = () => {
   d3.select('.maps-section').html(translations[mapContent]);
   triggerMapAnimations();
 
+  // Update Communities descriptions
+  d3.selectAll('.village .section .sct-description')
+    .html(d => {
+      if (d) {
+        return lang === 'es' ? d.description_es : d.description_en;
+      }
+    });
+
   // Append our story section
   let ourstoryContent = lang === 'es' ? 'ourstory_es' : 'ourstory_en';
   d3.select('.our-story').html(translations[ourstoryContent]);
