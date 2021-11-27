@@ -7,7 +7,11 @@ let villageNameIsSticky = false;
 
 // Load fundraising level data
 let dataFundraising;
-d3.csv('../data_fund/fundraising_level_per_community.csv').then(data => {
+const dataPath = window.location.href.includes('dist')
+  ? '../dist/data/fundraising_level_per_community.csv'
+  : '../data/fundraising_level_per_community.csv';
+
+d3.csv(dataPath).then(data => {
   dataFundraising = data;
   appendCommunities();
 });
