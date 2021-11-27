@@ -116,5 +116,8 @@
 .lang-es .cover {
   .title .credentials {
     margin-right: 85px;
+    @media screen and (max-width: $sm) {
+      margin-right: 6px;
+    }
   }
 }
