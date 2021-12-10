@@ -2,6 +2,8 @@
 const illustrationsInfo = [
   {
     community:'cerro-de-leones',
+    cloudsCommunity:{distance:185, direction:'-'},
+    villageColorsCommunity:['houses-left', 'houses-right', 'trees'],
     animalsCommunity:[{id:'cow', selector:''}, {id:'chicken', selector:''}],
     animalsDistance:[{id:'cow', selector:''}, {id:'chicken', selector:''}],
     animalsSolution:[{id:'cow', selector:''}, {id:'chicken', selector:''}],

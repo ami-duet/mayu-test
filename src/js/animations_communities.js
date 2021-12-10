@@ -52,15 +52,17 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
     const easeOut = 'back.out(1.4)';
     const directionOpposite = direction === '+' ? '-' : '+';
 
+    gsap.to(`#${communityId}-community-tractor-color`, {opacity:1, duration:3, ease:'sine.out'});
+
     const vehicleTl = gsap.timeline();
     vehicleTl
-      .to(`#${communityId}-${section}-wheel-back`, {rotation:`${direction}=${rotationWheelBack}`, duration:2, ease:easeIn}, 0)
-      .to(`#${communityId}-${section}-wheel-front`, {rotation:`${direction}=${rotationWheelFront}`, duration:2, ease:easeIn}, 0)
-      .to(`#${communityId}-${section}-tractor`, {x:`${direction}${distance}`, duration:2, ease:easeIn}, 0)
+      .to(`#${communityId}-${section}-wheel-back`, {rotation:`${direction}=${rotationWheelBack}`, duration:2, ease:easeIn}, 2)
+      .to(`#${communityId}-${section}-wheel-front`, {rotation:`${direction}=${rotationWheelFront}`, duration:2, ease:easeIn}, 2)
+      .to(`#${communityId}-${section}-tractor, #${communityId}-community-tractor-color`, {x:`${direction}${distance}`, duration:2, ease:easeIn}, 2)
   
       .to(`#${communityId}-${section}-wheel-back`, {rotation:`${directionOpposite}=${rotationWheelBack}`, duration:1, ease:easeOut}, 7)
       .to(`#${communityId}-${section}-wheel-front`, {rotation:`${directionOpposite}=${rotationWheelFront}`, duration:1, ease:easeOut}, 7)
-      .to(`#${communityId}-${section}-tractor`, {x:0, duration:1, ease:easeOut}, 7);
+      .to(`#${communityId}-${section}-tractor, #${communityId}-community-tractor-color`, {x:0, duration:1, ease:easeOut}, 7);
   
     vehicleTl
       .repeat(-1)
@@ -82,7 +84,10 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
   // Trace animals
   const traceAnimals = (animals) => {
     animals.forEach(animal => {
-      gsap.to(animal.selector, {drawSVG:'100%', duration:2});
+      const tl = gsap.timeline();
+      tl
+        .to(animal.selector, {drawSVG:'100%', duration:2})
+        .to(`#${communityId}-community-${animal.id}-color`, {opacity:1, duration:3, ease:'sine.out'}, '>-0.5');
     });
   };
 
@@ -109,13 +114,16 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
     }
     
     // Clouds animations
-    gsap.set(`#cloud-color-1, #${communityId}-community-clouds-back`, {opacity:0.42});
-    gsap.set(`#${communityId}-community-sun-color`, {opacity:0.8});
+    const cloudsTranslation = `${illustrationInfo.cloudsCommunity.direction}=${illustrationInfo.cloudsCommunity.distance}`;
+    gsap.set(`#${communityId}-community-clouds-front`, {opacity:0});
+    gsap.set(`#${communityId}-community-clouds-front, #${communityId}-community-clouds-back`, {x:cloudsTranslation,});
     const communityCloudsMove = () => {
       const communityCloudsTl = gsap.timeline();
       communityCloudsTl
-        .fromTo(`#${communityId}-community-clouds-front`, {x:220}, {x:-300, duration:50, repeat:-1, ease:'none'}, 0)
-        .fromTo(`#${communityId}-community-clouds-back`, {x:220}, {x:-300, duration:80, repeat:-1, ease:'none'}, 0);
+        .to(`#${communityId}-community-clouds-front, #${communityId}-community-clouds-front-color, #${communityId}-community-sun-color`, {opacity:1, duration:3, ease:'sine.out'}, 0)
+        .to(`#${communityId}-community-clouds-front`, {x:-1*cloudsTranslation, duration:20, ease:'sine.out'}, '<-1')
+        .to(`#${communityId}-community-clouds-back`, {opacity:1, duration:3, ease:'sine.out'}, 2.5)
+        .to(`#${communityId}-community-clouds-back`, {x:-1*cloudsTranslation, duration:22, ease:'sine.out'}, '<-1');
     };
 
     const community50 = () => {
@@ -130,23 +138,30 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
 
     const community100 = () => {
       const tl = gsap.timeline();
+      let villageColorsSelector = '';
+      illustrationInfo.villageColorsCommunity.forEach((color, i) => {
+        const concatEnding = i === (illustrationInfo.villageColorsCommunity.length - 1) ? '' : ', ';
+        villageColorsSelector = villageColorsSelector.concat(`#${communityId}-community-${color}-color${concatEnding}`)
+      });
+      
       tl
         .call(makeBirdFly, [`#${communityId}-community-bird2-state1`, `#${communityId}-community-bird2-state2`, 'left'])
-        .call(makeBirdFly, [`#${communityId}-community-bird1-state1`, `#${communityId}-community-bird1-state2`, 'left'], 1);
+        .call(makeBirdFly, [`#${communityId}-community-bird1-state1`, `#${communityId}-community-bird1-state2`, 'left'], 1)
+        .to(villageColorsSelector, {opacity:1, duration:3, ease:'sine.out', stagger:{each:0.2, from:'random'}}, '>-1');
     };
 
     communityTl
       // Clouds move horizontally
-      .call(communityCloudsMove, null, 0.1);
+      .call(communityCloudsMove, null, 1);
 
       // Tractor starts moving
-      if (fundraisingLevel >= 50) { communityTl.add(community50, 2) }
+      if (fundraisingLevel >= 50) { communityTl.add(community50, 4) }
 
       // Trace animals
-      if (fundraisingLevel >= 75) { communityTl.add(community75, 4) }
+      if (fundraisingLevel >= 75) { communityTl.add(community75, 8) }
 
       // Animate birds
-      if (fundraisingLevel === 100) { communityTl.add(community100, 6) }
+      if (fundraisingLevel === 100) { communityTl.add(community100, 12) }
   }
 
 
