@@ -64,9 +64,9 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
 
     const vehicleTl = gsap.timeline();
     vehicleTl
-      .to(`#${communityId}-${section}-wheel-back`, {rotation:`${direction}=${rotationWheelBack}`, duration:2, ease:easeIn}, 2)
-      .to(`#${communityId}-${section}-wheel-front`, {rotation:`${direction}=${rotationWheelFront}`, duration:2, ease:easeIn}, 2)
-      .to(`#${communityId}-${section}-tractor, #${communityId}-community-tractor-color`, {x:`${direction}${distance}`, duration:2, ease:easeIn}, 2)
+      .to(`#${communityId}-${section}-wheel-back`, {rotation:`${direction}=${rotationWheelBack}`, duration:2, ease:easeIn}, 3.1)
+      .to(`#${communityId}-${section}-wheel-front`, {rotation:`${direction}=${rotationWheelFront}`, duration:2, ease:easeIn}, 3.1)
+      .to(`#${communityId}-${section}-tractor, #${communityId}-community-tractor-color`, {x:`${direction}${distance}`, duration:3.1, ease:easeIn}, 3.1)
   
       .to(`#${communityId}-${section}-wheel-back`, {rotation:`${directionOpposite}=${rotationWheelBack}`, duration:1, ease:easeOut}, 7)
       .to(`#${communityId}-${section}-wheel-front`, {rotation:`${directionOpposite}=${rotationWheelFront}`, duration:1, ease:easeOut}, 7)
@@ -701,8 +701,4 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
   //     if (fundraisingLevel >= 100) { coloringTl.add(coloring100, 5) }
 
   // }
-};
-
-const resetColorings = (communityId) => {
-
 };
