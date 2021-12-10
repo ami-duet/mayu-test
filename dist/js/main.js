@@ -28,7 +28,7 @@ const appendCommunities = () => {
   }
   const firstVillageIndex = villagesData.findIndex(village => village.village_id === firstVillageId);
   const firstVillageName = villagesData[firstVillageIndex].village_name;
-  const currentVillageId = firstVillageId;
+  let currentVillageId = firstVillageId;
   d3.select('#first-community')
     .text(firstVillageName);
   
@@ -93,15 +93,45 @@ const appendCommunities = () => {
     d3.select('.glide__arrow--right .btn-label')
       .text(nextVillage.village_name);
   };
+
+  const resetIllustration = (id) => {
+    d3.selectAll(`.village-${id} .section-community .sct-illustration svg`).remove();
+    d3.selectAll(`.village-${id} .section-community .sct-illustration`)
+      .html(villagesData.find(v => v.village_id === id).sections.find(s => s.sct_id === 'community').illustration);
+  
+    d3.selectAll(`.village-${id} .section-school .sct-illustration svg`).remove();
+    d3.selectAll(`.village-${id} .section-school .sct-illustration`)
+      .html(villagesData.find(v => v.village_id === id).sections.find(s => s.sct_id === 'school').illustration);
+  
+    d3.selectAll(`.village-${id} .section-distance .sct-illustration svg`).remove();
+    d3.selectAll(`.village-${id} .section-distance .sct-illustration`)
+      .html(villagesData.find(v => v.village_id === id).sections.find(s => s.sct_id === 'distance').illustration);
+  
+    d3.selectAll(`.village-${id} .section-waterMCL .sct-illustration svg`).remove();
+    d3.selectAll(`.village-${id} .section-waterMCL .sct-illustration`)
+      .html(villagesData.find(v => v.village_id === id).sections.find(s => s.sct_id === 'waterMCL').illustration);
+  
+    d3.selectAll(`.village-${id} .section-solution .sct-illustration svg`).remove();
+    d3.selectAll(`.village-${id} .section-solution .sct-illustration`)
+      .html(villagesData.find(v => v.village_id === id).sections.find(s => s.sct_id === 'solution').illustration);
+  
+    d3.selectAll(`.village-${id} .section-coloring .sct-illustration svg`).remove();
+    d3.selectAll(`.village-${id} .section-coloring .sct-illustration`)
+      .html(villagesData.find(v => v.village_id === id).sections.find(s => s.sct_id === 'coloring').illustration);
+  }
   
   // Update name of current village
   const updateCurrentVillage = (index) => {
-    const community = villagesData[index];
-    currentVillage.select('h2').text(community.village_name);
+    const previousVillage = currentVillageId;
     gsap.globalTimeline.clear();
 
+    const community = villagesData[index];
+    currentVillageId = community.village_id;
+    currentVillage.select('h2').text(community.village_name);
+
     fundLevel = fundLevelParam !== null ? +fundLevelParam : +dataFundraising.find(d => d.community === community.village_id).fundraising_level;
-    triggerAnimations(community.village_id, fundLevel);
+    triggerAnimations(currentVillageId, fundLevel);
+    resetIllustration(previousVillage);
   };
   
   if (window.innerWidth > 1100) {

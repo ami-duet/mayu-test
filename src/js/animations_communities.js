@@ -187,6 +187,12 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
           .call(makeBirdFly, [`#${communityId}-community-bird3-state1`, `#${communityId}-community-bird3-state2`, 'left'], '>+1')
           .call(makeBirdFly, [`#${communityId}-community-bird2-state1`, `#${communityId}-community-bird2-state2`, 'left'], '>+1')
           .to(villageColorsSelector, {opacity:1, duration:3, ease:'sine.out', stagger:{each:0.2, from:'random'}}, '>-1');
+      } else if (communityId == 'totoral-bajo') {
+        tl
+          .call(makeBirdFly, [`#${communityId}-community-bird1-state1`, `#${communityId}-community-bird1-state2`, 'left'])
+          .call(makeBirdFly, [`#${communityId}-community-bird3-state1`, `#${communityId}-community-bird3-state2`, 'left'], '>+1')
+          .call(makeBirdFly, [`#${communityId}-community-bird2-state1`, `#${communityId}-community-bird2-state2`, 'left'], '>+1')
+          .to(villageColorsSelector, {opacity:1, duration:3, ease:'sine.out', stagger:{each:0.2, from:'random'}}, '>-1');
       } else {
         tl
           .call(makeBirdFly, [`#${communityId}-community-bird2-state1`, `#${communityId}-community-bird2-state2`, 'left'])
@@ -695,4 +701,8 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
   //     if (fundraisingLevel >= 100) { coloringTl.add(coloring100, 5) }
 
   // }
+};
+
+const resetColorings = (communityId) => {
+
 };
