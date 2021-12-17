@@ -61,19 +61,21 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
   // Vehicles animation
   const vehicleAnimation = (section, distance, direction, rotationWheelBack, rotationWheelFront) => {
     gsap.set(`#${communityId}-${section}-wheel-back, #${communityId}-${section}-wheel-front`, {transformOrigin:"50% 50%"}, 0);
-    const easeIn = 'back.in(1.7)';
-    const easeOut = 'back.out(1.4)';
+    const easeIn = communityId === 'las-mercedes' ? 'back.in(1.2)' : 'back.in(1.7)';
+    const easeOut = communityId === 'las-mercedes' ? 'back.out(1.1)' : 'back.out(1.4)';
     const directionOpposite = direction === '+' ? '-' : '+';
+    const durationIn = communityId === 'las-mercedes' ? 3 : 2;
+    const durationOut = communityId === 'las-mercedes' ? 2.5 : 1;
 
     const vehicleTl = gsap.timeline();
     vehicleTl
-      .to(`#${communityId}-${section}-wheel-back`, {rotation:`${direction}=${rotationWheelBack}`, duration:2, ease:easeIn}, 3.1)
-      .to(`#${communityId}-${section}-wheel-front`, {rotation:`${direction}=${rotationWheelFront}`, duration:2, ease:easeIn}, 3.1)
-      .to(`#${communityId}-${section}-tractor`, {x:`${direction}${distance}`, duration:2, ease:easeIn}, 3.1)
+      .to(`#${communityId}-${section}-wheel-back`, {rotation:`${direction}=${rotationWheelBack}`, duration:durationIn, ease:easeIn}, 3.1)
+      .to(`#${communityId}-${section}-wheel-front`, {rotation:`${direction}=${rotationWheelFront}`, duration:durationIn, ease:easeIn}, 3.1)
+      .to(`#${communityId}-${section}-tractor`, {x:`${direction}${distance}`, duration:durationIn, ease:easeIn}, 3.1)
   
-      .to(`#${communityId}-${section}-wheel-back`, {rotation:`${directionOpposite}=${rotationWheelBack}`, duration:1, ease:easeOut}, 7)
-      .to(`#${communityId}-${section}-wheel-front`, {rotation:`${directionOpposite}=${rotationWheelFront}`, duration:1, ease:easeOut}, 7)
-      .to(`#${communityId}-${section}-tractor`, {x:0, duration:1, ease:easeOut}, 7);
+      .to(`#${communityId}-${section}-wheel-back`, {rotation:`${directionOpposite}=${rotationWheelBack}`, duration:durationOut, ease:easeOut}, durationIn + 5)
+      .to(`#${communityId}-${section}-wheel-front`, {rotation:`${directionOpposite}=${rotationWheelFront}`, duration:durationOut, ease:easeOut}, durationIn + 5)
+      .to(`#${communityId}-${section}-tractor`, {x:0, duration:durationOut, ease:easeOut}, durationIn + 5);
   }
 
   // Rive waves animation
@@ -124,11 +126,11 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
       gsap.set(`#${communityId}-community-clouds-front-outline, #${communityId}-community-clouds-back-outline`, {x:cloudsTranslation, opacity:0});
     } else if (communityId === 'carrizalillo') {
       gsap.set(`#${communityId}-community-clouds-outline`, {x:cloudsTranslation, opacity:0});
-    } else if (communityId === 'la-merced') {
+    } else if (communityId === 'la-merced' || communityId === 'totoral-alto') {
       gsap.set(`#${communityId}-community-sun`, {opacity:0, y:20});
     }
 
-    if (communityId !== 'la-merced') {
+    if (communityId !== 'la-merced' && communityId !== 'las-mercedes' && communityId !== 'totoral-alto' && communityId !== 'carrizalillo') {
       gsap.set(`#${communityId}-community-clouds-front`, {opacity:0});
       gsap.set(`#${communityId}-community-clouds-front`, {x:cloudsTranslation});
     }
@@ -150,9 +152,9 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
           .to(`#${communityId}-community-clouds-back-outline`, {x:-1*cloudsTranslation, duration:20, ease:'sine.out'}, '<-1');
       } else if (communityId === 'carrizalillo') {
         communityCloudsTl
-          .to(`#${communityId}-community-clouds-front, #${communityId}-community-clouds-outline`, {opacity:1, duration:3, ease:'sine.out'}, 0)
-          .to(`#${communityId}-community-clouds-front, #${communityId}-community-clouds-outline`, {x:-1*cloudsTranslation, duration:20, ease:'sine.out'}, '<-1');
-      } else if (communityId === 'la-merced') {
+          .to(`#${communityId}-community-clouds-outline`, {opacity:1, duration:3, ease:'sine.out'}, 0)
+          .to(`#${communityId}-community-clouds-outline`, {x:-1*cloudsTranslation, duration:20, ease:'sine.out'}, '<-1');
+      } else if (communityId === 'la-merced' || communityId === 'totoral-alto') {
         communityCloudsTl
           .to(`#${communityId}-community-sun`, {opacity:1, duration:1, ease:'sine.out'}, 0)
           .to(`#${communityId}-community-sun`, {y:0, duration:8, ease:'sine.out'}, '<-1');
@@ -180,14 +182,12 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
         tl
           .call(makeBirdFly, [`#${communityId}-community-bird1-state1`, `#${communityId}-community-bird1-state2`, 'right'])
           .call(makeBirdFly, [`#${communityId}-community-bird3-state1`, `#${communityId}-community-bird3-state2`, 'left'], '>+1')
-          .call(makeBirdFly, [`#${communityId}-community-bird2-state1`, `#${communityId}-community-bird2-state2`, 'left'], '>+1')
-          .to(villageColorsSelector, {opacity:1, duration:3, ease:'sine.out', stagger:{each:0.2, from:'random'}}, '>-1');
+          .call(makeBirdFly, [`#${communityId}-community-bird2-state1`, `#${communityId}-community-bird2-state2`, 'left'], '>+1');
       } else if (communityId == 'totoral-bajo') {
         tl
           .call(makeBirdFly, [`#${communityId}-community-bird1-state1`, `#${communityId}-community-bird1-state2`, 'left'])
           .call(makeBirdFly, [`#${communityId}-community-bird3-state1`, `#${communityId}-community-bird3-state2`, 'left'], '>+1')
-          .call(makeBirdFly, [`#${communityId}-community-bird2-state1`, `#${communityId}-community-bird2-state2`, 'left'], '>+1')
-          .to(villageColorsSelector, {opacity:1, duration:3, ease:'sine.out', stagger:{each:0.2, from:'random'}}, '>-1');
+          .call(makeBirdFly, [`#${communityId}-community-bird2-state1`, `#${communityId}-community-bird2-state2`, 'left'], '>+1');
       } else {
         tl
           .call(makeBirdFly, [`#${communityId}-community-bird2-state1`, `#${communityId}-community-bird2-state2`, 'left'])
