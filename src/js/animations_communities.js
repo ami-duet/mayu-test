@@ -11,6 +11,11 @@ const illustrations = ['community', 'school', 'distance', 'waterMCL', 'solution'
 const triggerAnimations = (communityId, fundraisingLevel) => {
   const illustrationInfo = illustrationsInfo.find(info => info.community === communityId);
 
+  // Reveal coloring
+  const revealColoring = (community, section) => {
+    gsap.to(`.village-${community} .section-${section} .coloring`, {opacity:1, duration:2, ease:'sine.out'});
+  };
+
   // Birds flying animation
   const makeBirdFly = (birdState1, birdState2, direction) => {
     const birdTl = gsap.timeline();
@@ -64,16 +69,11 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
     vehicleTl
       .to(`#${communityId}-${section}-wheel-back`, {rotation:`${direction}=${rotationWheelBack}`, duration:2, ease:easeIn}, 3.1)
       .to(`#${communityId}-${section}-wheel-front`, {rotation:`${direction}=${rotationWheelFront}`, duration:2, ease:easeIn}, 3.1)
-      .to(`#${communityId}-${section}-tractor`, {x:`${direction}${distance}`, duration:3.1, ease:easeIn}, 3.1)
+      .to(`#${communityId}-${section}-tractor`, {x:`${direction}${distance}`, duration:2, ease:easeIn}, 3.1)
   
       .to(`#${communityId}-${section}-wheel-back`, {rotation:`${directionOpposite}=${rotationWheelBack}`, duration:1, ease:easeOut}, 7)
       .to(`#${communityId}-${section}-wheel-front`, {rotation:`${directionOpposite}=${rotationWheelFront}`, duration:1, ease:easeOut}, 7)
       .to(`#${communityId}-${section}-tractor`, {x:0, duration:1, ease:easeOut}, 7);
-  
-    vehicleTl
-      .repeat(-1)
-      .repeatDelay(7)
-      .yoyo(true);
   }
 
   // Rive waves animation
@@ -186,9 +186,17 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
       }
     };
 
+    const communityColoringRevealTiming = [
+      { level:25, timing:4 },
+      { level:50, timing:12 },
+      { level:75, timing:12 },
+      { level:100, timing:14 }
+    ];
+
     communityTl
       // Clouds move horizontally
-      .call(communityCloudsMove, null, 1);
+      .call(communityCloudsMove, null, 1)
+      .call(revealColoring, [communityId, 'community'], communityColoringRevealTiming.find(d => d.level === fundraisingLevel).timing);
 
       // Tractor starts moving
       if (fundraisingLevel >= 50) { communityTl.add(community50, 4) }
@@ -198,6 +206,9 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
 
       // Animate birds
       if (fundraisingLevel === 100) { communityTl.add(community100, 12) }
+
+      // Reveal coloring
+      // if (fundraisingLevel) { communityTl.call(revealColoring, [communityId, 'community'], 5) }
   }
 
 

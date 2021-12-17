@@ -32,12 +32,39 @@
 
     // Illustrations
     .sct-illustration {
+      position: relative;
       width: 100%;
       max-width: 500px;
       transform: scale(1);
       transition: transform 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000);
+      .coloring {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center top;
+        opacity: 0;
+      }
       &:hover {
         transform: scale(1.2);
+      }
+    }
+    &.village-cerro-de-leones {
+      &.fund-level-100 {
+        .section-community .sct-illustration .coloring { background-image: url(../assets/communities-coloring/cerro/cerro-community-100.png); }
+      }
+      &.fund-level-75 {
+        .section-community .sct-illustration .coloring { background-image: url(../assets/communities-coloring/cerro/cerro-community-75.png); }
+      }
+      &.fund-level-50 {
+        .section-community .sct-illustration .coloring { background-image: url(../assets/communities-coloring/cerro/cerro-community-50.png); }
+      }
+      &.fund-level-25 {
+        .section-community .sct-illustration .coloring { background-image: url(../assets/communities-coloring/cerro/cerro-community-25.png); }
       }
     }
 

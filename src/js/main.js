@@ -4,30 +4,20 @@ const carouselArrows = document.querySelector('.glide__arrows');
 let largeScreen = window.innerWidth > 1100 ? true : false;
 let villageNameIsSticky = false;
 
-// Load fundraising level data
-let dataFundraising;
-const dataPath = window.location.href.includes('dist')
-  ? '../dist/data/fundraising_level_per_community.csv'
-  : '../data/fundraising_level_per_community.csv';
-
-d3.csv(dataPath).then(data => {
-  dataFundraising = data;
-  appendCommunities();
-});
-
 let fundLevelParam = urlParams.get('fund-level');
+let fundLevelClass;
+// Set first community
+let firstVillageId = '';
+if (urlParams.get('community')) {
+  firstVillageId = urlParams.get('community');
+} else {
+  firstVillageId = 'cerro-de-leones';
+}
+const firstVillageIndex = villagesData.findIndex(village => village.village_id === firstVillageId);
+const firstVillageName = villagesData[firstVillageIndex].village_name;
+let currentVillageId = firstVillageId;
 
 const appendCommunities = () => {
-  // Set first community
-  let firstVillageId = '';
-  if (urlParams.get('community')) {
-    firstVillageId = urlParams.get('community');
-  } else {
-    firstVillageId = 'cerro-de-leones';
-  }
-  const firstVillageIndex = villagesData.findIndex(village => village.village_id === firstVillageId);
-  const firstVillageName = villagesData[firstVillageIndex].village_name;
-  let currentVillageId = firstVillageId;
   d3.select('#first-community')
     .text(firstVillageName);
   
@@ -43,10 +33,10 @@ const appendCommunities = () => {
     .join('li')
       .attr('class', 'glide__slide')
     .append('div')
-      .attr('class', d => `village village-${d.village_id}`);
+      .attr('class', d => `village village-${d.village_id} fund-level-${fundLevelClass}`);
   villages
     .append('h2')
-      .text(d => d.village_name);
+      .text(d => d.village_name);
   const sections = villages
     .append('div')
       .attr('class', 'sections');
@@ -55,11 +45,11 @@ const appendCommunities = () => {
     .data(d => d.sections)
     .join('div')
       .attr('class', d => `section section-${d.sct_id}`);
-  section
+  const illustration = section
     .append('div')
-      .attr('class', 'sct-illustration')
-    // .html(d =>  d.sct_id === 'coloring' ? d.illustration : null );
-    .html(d =>  d.illustration );
+      .attr('class', 'sct-illustration');
+  illustration.html(d =>  d.illustration );
+  illustration.append('div').attr('class', 'coloring');
   section
     .append('div')
       .attr('class', 'sct-description')
@@ -172,3 +162,14 @@ const appendCommunities = () => {
   });
 };
 
+// Load fundraising level data
+let dataFundraising;
+const dataPath = window.location.href.includes('dist')
+  ? '../dist/data/fundraising_level_per_community.csv'
+  : '../data/fundraising_level_per_community.csv';
+
+d3.csv(dataPath).then(data => {
+  dataFundraising = data;
+  fundLevelClass = fundLevelParam !== null ? fundLevelParam : dataFundraising.find(d => d.community === currentVillageId).fundraising_level;
+  appendCommunities();
+});
