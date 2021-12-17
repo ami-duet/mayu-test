@@ -17,7 +17,7 @@ const illustrationsInfo = [
   },
   {
     community:'las-mercedes-km11',
-    cloudsCommunity:{distance:242, direction:'+'},
+    cloudsCommunity:{distance:78, direction:'-'},
     animalsCommunity:[{id:'chicken1', selector:''}, {id:'chicken2', selector:''}],
     animalsDistance:[{id:'chicken1', selector:''}, {id:'chicken2', selector:''}],
     animalsSolution:[{id:'cow', selector:''}, {id:'chicken', selector:''}],

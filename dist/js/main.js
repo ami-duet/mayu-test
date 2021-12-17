@@ -6,7 +6,6 @@ let largeScreen = window.innerWidth > 1100 ? true : false;
 let villageNameIsSticky = false;
 
 let fundLevelParam = urlParams.get('fund-level');
-let fundLevelClass;
 // Set first community
 let firstVillageId = '';
 if (urlParams.get('community')) {
@@ -34,7 +33,12 @@ const appendCommunities = () => {
     .join('li')
       .attr('class', 'glide__slide')
     .append('div')
-      .attr('class', d => `village village-${d.village_id} fund-level-${fundLevelClass}`);
+      .attr('class', d => {
+        const fundLevelClass = fundLevelParam !== null 
+          ? fundLevelParam 
+          : dataFundraising.find(el => el.community === d.village_id).fundraising_level;
+        return `village village-${d.village_id} fund-level-${fundLevelClass}`;
+      });
   villages
     .append('h2')
       .text(d => d.village_name);
@@ -171,6 +175,5 @@ const dataPath = window.location.href.includes('dist')
 
 d3.csv(dataPath).then(data => {
   dataFundraising = data;
-  fundLevelClass = fundLevelParam !== null ? fundLevelParam : dataFundraising.find(d => d.community === currentVillageId).fundraising_level;
   appendCommunities();
 });

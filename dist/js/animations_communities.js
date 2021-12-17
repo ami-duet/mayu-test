@@ -125,9 +125,14 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
       gsap.set(`#${communityId}-community-clouds-front-outline, #${communityId}-community-clouds-back-outline`, {x:cloudsTranslation, opacity:0});
     } else if (communityId === 'carrizalillo') {
       gsap.set(`#${communityId}-community-clouds-outline`, {x:cloudsTranslation, opacity:0});
+    } else if (communityId === 'la-merced') {
+      gsap.set(`#${communityId}-community-sun`, {opacity:0, y:20});
     }
-    gsap.set(`#${communityId}-community-clouds-front`, {opacity:0});
-    gsap.set(`#${communityId}-community-clouds-front`, {x:cloudsTranslation});
+
+    if (communityId !== 'la-merced') {
+      gsap.set(`#${communityId}-community-clouds-front`, {opacity:0});
+      gsap.set(`#${communityId}-community-clouds-front`, {x:cloudsTranslation});
+    }
     
     const communityCloudsMove = () => {
       const communityCloudsTl = gsap.timeline();
@@ -148,6 +153,10 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
         communityCloudsTl
           .to(`#${communityId}-community-clouds-front, #${communityId}-community-clouds-outline`, {opacity:1, duration:3, ease:'sine.out'}, 0)
           .to(`#${communityId}-community-clouds-front, #${communityId}-community-clouds-outline`, {x:-1*cloudsTranslation, duration:20, ease:'sine.out'}, '<-1');
+      } else if (communityId === 'la-merced') {
+        communityCloudsTl
+          .to(`#${communityId}-community-sun`, {opacity:1, duration:1, ease:'sine.out'}, 0)
+          .to(`#${communityId}-community-sun`, {y:0, duration:8, ease:'sine.out'}, '<-1');
       } else {
         communityCloudsTl
           .to(`#${communityId}-community-clouds-front`, {opacity:1, duration:3, ease:'sine.out'}, 0)
@@ -207,9 +216,6 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
 
       // Animate birds
       if (fundraisingLevel === 100) { communityTl.add(community100, 12) }
-
-      // Reveal coloring
-      // if (fundraisingLevel) { communityTl.call(revealColoring, [communityId, 'community'], 5) }
   }
 
 
