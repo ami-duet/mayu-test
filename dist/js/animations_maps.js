@@ -3,23 +3,28 @@ gsap.registerPlugin(ScrollTrigger);
 
 const triggerMapAnimations = () => {
   // Pin Peru map
-  ScrollTrigger.create({
-    trigger: '.map-image',
-    endTrigger: '.map-description-third',
-    start: 'center center',
-    end: () => {
-      const height = window.innerHeight;
-      const mapHeight = document.querySelector('.map-peru .map-image').offsetHeight;
-      const margin = window.innerWidth < 400 ? 90 : 0;
-      return `bottom ${mapHeight + (height - mapHeight) / 2 - margin}px`;
-    },
-    pin: true,
-    pinSpacing: false
+  gsap.to('.map-image', {
+    scrollTrigger: {
+      id: 'peru-map-trigger',
+      trigger: '.map-image',
+      endTrigger: '.map-description-third',
+      start: 'center center',
+      end: () => {
+        const height = window.innerHeight;
+        const mapHeight = document.querySelector('.map-peru .map-image').offsetHeight;
+        const margin = window.innerWidth < 400 ? 100 : 0;
+        return `bottom ${mapHeight + (height - mapHeight) / 2 - margin}px`;
+      },
+      pin: true,
+      // pinSpacing: false
+      // markers: true
+    }
   });
 
   // Make Piura region appear on scroll
   gsap.to('.piura-region', {
     scrollTrigger: {
+      id: 'piura-region',
       trigger: '.map-description-second',
       start: () => {
         const mapHeight = document.querySelector('.map-peru .map-image').offsetHeight;

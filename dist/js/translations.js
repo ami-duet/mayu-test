@@ -35,7 +35,9 @@ const appendContent = () => {
   // Append map section
   let mapContent = lang === 'es' ? 'map_es' : 'map_en';
   d3.select('.maps-section').html(translations[mapContent]);
-  triggerMapAnimations();
+  setTimeout(() => {
+    triggerMapAnimations();
+  }, 1000);
 
   // Update Communities descriptions
   d3.selectAll('.village .section .sct-description')
@@ -55,6 +57,14 @@ const appendContent = () => {
   d3.select('.about-vavv-link').text(lang === 'es' ? translations.aboutvavv_es : translations.aboutvavv_en);
 }
 appendContent();
+  
+// Update Peru map text height
+const peruMapText = d3.selectAll('.map-peru .map-description');
+const adjustHeightPeruMapText = () => {
+  const height = document.querySelector('.map-peru').getBoundingClientRect().width * 1.5;
+  d3.selectAll('.map-peru .map-image').style('height', `${height}px`);
+  d3.selectAll('.map-peru .map-description').style('height', `${height}px`);
+};
 
 // Detect language change
 d3.selectAll('.language-switcher button').on('click', e => {
@@ -68,7 +78,10 @@ d3.selectAll('.language-switcher button').on('click', e => {
     }
 
     gsap.to('.cover h1, .cover .credentials, .cover .intro, .cover .donate-link', {opacity:0, duration:0.2, ease:'sine.out'})
+    ScrollTrigger.getById('peru-map-trigger').kill(true);
+    ScrollTrigger.getById('piura-region').kill(true);
     appendContent();
+    adjustHeightPeruMapText();
     animateIntroduction();
   }
 });

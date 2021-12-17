@@ -93,32 +93,6 @@ const appendCommunities = () => {
     d3.select('.glide__arrow--right .btn-label')
       .text(nextVillage.village_name);
   };
-
-  const resetIllustration = (id) => {
-    d3.selectAll(`.village-${id} .section-community .sct-illustration svg`).remove();
-    d3.selectAll(`.village-${id} .section-community .sct-illustration`)
-      .html(villagesData.find(v => v.village_id === id).sections.find(s => s.sct_id === 'community').illustration);
-  
-    d3.selectAll(`.village-${id} .section-school .sct-illustration svg`).remove();
-    d3.selectAll(`.village-${id} .section-school .sct-illustration`)
-      .html(villagesData.find(v => v.village_id === id).sections.find(s => s.sct_id === 'school').illustration);
-  
-    d3.selectAll(`.village-${id} .section-distance .sct-illustration svg`).remove();
-    d3.selectAll(`.village-${id} .section-distance .sct-illustration`)
-      .html(villagesData.find(v => v.village_id === id).sections.find(s => s.sct_id === 'distance').illustration);
-  
-    d3.selectAll(`.village-${id} .section-waterMCL .sct-illustration svg`).remove();
-    d3.selectAll(`.village-${id} .section-waterMCL .sct-illustration`)
-      .html(villagesData.find(v => v.village_id === id).sections.find(s => s.sct_id === 'waterMCL').illustration);
-  
-    d3.selectAll(`.village-${id} .section-solution .sct-illustration svg`).remove();
-    d3.selectAll(`.village-${id} .section-solution .sct-illustration`)
-      .html(villagesData.find(v => v.village_id === id).sections.find(s => s.sct_id === 'solution').illustration);
-  
-    d3.selectAll(`.village-${id} .section-coloring .sct-illustration svg`).remove();
-    d3.selectAll(`.village-${id} .section-coloring .sct-illustration`)
-      .html(villagesData.find(v => v.village_id === id).sections.find(s => s.sct_id === 'coloring').illustration);
-  }
   
   // Update name of current village
   const updateCurrentVillage = (index) => {
@@ -131,7 +105,6 @@ const appendCommunities = () => {
 
     fundLevel = fundLevelParam !== null ? +fundLevelParam : +dataFundraising.find(d => d.community === community.village_id).fundraising_level;
     triggerAnimations(currentVillageId, fundLevel);
-    resetIllustration(previousVillage);
   };
   
   if (window.innerWidth > 1100) {
@@ -144,14 +117,6 @@ const appendCommunities = () => {
     updateCurrentVillage(carousel.index);
   });
   
-  
-  // Update Peru map text height
-  const peruMapText = d3.selectAll('.map-peru .map-description');
-  const adjustHeightPeruMapText = () => {
-    const height = document.querySelector('.map-peru').getBoundingClientRect().width * 1.5;
-    d3.selectAll('.map-peru .map-image').style('height', `${height}px`);
-    d3.selectAll('.map-peru .map-description').style('height', `${height}px`);
-  };
   adjustHeightPeruMapText();
   
   
