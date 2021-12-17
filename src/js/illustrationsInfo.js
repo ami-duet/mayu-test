@@ -2,7 +2,6 @@ const illustrationsInfo = [
   {
     community:'cerro-de-leones',
     cloudsCommunity:{distance:185, direction:'-'},
-    villageColorsCommunity:['houses-left', 'houses-right', 'trees'],
     animalsCommunity:[{id:'cow', selector:''}, {id:'chicken', selector:''}],
     animalsDistance:[{id:'cow', selector:''}, {id:'chicken', selector:''}],
     animalsSolution:[{id:'cow', selector:''}, {id:'chicken', selector:''}],
@@ -18,7 +17,6 @@ const illustrationsInfo = [
   {
     community:'las-mercedes-km11',
     cloudsCommunity:{distance:242, direction:'+'},
-    villageColorsCommunity:['houses-left', 'houses-mid', 'houses-right', 'trees'],
     animalsCommunity:[{id:'chicken1', selector:''}, {id:'chicken2', selector:''}],
     animalsDistance:[{id:'chicken1', selector:''}, {id:'chicken2', selector:''}],
     animalsSolution:[{id:'cow', selector:''}, {id:'chicken', selector:''}],
@@ -34,7 +32,6 @@ const illustrationsInfo = [
   {
     community:'la-merced',
     cloudsCommunity:{distance:242, direction:'-'},
-    villageColorsCommunity:['houses-left', 'houses-right', 'trees'],
     animalsCommunity:[{id:'chicken1', selector:''}, {id:'chicken2', selector:''}],
     animalsDistance:[{id:'chicken1', selector:''}, {id:'chicken2', selector:''}],
     animalsSolution:[{id:'chicken1', selector:''}, {id:'chicken2', selector:''}],
@@ -50,7 +47,6 @@ const illustrationsInfo = [
   {
     community:'totoral-bajo',
     cloudsCommunity:{distance:280, direction:'-'},
-    villageColorsCommunity:['houses-left', 'houses-right', 'trees', 'wagon'],
     animalsCommunity:[{id:'chicken1', selector:''}, {id:'chicken2', selector:''}],
     animalsDistance:[{id:'chicken1', selector:''}, {id:'chicken2', selector:''}],
     animalsSolution:[{id:'chicken1', selector:''}, {id:'chicken2', selector:''}],
@@ -66,7 +62,6 @@ const illustrationsInfo = [
   {
     community:'las-mercedes',
     cloudsCommunity:{distance:30, direction:'+'},
-    villageColorsCommunity:['houses-top', 'houses-lower', 'trees'],
     animalsCommunity:[{id:'cow1', selector:''}, {id:'cow2', selector:''}],
     animalsDistance:[{id:'cow1', selector:''}, {id:'cow2', selector:''}],
     animalsSolution:[{id:'chicken', selector:''}, {id:'cow', selector:''}],
@@ -82,7 +77,6 @@ const illustrationsInfo = [
   {
     community:'totoral-alto',
     cloudsCommunity:{distance:75, direction:'-'},
-    villageColorsCommunity:['houses', 'trees', 'tree2'],
     animalsCommunity:[{id:'cow', selector:''}],
     animalsDistance:[{id:'cow', selector:''}],
     animalsSolution:[{id:'cow', selector:''}],
@@ -98,7 +92,6 @@ const illustrationsInfo = [
   {
     community:'carrizalillo',
     cloudsCommunity:{distance:200, direction:'-'},
-    villageColorsCommunity:['houses-left', 'houses-right', 'trees', 'flowers'],
     animalsCommunity:[{id:'cow', selector:''}],
     animalsDistance:[{id:'cow', selector:''}],
     animalsSolution:[{id:'cow', selector:''}],

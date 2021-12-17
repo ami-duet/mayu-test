@@ -61,17 +61,15 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
     const easeOut = 'back.out(1.4)';
     const directionOpposite = direction === '+' ? '-' : '+';
 
-    gsap.to(`#${communityId}-community-tractor-color`, {opacity:1, duration:3, ease:'sine.out'});
-
     const vehicleTl = gsap.timeline();
     vehicleTl
       .to(`#${communityId}-${section}-wheel-back`, {rotation:`${direction}=${rotationWheelBack}`, duration:2, ease:easeIn}, 3.1)
       .to(`#${communityId}-${section}-wheel-front`, {rotation:`${direction}=${rotationWheelFront}`, duration:2, ease:easeIn}, 3.1)
-      .to(`#${communityId}-${section}-tractor, #${communityId}-community-tractor-color`, {x:`${direction}${distance}`, duration:3.1, ease:easeIn}, 3.1)
+      .to(`#${communityId}-${section}-tractor`, {x:`${direction}${distance}`, duration:3.1, ease:easeIn}, 3.1)
   
       .to(`#${communityId}-${section}-wheel-back`, {rotation:`${directionOpposite}=${rotationWheelBack}`, duration:1, ease:easeOut}, 7)
       .to(`#${communityId}-${section}-wheel-front`, {rotation:`${directionOpposite}=${rotationWheelFront}`, duration:1, ease:easeOut}, 7)
-      .to(`#${communityId}-${section}-tractor, #${communityId}-community-tractor-color`, {x:0, duration:1, ease:easeOut}, 7);
+      .to(`#${communityId}-${section}-tractor`, {x:0, duration:1, ease:easeOut}, 7);
   
     vehicleTl
       .repeat(-1)
@@ -93,10 +91,7 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
   // Trace animals
   const traceAnimals = (animals) => {
     animals.forEach(animal => {
-      const tl = gsap.timeline();
-      tl
-        .to(animal.selector, {drawSVG:'100%', duration:2})
-        .to(`#${communityId}-community-${animal.id}-color`, {opacity:1, duration:3, ease:'sine.out'}, '>-0.5');
+      gsap.to(animal.selector, {drawSVG:'100%', duration:2});
     });
   };
 
@@ -132,35 +127,31 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
       gsap.set(`#${communityId}-community-clouds-outline`, {x:cloudsTranslation, opacity:0});
     }
     gsap.set(`#${communityId}-community-clouds-front`, {opacity:0});
-    gsap.set(`#${communityId}-community-clouds-front, #${communityId}-community-clouds-back`, {x:cloudsTranslation});
+    gsap.set(`#${communityId}-community-clouds-front`, {x:cloudsTranslation});
     
     const communityCloudsMove = () => {
       const communityCloudsTl = gsap.timeline();
 
       if (communityId === 'totoral-bajo') {
         communityCloudsTl
-          .to(`#${communityId}-community-clouds-front, #${communityId}-community-clouds-front-color, #${communityId}-community-sun-color`, {opacity:1, duration:3, ease:'sine.out'}, 0)
+          .to(`#${communityId}-community-clouds-front`, {opacity:1, duration:3, ease:'sine.out'}, 0)
           .to(`#${communityId}-community-clouds-front`, {x:-1*cloudsTranslation, duration:20, ease:'sine.out'}, '<-1')
-          .to(`#${communityId}-community-clouds-back, #${communityId}-community-clouds-back-outline`, {opacity:1, duration:3, ease:'sine.out'}, 0)
-          .to(`#${communityId}-community-clouds-back, #${communityId}-community-clouds-back-outline`, {x:-1*cloudsTranslation, duration:20, ease:'sine.out'}, '<-1');
+          .to(`#${communityId}-community-clouds-back-outline`, {opacity:1, duration:3, ease:'sine.out'}, 0)
+          .to(`#${communityId}-community-clouds-back-outline`, {x:-1*cloudsTranslation, duration:20, ease:'sine.out'}, '<-1');
       } else if (communityId === 'las-mercedes') {
         communityCloudsTl
-          .to(`#${communityId}-community-clouds-front, #${communityId}-community-clouds-front-outline, #${communityId}-community-sun-color`, {opacity:1, duration:3, ease:'sine.out'}, 0)
+          .to(`#${communityId}-community-clouds-front, #${communityId}-community-clouds-front-outline`, {opacity:1, duration:3, ease:'sine.out'}, 0)
           .to(`#${communityId}-community-clouds-front, #${communityId}-community-clouds-front-outline`, {x:-1*cloudsTranslation, duration:20, ease:'sine.out'}, '<-1')
-          .to(`#${communityId}-community-clouds-back, #${communityId}-community-clouds-back-outline`, {opacity:1, duration:3, ease:'sine.out'}, 0)
-          .to(`#${communityId}-community-clouds-back, #${communityId}-community-clouds-back-outline`, {x:-1*cloudsTranslation, duration:20, ease:'sine.out'}, '<-1');
+          .to(`#${communityId}-community-clouds-back-outline`, {opacity:1, duration:3, ease:'sine.out'}, 0)
+          .to(`#${communityId}-community-clouds-back-outline`, {x:-1*cloudsTranslation, duration:20, ease:'sine.out'}, '<-1');
       } else if (communityId === 'carrizalillo') {
         communityCloudsTl
-          .to(`#${communityId}-community-clouds-front, #${communityId}-community-clouds-outline, #${communityId}-community-sun-color`, {opacity:1, duration:3, ease:'sine.out'}, 0)
-          .to(`#${communityId}-community-clouds-front, #${communityId}-community-clouds-outline`, {x:-1*cloudsTranslation, duration:20, ease:'sine.out'}, '<-1')
-          .to(`#${communityId}-community-clouds-back`, {opacity:1, duration:3, ease:'sine.out'}, 2.5)
-          .to(`#${communityId}-community-clouds-back`, {x:-1*cloudsTranslation, duration:22, ease:'sine.out'}, '<-1');
+          .to(`#${communityId}-community-clouds-front, #${communityId}-community-clouds-outline`, {opacity:1, duration:3, ease:'sine.out'}, 0)
+          .to(`#${communityId}-community-clouds-front, #${communityId}-community-clouds-outline`, {x:-1*cloudsTranslation, duration:20, ease:'sine.out'}, '<-1');
       } else {
         communityCloudsTl
-          .to(`#${communityId}-community-clouds-front, #${communityId}-community-clouds-front-color, #${communityId}-community-sun-color`, {opacity:1, duration:3, ease:'sine.out'}, 0)
-          .to(`#${communityId}-community-clouds-front`, {x:-1*cloudsTranslation, duration:20, ease:'sine.out'}, '<-1')
-          .to(`#${communityId}-community-clouds-back`, {opacity:1, duration:3, ease:'sine.out'}, 2.5)
-          .to(`#${communityId}-community-clouds-back`, {x:-1*cloudsTranslation, duration:22, ease:'sine.out'}, '<-1');
+          .to(`#${communityId}-community-clouds-front`, {opacity:1, duration:3, ease:'sine.out'}, 0)
+          .to(`#${communityId}-community-clouds-front`, {x:-1*cloudsTranslation, duration:20, ease:'sine.out'}, '<-1');
       }
     };
 
@@ -176,11 +167,6 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
 
     const community100 = () => {
       const tl = gsap.timeline();
-      let villageColorsSelector = '';
-      illustrationInfo.villageColorsCommunity.forEach((color, i) => {
-        const concatEnding = i === (illustrationInfo.villageColorsCommunity.length - 1) ? '' : ', ';
-        villageColorsSelector = villageColorsSelector.concat(`#${communityId}-community-${color}-color${concatEnding}`)
-      });
 
       if (communityId === 'totoral-alto') {
         tl
@@ -197,8 +183,7 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
       } else {
         tl
           .call(makeBirdFly, [`#${communityId}-community-bird2-state1`, `#${communityId}-community-bird2-state2`, 'left'])
-          .call(makeBirdFly, [`#${communityId}-community-bird1-state1`, `#${communityId}-community-bird1-state2`, 'left'], 1)
-          .to(villageColorsSelector, {opacity:1, duration:3, ease:'sine.out', stagger:{each:0.2, from:'random'}}, '>-1');
+          .call(makeBirdFly, [`#${communityId}-community-bird1-state1`, `#${communityId}-community-bird1-state2`, 'left'], 1);
       }
     };
 
@@ -220,119 +205,118 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
   /****************************/
   /*          School          */
   /****************************/
-  const stSchool = {
-    trigger: `.village-${communityId} .section-school svg`,
-    start: 'top center',
-    end: 'bottom 0',
-    onEnterBack: () => schoolTl.restart(),
-    onLeave: () => schoolTl.pause()
-  };
-  const schoolTl = gsap.timeline({ scrollTrigger: stSchool });
+  // const stSchool = {
+  //   trigger: `.village-${communityId} .section-school svg`,
+  //   start: 'top center',
+  //   end: 'bottom 0',
+  //   onEnterBack: () => schoolTl.restart(),
+  //   onLeave: () => schoolTl.pause()
+  // };
+  // const schoolTl = gsap.timeline({ scrollTrigger: stSchool });
 
-  const clockAnimationDuration = illustrationInfo.missedSchoolHours.max / 3;
-  const clockAnimationDelay = 2;
-  const tearsEnd = 9;
+  // const clockAnimationDuration = illustrationInfo.missedSchoolHours.max / 3;
+  // const clockAnimationDelay = 2;
+  // const tearsEnd = 9;
   
-  gsap.set(`#${communityId}-school-clock-small-hand`, {transformOrigin:"bottom center"}, 0);
-  gsap.set(`#${communityId}-school-clock-big-hand`, {transformOrigin:"bottom center"}, 0);
-  gsap.set(`#${communityId}-school-clock-mouth`, {opacity:0});
-  if (fundraisingLevel < 25) {
-    gsap.set(`#${communityId}-school-clock-small-hand`, {rotation:7*360/12});
-    gsap.set(`#${communityId}-school-clock-big-hand`, {rotation:4.5*360/12});
-  }
+  // gsap.set(`#${communityId}-school-clock-small-hand`, {transformOrigin:"bottom center"}, 0);
+  // gsap.set(`#${communityId}-school-clock-big-hand`, {transformOrigin:"bottom center"}, 0);
+  // gsap.set(`#${communityId}-school-clock-mouth`, {opacity:0});
+  // if (fundraisingLevel < 25) {
+  //   gsap.set(`#${communityId}-school-clock-small-hand`, {rotation:7*360/12});
+  //   gsap.set(`#${communityId}-school-clock-big-hand`, {rotation:4.5*360/12});
+  // }
 
-  let kids = document.querySelectorAll(`#${communityId}-school-kids polygon, #${communityId}-school-kids polyline, #${communityId}-school-kids path, #${communityId}-school-kids ellipse`);
-  let kidsSmile = document.querySelectorAll(`#${communityId}-school-kid1-mouth, #${communityId}-school-kid2-mouth`);
-  gsap.set(kidsSmile, {opacity:0});
-  if (fundraisingLevel >= 50) {
-    gsap.set(kids, {drawSVG:0});
-  }
+  // let kids = document.querySelectorAll(`#${communityId}-school-kids polygon, #${communityId}-school-kids polyline, #${communityId}-school-kids path, #${communityId}-school-kids ellipse`);
+  // let kidsSmile = document.querySelectorAll(`#${communityId}-school-kid1-mouth, #${communityId}-school-kid2-mouth`);
+  // gsap.set(kidsSmile, {opacity:0});
+  // if (fundraisingLevel >= 50) {
+  //   gsap.set(kids, {drawSVG:0});
+  // }
 
-  if (illustrationInfo.hasTwoSchools) {
-    gsap.set(`#${communityId}-school-flag-top-state2, #${communityId}-school-flag-top-state3, #${communityId}-school-flag-bottom-state2, #${communityId}-school-flag-bottom-state3`, {opacity:0}, 0);
-  } else {
-    gsap.set(`#${communityId}-school-flag-state2, #${communityId}-school-flag-state3`, {opacity:0}, 0);
-  }
+  // if (illustrationInfo.hasTwoSchools) {
+  //   gsap.set(`#${communityId}-school-flag-top-state2, #${communityId}-school-flag-top-state3, #${communityId}-school-flag-bottom-state2, #${communityId}-school-flag-bottom-state3`, {opacity:0}, 0);
+  // } else {
+  //   gsap.set(`#${communityId}-school-flag-state2, #${communityId}-school-flag-state3`, {opacity:0}, 0);
+  // }
 
-  const makeClockCry = () => {
-    const tearLeft = document.querySelector(`#${communityId}-school-clock-tear-left`);
-    const tearRight = document.querySelector(`#${communityId}-school-clock-tear-right`);
-    schoolTearsTl = gsap.timeline();
-    schoolTearsTl
-      .from(tearLeft, {drawSVG:0, duration:0.7, ease:'none'}, 0)
-      .to(tearLeft, {y:25, duration:1, ease:'power2.in'})
-      .to(tearLeft, {drawSVG:'100% 100%', opacity:0, duration:0.1})
-      .from(tearRight, {drawSVG:0, duration:0.7, ease:'none'}, 3.2)
-      .to(tearRight, {y:25, duration:1, ease:'power2.in'})
-      .to(tearRight, {drawSVG:'100% 100%', opacity:0, duration:0.1});
+  // const makeClockCry = () => {
+  //   const tearLeft = document.querySelector(`#${communityId}-school-clock-tear-left`);
+  //   const tearRight = document.querySelector(`#${communityId}-school-clock-tear-right`);
+  //   schoolTearsTl = gsap.timeline();
+  //   schoolTearsTl
+  //     .from(tearLeft, {drawSVG:0, duration:0.7, ease:'none'}, 0)
+  //     .to(tearLeft, {y:25, duration:1, ease:'power2.in'})
+  //     .to(tearLeft, {drawSVG:'100% 100%', opacity:0, duration:0.1})
+  //     .from(tearRight, {drawSVG:0, duration:0.7, ease:'none'}, 3.2)
+  //     .to(tearRight, {y:25, duration:1, ease:'power2.in'})
+  //     .to(tearRight, {drawSVG:'100% 100%', opacity:0, duration:0.1});
     
-    const clockTearsRepeatFactor = (fundraisingLevel < 100) ? -1 : (Math.floor(tearsEnd / 4.2) - 1);
-    schoolTearsTl
-      // .repeat(clockTearsRepeatFactor);
-      .repeat(-1);
-  };
+  //   const clockTearsRepeatFactor = (fundraisingLevel < 100) ? -1 : (Math.floor(tearsEnd / 4.2) - 1);
+  //   schoolTearsTl
+  //     .repeat(clockTearsRepeatFactor);
+  // };
   
-  const makeFlagsFly = () => {
-    schoolFlagsTl = gsap.timeline();
-    if (illustrationInfo.hasTwoSchools) {
-      schoolFlagsTl
-        .to(`#${communityId}-school-flag-top-state1`, {morphSVG:`#${communityId}-school-flag-top-state2`, duration:0.8, ease:'none'})
-        .to(`#${communityId}-school-flag-top-state1`, {morphSVG:`#${communityId}-school-flag-top-state3`, duration:0.8, ease:'none'}, '>')
-        .to(`#${communityId}-school-flag-top-state1`, {morphSVG:`#${communityId}-school-flag-top-state1`, duration:0.8, ease:'none'}, '>')
+  // const makeFlagsFly = () => {
+  //   schoolFlagsTl = gsap.timeline();
+  //   if (illustrationInfo.hasTwoSchools) {
+  //     schoolFlagsTl
+  //       .to(`#${communityId}-school-flag-top-state1`, {morphSVG:`#${communityId}-school-flag-top-state2`, duration:0.8, ease:'none'})
+  //       .to(`#${communityId}-school-flag-top-state1`, {morphSVG:`#${communityId}-school-flag-top-state3`, duration:0.8, ease:'none'}, '>')
+  //       .to(`#${communityId}-school-flag-top-state1`, {morphSVG:`#${communityId}-school-flag-top-state1`, duration:0.8, ease:'none'}, '>')
         
-        .to(`#${communityId}-school-flag-bottom-state1`, {morphSVG:`#${communityId}-school-flag-bottom-state2`, duration:0.8, ease:'none'}, 0.2)
-        .to(`#${communityId}-school-flag-bottom-state1`, {morphSVG:`#${communityId}-school-flag-bottom-state3`, duration:0.8, ease:'none'}, '>')
-        .to(`#${communityId}-school-flag-bottom-state1`, {morphSVG:`#${communityId}-school-flag-bottom-state1`, duration:0.8, ease:'none'}, '>');  
-    } else {
-      schoolFlagsTl
-        .to(`#${communityId}-school-flag-state1`, {morphSVG:`#${communityId}-school-flag-state2`, duration:0.8, ease:'none'})
-        .to(`#${communityId}-school-flag-state1`, {morphSVG:`#${communityId}-school-flag-state3`, duration:0.8, ease:'none'}, '>')
-        .to(`#${communityId}-school-flag-state1`, {morphSVG:`#${communityId}-school-flag-state1`, duration:0.8, ease:'none'}, '>')
-    }
-    schoolFlagsTl
-      .repeat(-1);
-  };
+  //       .to(`#${communityId}-school-flag-bottom-state1`, {morphSVG:`#${communityId}-school-flag-bottom-state2`, duration:0.8, ease:'none'}, 0.2)
+  //       .to(`#${communityId}-school-flag-bottom-state1`, {morphSVG:`#${communityId}-school-flag-bottom-state3`, duration:0.8, ease:'none'}, '>')
+  //       .to(`#${communityId}-school-flag-bottom-state1`, {morphSVG:`#${communityId}-school-flag-bottom-state1`, duration:0.8, ease:'none'}, '>');  
+  //   } else {
+  //     schoolFlagsTl
+  //       .to(`#${communityId}-school-flag-state1`, {morphSVG:`#${communityId}-school-flag-state2`, duration:0.8, ease:'none'})
+  //       .to(`#${communityId}-school-flag-state1`, {morphSVG:`#${communityId}-school-flag-state3`, duration:0.8, ease:'none'}, '>')
+  //       .to(`#${communityId}-school-flag-state1`, {morphSVG:`#${communityId}-school-flag-state1`, duration:0.8, ease:'none'}, '>')
+  //   }
+  //   schoolFlagsTl
+  //     .repeat(-1);
+  // };
 
-  const school25 = () => {
-    const tl = gsap.timeline();
-    tl
-      .to(`#${communityId}-school-clock-small-hand`, {rotation:illustrationInfo.missedSchoolHours.max*360/12, duration:clockAnimationDuration, ease:'none'}, 0)
-      .to(`#${communityId}-school-clock-big-hand`, {rotation:illustrationInfo.missedSchoolHours.max*360, duration:clockAnimationDuration, ease:'none'}, 0)
-      .call(makeClockCry, null, 0);
-  };
+  // const school25 = () => {
+  //   const tl = gsap.timeline();
+  //   tl
+  //     .to(`#${communityId}-school-clock-small-hand`, {rotation:illustrationInfo.missedSchoolHours.max*360/12, duration:clockAnimationDuration, ease:'none'}, 0)
+  //     .to(`#${communityId}-school-clock-big-hand`, {rotation:illustrationInfo.missedSchoolHours.max*360, duration:clockAnimationDuration, ease:'none'}, 0)
+  //     .call(makeClockCry, null, 0);
+  // };
 
-  const school50 = () => {
-    const tl = gsap.timeline();
-    tl
-  };
+  // const school50 = () => {
+  //   const tl = gsap.timeline();
+  //   tl
+  // };
 
-  const school75 = () => {
-    const tl = gsap.timeline();
-    tl
-      .to(`#${communityId}-school-door-left`, {x:'-95%', duration:2, ease:'power2.in'}, 0)
-      .to(`#${communityId}-school-door-right`, {x:'95%', duration:2, ease:'power2.in'}, 0);
-  };
+  // const school75 = () => {
+  //   const tl = gsap.timeline();
+  //   tl
+  //     .to(`#${communityId}-school-door-left`, {x:'-95%', duration:2, ease:'power2.in'}, 0)
+  //     .to(`#${communityId}-school-door-right`, {x:'95%', duration:2, ease:'power2.in'}, 0);
+  // };
 
-  const school100 = () => {
-    const tl = gsap.timeline();
-    tl
-      .to(kids, {drawSVG:'100%', duration:2})
-      .fromTo(`#${communityId}-school-clock-mouth`, {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, '>-0.8')
-      .fromTo(kidsSmile, {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, '>-0.8');
-  };
+  // const school100 = () => {
+  //   const tl = gsap.timeline();
+  //   tl
+  //     .to(kids, {drawSVG:'100%', duration:2})
+  //     .fromTo(`#${communityId}-school-clock-mouth`, {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, '>-0.8')
+  //     .fromTo(kidsSmile, {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, '>-0.8');
+  // };
 
-  // Timeline
-    // Clock hands are turning
-    if (fundraisingLevel >= 25) { schoolTl.add(school25, clockAnimationDelay) }
+  // // Timeline
+  //   // Clock hands are turning
+  //   if (fundraisingLevel >= 25) { schoolTl.add(school25, clockAnimationDelay) }
     
-    // Call flags animation
-    if (fundraisingLevel >= 50) { schoolTl.add(makeFlagsFly, 0) }
+  //   // Call flags animation
+  //   if (fundraisingLevel >= 50) { schoolTl.add(makeFlagsFly, 0) }
 
-    // School doors open
-    if (fundraisingLevel >= 75) { schoolTl.add(school75, 6) }
+  //   // School doors open
+  //   if (fundraisingLevel >= 75) { schoolTl.add(school75, 6) }
 
-    // Draw Kids and make clock smile
-    if (fundraisingLevel === 100) { schoolTl.add(school100, tearsEnd) }
+  //   // Draw Kids and make clock smile
+  //   if (fundraisingLevel === 100) { schoolTl.add(school100, tearsEnd) }
     
 
 
