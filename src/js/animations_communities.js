@@ -343,69 +343,77 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
     
 
 
-  // /****************************/
-  // /*        Distance          */
-  // /****************************/
-  // gsap.set(`#${communityId}-distance-walk`, {opacity:0});
-  // gsap.set(`#${communityId}-distance-bird1-state2, #${communityId}-distance-bird2-state2`, {opacity:0});
+  /****************************/
+  /*        Distance          */
+  /****************************/
+  gsap.set(`#${communityId}-distance-walk`, {opacity:0});
 
-  // if (fundraisingLevel >= 25) {
-  //   const stDistance = {
-  //     trigger: `.village-${communityId} .section-distance svg`,
-  //     start: 'top center',
-  //     end: 'bottom 0',
-  //     onEnterBack: () => distanceTl.restart(),
-  //     onLeave: () => distanceTl.pause()
-  //   };
-  //   const distanceTl = gsap.timeline({ scrollTrigger: stDistance });
+  if (fundraisingLevel >= 25) {
+    const stDistance = {
+      trigger: `.village-${communityId} .section-distance svg`,
+      start: 'top center',
+      end: 'bottom 0',
+      onEnterBack: () => distanceTl.restart(),
+      onLeave: () => distanceTl.pause()
+    };
+    const distanceTl = gsap.timeline({ scrollTrigger: stDistance });
 
-  //   gsap.set(`#${communityId}-distance-text`, {opacity:0, scale:0.7, transformOrigin:'50% 50%'});
-  //   gsap.set(`#${communityId}-distance-walk`, {drawSVG:'0% 100%', opacity:1});
-  //   gsap.set(`#${communityId}-distance-arrowhead`, {drawSVG:'50% 50%', opacity:0});
+    // gsap.set(`#${communityId}-distance-text-${lang}`, {opacity:0, scale:0.7, transformOrigin:'50% 50%'});
+    gsap.set(`#${communityId}-distance-walk`, {drawSVG:'0% 100%', opacity:1});
+    gsap.set(`#${communityId}-distance-arrowhead`, {drawSVG:'50% 50%', opacity:0});
 
-  //   if (fundraisingLevel >= 50) {
-  //     gsap.set(`#${communityId}-distance-river-tides`, {opacity:0});
-  //     gsap.set(`#${communityId}-distance-river-tides`, {x:'-=20'});
-  //   }
+    if (fundraisingLevel >= 50 && communityId !== 'carrizalillo') {
+      gsap.set(`#${communityId}-distance-river-tides`, {opacity:0});
+      gsap.set(`#${communityId}-distance-river-tides`, {x:'-=20'});
+    }
 
-  //   // Get animals selectors
-  //   if (fundraisingLevel === 100) {
-  //     illustrationInfo.animalsDistance.forEach(animal => {
-  //       animal.selector = document.querySelectorAll(`#${communityId}-distance-${animal.id} path, #${communityId}-distance-${animal.id} line, #${communityId}-distance-${animal.id} polyline`);
-  //       gsap.set(animal.selector, {drawSVG:0});
-  //     });
-  //   }
+    // Get animals selectors
+    if (fundraisingLevel === 100) {
+      illustrationInfo.animalsDistance.forEach(animal => {
+        animal.selector = document.querySelectorAll(`#${communityId}-distance-${animal.id} path, #${communityId}-distance-${animal.id} line, #${communityId}-distance-${animal.id} polyline`);
+        gsap.set(animal.selector, {drawSVG:0});
+      });
+    }
 
-  //   const distance50 = () => {
-  //     const tl = gsap.timeline();
-  //     tl.call(animateRiverTides, ['distance']);
-  //   };
+    let well;
+    if (communityId === 'carrizalillo' && fundraisingLevel >= 50) {
+      well = document.querySelectorAll('#carrizalillo-distance-well polygon, #carrizalillo-distance-well line, #carrizalillo-distance-well rect, #carrizalillo-distance-well polyline');
+      gsap.set(well, {drawSVG:0})
+    }
+    const distance50 = () => {
+      const tl = gsap.timeline();
+      if (communityId === 'carrizalillo') {
+        tl.to(well, {drawSVG:'100%', duration:2}, 2)
+      } else {
+        tl.call(animateRiverTides, ['distance']);
+      }
+    };
 
-  //   const distance75 = () => {
-  //     const tl = gsap.timeline();
-  //     tl.call(callBirdsAnimations, ['numberOfBirdsDistance', 'distance', 'directionBirdsDistance']);
-  //   };
+    const distance75 = () => {
+      const tl = gsap.timeline();
+      tl.call(callBirdsAnimations, ['numberOfBirdsDistance', 'distance', 'directionBirdsDistance']);
+    };
 
-  //   const distance100 = () => {
-  //     const tl = gsap.timeline();
-  //     tl.call(traceAnimals, [illustrationInfo.animalsDistance]);
-  //   };
+    const distance100 = () => {
+      const tl = gsap.timeline();
+      tl.call(traceAnimals, [illustrationInfo.animalsDistance]);
+    };
     
-  //   distanceTl
-  //     // Trace path to river
-  //     .to(`#${communityId}-distance-walk`, {drawSVG:'100% 100%', duration:3, ease:'none'}, 2)
-  //     .to(`#${communityId}-distance-arrowhead`, {drawSVG:'0 100%', opacity:1, duration:0.5, ease:'power1.in'})
-  //     .to(`#${communityId}-distance-text`, {opacity:1, scale:1, duration:0.5, ease:'back.out(1.4)'}, '>-0.1');
+    distanceTl
+      // Trace path to river
+      .to(`#${communityId}-distance-walk`, {drawSVG:'100% 100%', duration:3, ease:'none'}, 2)
+      .to(`#${communityId}-distance-arrowhead`, {drawSVG:'0 100%', opacity:1, duration:0.5, ease:'power1.in'})
+      // .to(`#${communityId}-distance-text-${lang}`, {opacity:1, scale:1, duration:0.5, ease:'back.out(1.4)'}, '>-0.1');
       
-  //     // Animate river waves
-  //     if (fundraisingLevel >= 50) { distanceTl.add(distance50, 0) }
+      // Animate river waves
+      if (fundraisingLevel >= 50) { distanceTl.add(distance50, 0) }
       
-  //     // Animate birds
-  //     if (fundraisingLevel >= 75) { distanceTl.add(distance75, 6) }
+      // Animate birds
+      if (fundraisingLevel >= 75) { distanceTl.add(distance75, 6) }
       
-  //     // Trace animals
-  //     if (fundraisingLevel === 100) { distanceTl.add(distance100, 9) }
-  // }
+      // Trace animals
+      if (fundraisingLevel === 100) { distanceTl.add(distance100, 9) }
+  }
 
 
   // /****************************/
