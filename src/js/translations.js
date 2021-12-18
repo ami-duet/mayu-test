@@ -17,6 +17,16 @@ const translations = {
 const urlParams = new URLSearchParams(window.location.search);
 let lang = urlParams.get('lang') ? urlParams.get('lang') : 'en';
 
+const updateIllustrationsLanguage = () => {
+  if (lang === 'es') {
+    d3.selectAll('.illustration-text-en').style('opacity', 0);
+    d3.selectAll('.illustration-text-es').style('opacity', 1);
+  } else {
+    d3.selectAll('.illustration-text-es').style('opacity', 0);
+    d3.selectAll('.illustration-text-en').style('opacity', 1);
+  }
+};
+
 const appendContent = () => {
   d3.select('body').attr('class', `lang-${lang}`);
 
@@ -45,6 +55,7 @@ const appendContent = () => {
         return lang === 'es' ? d.description_es : d.description_en;
       }
     });
+  updateIllustrationsLanguage();
 
   // Append our story section
   let ourstoryContent = lang === 'es' ? 'ourstory_es' : 'ourstory_en';

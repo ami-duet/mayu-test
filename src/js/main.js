@@ -54,6 +54,7 @@ const appendCommunities = () => {
       .attr('class', 'sct-illustration');
   illustration.html(d =>  d.illustration );
   illustration.append('div').attr('class', 'coloring');
+  updateIllustrationsLanguage();
   section
     .append('div')
       .attr('class', 'sct-description')
@@ -107,6 +108,7 @@ const appendCommunities = () => {
     if (window.innerWidth > 1100) {
       updateCarouselButtons(carousel.index);
     }
+    d3.selectAll('.coloring').style('opacity', 0);
     updateCurrentVillage(carousel.index);
   });
   
