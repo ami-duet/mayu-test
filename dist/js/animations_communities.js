@@ -104,6 +104,16 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
     });
   };
 
+  const animateRaindrops = (section) => {
+    const drops = document.querySelectorAll(`#${communityId}-${section}-raindrops line`);
+    gsap.set(drops, {drawSVG:'0% 100%', y:0});
+    const tl = gsap.timeline();
+    tl
+      .from(drops, {drawSVG:0, duration:0.01, opacity:0, ease:'none'}, 0)
+      .to(drops, {y:45, drawSVG:'100% 100%', duration:0.5, opacity:1, stagger:{each:0.008, from:'random'}, ease:'power1.in'});
+    tl.repeat(-1);
+  };
+
   
   /****************************/
   /*         Community        */
@@ -420,6 +430,10 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
       .to(`#${communityId}-distance-arrowhead`, {drawSVG:'0 100%', opacity:1, duration:0.5, ease:'power1.in'})
       // .to(`#${communityId}-distance-text-${lang}`, {opacity:1, scale:1, duration:0.5, ease:'back.out(1.4)'}, '>-0.1')
       .call(revealColoring, [communityId, 'distance'], distanceColoringRevealTiming.find(d => d.level === fundraisingLevel).timing);
+
+      if (communityId === 'totoral-alto') {
+        distanceTl.call(animateRaindrops, ['distance'], 0);
+      }
       
       // Animate river waves
       if (fundraisingLevel >= 50) { distanceTl.add(distance50, 0) }
@@ -673,8 +687,14 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
 
     solutionTl
       .call(revealColoring, [communityId, 'solution'], solutionColoringRevealTiming.find(d => d.level === fundraisingLevel).timing);
-      // Animate river waves
-      if (communityId !== 'carrizalillo') {
+      
+      if (communityId === 'carrizalillo') {
+        solutionTl.call(animateRaindrops, ['solution'], 0.1);
+      } else if (communityId === 'totoral-bajo') {
+        solutionTl
+          .call(animateRaindrops, ['solution'], 0.1)
+          .call(animateRiverTides, ['solution'], 0.1);
+      } else {
         solutionTl.call(animateRiverTides, ['solution'], 0.1);
       }
 
