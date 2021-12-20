@@ -213,10 +213,10 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
     };
 
     const communityColoringRevealTiming = [
-      { level:25, timing:4 },
-      { level:50, timing:12 },
-      { level:75, timing:12 },
-      { level:100, timing:14 }
+      { level:25, timing:2 },
+      { level:50, timing:5 },
+      { level:75, timing:6 },
+      { level:100, timing:9 }
     ];
 
     communityTl
@@ -225,13 +225,13 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
       .call(revealColoring, [communityId, 'community'], communityColoringRevealTiming.find(d => d.level === fundraisingLevel).timing);
 
       // Tractor starts moving
-      if (fundraisingLevel >= 50) { communityTl.add(community50, 4) }
+      if (fundraisingLevel >= 50) { communityTl.add(community50, 3) }
 
       // Trace animals
-      if (fundraisingLevel >= 75) { communityTl.add(community75, 8) }
+      if (fundraisingLevel >= 75) { communityTl.add(community75, 5) }
 
       // Animate birds
-      if (fundraisingLevel === 100) { communityTl.add(community100, 12) }
+      if (fundraisingLevel === 100) { communityTl.add(community100, 8) }
   }
 
 
