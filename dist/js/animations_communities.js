@@ -41,20 +41,20 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
       case 2:
         birdsTl
           .call(makeBirdFly, [`#${communityId}-${section}-bird1-state1`, `#${communityId}-${section}-bird1-state2`, directionBird])
-          .call(makeBirdFly, [`#${communityId}-${section}-bird2-state1`, `#${communityId}-${section}-bird2-state2`, directionBird], '>+1');
+          .call(makeBirdFly, [`#${communityId}-${section}-bird2-state1`, `#${communityId}-${section}-bird2-state2`, directionBird], '>+0.5');
         break;
       case 3:
         birdsTl
           .call(makeBirdFly, [`#${communityId}-${section}-bird1-state1`, `#${communityId}-${section}-bird1-state2`, directionBird])
-          .call(makeBirdFly, [`#${communityId}-${section}-bird2-state1`, `#${communityId}-${section}-bird2-state2`, directionBird], '>+1')
-          .call(makeBirdFly, [`#${communityId}-${section}-bird3-state1`, `#${communityId}-${section}-bird3-state2`, directionBird], '>+1');
+          .call(makeBirdFly, [`#${communityId}-${section}-bird2-state1`, `#${communityId}-${section}-bird2-state2`, directionBird], '>+0.5')
+          .call(makeBirdFly, [`#${communityId}-${section}-bird3-state1`, `#${communityId}-${section}-bird3-state2`, directionBird], '>+0.5');
         break;
       case 4:
         birdsTl
           .call(makeBirdFly, [`#${communityId}-${section}-bird1-state1`, `#${communityId}-${section}-bird1-state2`, directionBird])
-          .call(makeBirdFly, [`#${communityId}-${section}-bird2-state1`, `#${communityId}-${section}-bird2-state2`, directionBird], '>+1')
-          .call(makeBirdFly, [`#${communityId}-${section}-bird3-state1`, `#${communityId}-${section}-bird3-state2`, directionBird], '>+1')
-          .call(makeBirdFly, [`#${communityId}-${section}-bird4-state1`, `#${communityId}-${section}-bird4-state2`, directionBird], '>+1');
+          .call(makeBirdFly, [`#${communityId}-${section}-bird2-state1`, `#${communityId}-${section}-bird2-state2`, directionBird], '>+0.5')
+          .call(makeBirdFly, [`#${communityId}-${section}-bird3-state1`, `#${communityId}-${section}-bird3-state2`, directionBird], '>+0.5')
+          .call(makeBirdFly, [`#${communityId}-${section}-bird4-state1`, `#${communityId}-${section}-bird4-state2`, directionBird], '>+0.5');
         break;
     }
   };
@@ -62,8 +62,15 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
   // Vehicles animation
   const vehicleAnimation = (section, distance, direction, rotationWheelBack, rotationWheelFront) => {
     gsap.set(`#${communityId}-${section}-wheel-back, #${communityId}-${section}-wheel-front`, {transformOrigin:"50% 50%"}, 0);
-    const easeIn = communityId === 'las-mercedes' ? 'back.in(1.2)' : 'back.in(1.7)';
-    const easeOut = communityId === 'las-mercedes' ? 'back.out(1.1)' : 'back.out(1.4)';
+    let easeIn;
+    let easeOut;
+    if ((section === 'community' && communityId === 'las-mercedes') || section === 'solution') {
+      easeIn = 'back.in(1.2)';
+      easeOut = 'back.out(1.1)';
+    } else {
+      easeIn = 'back.in(1.7)';
+      easeOut = 'back.out(1.4)';
+    }
     const directionOpposite = direction === '+' ? '-' : '+';
     const durationIn = communityId === 'las-mercedes' ? 3 : 2;
     const durationOut = communityId === 'las-mercedes' ? 2.5 : 1;
@@ -182,17 +189,17 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
       if (communityId === 'totoral-alto') {
         tl
           .call(makeBirdFly, [`#${communityId}-community-bird1-state1`, `#${communityId}-community-bird1-state2`, 'right'])
-          .call(makeBirdFly, [`#${communityId}-community-bird3-state1`, `#${communityId}-community-bird3-state2`, 'left'], '>+1')
-          .call(makeBirdFly, [`#${communityId}-community-bird2-state1`, `#${communityId}-community-bird2-state2`, 'left'], '>+1');
+          .call(makeBirdFly, [`#${communityId}-community-bird3-state1`, `#${communityId}-community-bird3-state2`, 'left'], '>+0.5')
+          .call(makeBirdFly, [`#${communityId}-community-bird2-state1`, `#${communityId}-community-bird2-state2`, 'left'], '>+0.5');
       } else if (communityId == 'totoral-bajo') {
         tl
           .call(makeBirdFly, [`#${communityId}-community-bird1-state1`, `#${communityId}-community-bird1-state2`, 'left'])
-          .call(makeBirdFly, [`#${communityId}-community-bird3-state1`, `#${communityId}-community-bird3-state2`, 'left'], '>+1')
-          .call(makeBirdFly, [`#${communityId}-community-bird2-state1`, `#${communityId}-community-bird2-state2`, 'left'], '>+1');
+          .call(makeBirdFly, [`#${communityId}-community-bird3-state1`, `#${communityId}-community-bird3-state2`, 'left'], '>+0.5')
+          .call(makeBirdFly, [`#${communityId}-community-bird2-state1`, `#${communityId}-community-bird2-state2`, 'left'], '>+0.5');
       } else {
         tl
           .call(makeBirdFly, [`#${communityId}-community-bird2-state1`, `#${communityId}-community-bird2-state2`, 'left'])
-          .call(makeBirdFly, [`#${communityId}-community-bird1-state1`, `#${communityId}-community-bird1-state2`, 'left'], 1);
+          .call(makeBirdFly, [`#${communityId}-community-bird1-state1`, `#${communityId}-community-bird1-state2`, 'left'], 0.5);
       }
     };
 
@@ -612,66 +619,81 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
   }
 
 
-  // /****************************/
-  // /*        Solution          */
-  // /****************************/
-  // const solutionWaterTreatmentFacility = document.querySelectorAll(`#${communityId}-solution-water-treatment path, #${communityId}-solution-water-treatment line, #${communityId}-solution-water-treatment polyline, #${communityId}-solution-water-treatment circle`);
-  // gsap.set(solutionWaterTreatmentFacility, {drawSVG:0});
-  // gsap.set(`#${communityId}-solution-water-treatment-faded`, {opacity:0.3});
-  // if (document.querySelector(`#${communityId}-solution-bird1-state2`)) { gsap.set(`#${communityId}-solution-bird1-state2`, {opacity:0}); }
-  // if (document.querySelector(`#${communityId}-solution-bird2-state2`)) { gsap.set(`#${communityId}-solution-bird2-state2`, {opacity:0}); }
-  // if (document.querySelector(`#${communityId}-solution-bird3-state2`)) { gsap.set(`#${communityId}-solution-bird3-state2`, {opacity:0}); }
+  /****************************/
+  /*        Solution          */
+  /****************************/
+  const solutionWaterTreatmentFacility = document.querySelectorAll(`#${communityId}-solution-water-treatment path, #${communityId}-solution-water-treatment line, #${communityId}-solution-water-treatment polyline, #${communityId}-solution-water-treatment circle, #${communityId}-solution-water-treatment rect`);
+  gsap.set(solutionWaterTreatmentFacility, {drawSVG:0});
+  gsap.set(`#${communityId}-solution-water-treatment-faded`, {opacity:0.3});
 
-  // if (fundraisingLevel >= 25) {
-  //   const stSolution = {
-  //     trigger: `.village-${communityId} .section-solution svg`,
-  //     start: 'top center',
-  //     end: 'bottom 0',
-  //     onEnterBack: () => solutionTl.restart(),
-  //     onLeave: () => solutionTl.pause()
-  //   };
-  //   const solutionTl = gsap.timeline({ scrollTrigger: stSolution });
+  if (fundraisingLevel >= 25) {
+    const stSolution = {
+      trigger: `.village-${communityId} .section-solution svg`,
+      start: 'top center',
+      end: 'bottom 0',
+      onEnterBack: () => solutionTl.restart(),
+      onLeave: () => solutionTl.pause()
+    };
+    const solutionTl = gsap.timeline({ scrollTrigger: stSolution });
     
-  //   gsap.set(`#${communityId}-solution-river-tides`, {opacity:0});
-  //   gsap.set(`#${communityId}-solution-river-tides`, {x:'-=20'});
+    if (communityId !== 'carrizalillo') {
+      gsap.set(`#${communityId}-solution-river-tides`, {opacity:0});
+      gsap.set(`#${communityId}-solution-river-tides`, {x:'-=20'});
+    }
 
-  //   // Get animals selectors
-  //   illustrationInfo.animalsSolution.forEach(animal => {
-  //     animal.selector = document.querySelectorAll(`#${communityId}-solution-${animal.id} path, #${communityId}-solution-${animal.id} line, #${communityId}-solution-${animal.id} polyline`);
-  //     gsap.set(animal.selector, {drawSVG:0});
-  //   });
+    // Get animals selectors
+    illustrationInfo.animalsSolution.forEach(animal => {
+      animal.selector = document.querySelectorAll(`#${communityId}-solution-${animal.id} path, #${communityId}-solution-${animal.id} line, #${communityId}-solution-${animal.id} polyline`);
+      gsap.set(animal.selector, {drawSVG:0});
+    });
 
-  //   const solutionBirdsAnimation = () => {
-  //     const solutionBirdsTl = gsap.timeline();
-  //     solutionBirdsTl.call(callBirdsAnimations, ['numberOfBirdsSolution', 'solution', 'directionBirdsSolution']);
-  //   };
+    const solutionBirdsAnimation = () => {
+      const solutionBirdsTl = gsap.timeline();
+      solutionBirdsTl.call(callBirdsAnimations, ['numberOfBirdsSolution', 'solution', 'directionBirdsSolution']);
+    };
 
-  //   const solution50 = () => {
-  //     const tl = gsap.timeline();
-  //     tl.call(traceAnimals, [illustrationInfo.animalsSolution])
-  //   };
+    const solution50 = () => {
+      const tl = gsap.timeline();
+      tl.call(traceAnimals, [illustrationInfo.animalsSolution])
+    };
 
-  //   const solution100 = () => {
-  //     const tl = gsap.timeline();
-  //     tl
-  //       .to(solutionWaterTreatmentFacility, {drawSVG:'100%', duration:2})
-  //       .to(`#${communityId}-solution-water-treatment-faded`, {opacity:0, duration:0.2});
-  //   };
+    const solution100 = () => {
+      const tl = gsap.timeline();
+      tl
+        .to(solutionWaterTreatmentFacility, {drawSVG:'100%', duration:2})
+        .to(`#${communityId}-solution-water-treatment-faded`, {opacity:0, duration:0.2});
+    };
 
-  //   solutionTl
-  //     // Animate river waves
-  //     .call(animateRiverTides, ['solution'], 0.1);
+    const solutionColoringRevealTiming = [
+      { level:25, timing:3 },
+      { level:50, timing:5},
+      { level:75, timing:8 },
+      { level:100, timing:11 }
+    ];
 
-  //     // Trace animals
-  //     if (fundraisingLevel >= 50) { solutionTl.add(solution50, 4) }
+    solutionTl
+      .call(revealColoring, [communityId, 'solution'], solutionColoringRevealTiming.find(d => d.level === fundraisingLevel).timing);
+      // Animate river waves
+      if (communityId !== 'carrizalillo') {
+        solutionTl.call(animateRiverTides, ['solution'], 0.1);
+      }
+
+      // Trace animals
+      if (fundraisingLevel >= 50) { solutionTl.add(solution50, 4) }
       
-  //     // Animate birds
-  //     if (fundraisingLevel >= 75 && illustrationInfo.numberOfBirdsSolution > 0) { solutionTl.add(solutionBirdsAnimation, 8) }
+      // Animate birds
+      if (fundraisingLevel >= 75) {
+        if (communityId === 'la-merced' || communityId === 'totoral-bajo' || communityId === 'carrizalillo') {
+          solutionTl.call(vehicleAnimation, ['solution', illustrationInfo.vehicleSolution.distance, illustrationInfo.vehicleSolution.direction, illustrationInfo.vehicleSolution.rotationWheelBack, illustrationInfo.vehicleSolution.rotationWheelFront], 6);
+        } else if (illustrationInfo.numberOfBirdsSolution > 0) {
+          solutionTl.add(solutionBirdsAnimation, 6);
+        }
+      }
     
-  //     // Draw water treatment facility
-  //     if (fundraisingLevel === 100) { solutionTl.add(solution100, 12) }
+      // Draw water treatment facility
+      if (fundraisingLevel === 100) { solutionTl.add(solution100, 10) }
 
-  // }
+  }
 
     
   // /****************************/

@@ -38,9 +38,10 @@ const illustrationsInfo = [
     animalsSolution:[{id:'chicken1', selector:''}, {id:'chicken2', selector:''}],
     numberOfBirdsDistance:2,
     directionBirdsDistance:'right',
-    numberOfBirdsSolution:2,
+    numberOfBirdsSolution:0,
     directionBirdsSolution:'left',
     vehicleCommunity:{distance:125, direction:'+', rotationWheelBack:1435, rotationWheelFront:1435},
+    vehicleSolution:{distance:100, direction:'-', rotationWheelBack:1115, rotationWheelFront:1465},
     missedSchoolHours:{min:4, max:7},
     hasTwoSchools:true,
     waterContaminants:{biological:6, inorganic:3}
@@ -56,6 +57,7 @@ const illustrationsInfo = [
     numberOfBirdsSolution:1,
     directionBirdsSolution:'left',
     vehicleCommunity:{distance:80, direction:'-', rotationWheelBack:467, rotationWheelFront:614},
+    vehicleSolution:{distance:90, direction:'-', rotationWheelBack:1005, rotationWheelFront:1315},
     missedSchoolHours:{min:8, max:11},
     hasTwoSchools:true,
     waterContaminants:{biological:7, inorganic:3}
@@ -101,6 +103,7 @@ const illustrationsInfo = [
     numberOfBirdsSolution:0,
     directionBirdsSolution:'',
     vehicleCommunity:{distance:106, direction:'-', rotationWheelBack:1438, rotationWheelFront:1438},
+    vehicleSolution:{distance:100, direction:'-', rotationWheelBack:1115, rotationWheelFront:1465},
     missedSchoolHours:{min:3, max:3},
     hasTwoSchools:false,
     waterContaminants:{biological:6, inorganic:5}
