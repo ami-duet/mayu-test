@@ -317,7 +317,7 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
       .fromTo(kidsSmile, {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, '>-0.8');
   };
 
-  const communityColoringRevealTiming = [
+  const schoolColoringRevealTiming = [
     { level:25, timing:4 },
     { level:50, timing:4 },
     { level:75, timing:8 },
@@ -328,7 +328,7 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
     // Clock hands are turning
     if (fundraisingLevel >= 25) { 
       schoolTl
-        .call(revealColoring, [communityId, 'school'], communityColoringRevealTiming.find(d => d.level === fundraisingLevel).timing)
+        .call(revealColoring, [communityId, 'school'], schoolColoringRevealTiming.find(d => d.level === fundraisingLevel).timing)
         .add(school25, clockAnimationDelay);
     }
     
@@ -398,12 +398,20 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
       const tl = gsap.timeline();
       tl.call(traceAnimals, [illustrationInfo.animalsDistance]);
     };
+
+    const distanceColoringRevealTiming = [
+      { level:25, timing:4 },
+      { level:50, timing:4 },
+      { level:75, timing:8 },
+      { level:100, timing:11 }
+    ];
     
     distanceTl
       // Trace path to river
       .to(`#${communityId}-distance-walk`, {drawSVG:'100% 100%', duration:3, ease:'none'}, 2)
       .to(`#${communityId}-distance-arrowhead`, {drawSVG:'0 100%', opacity:1, duration:0.5, ease:'power1.in'})
-      // .to(`#${communityId}-distance-text-${lang}`, {opacity:1, scale:1, duration:0.5, ease:'back.out(1.4)'}, '>-0.1');
+      // .to(`#${communityId}-distance-text-${lang}`, {opacity:1, scale:1, duration:0.5, ease:'back.out(1.4)'}, '>-0.1')
+      .call(revealColoring, [communityId, 'distance'], distanceColoringRevealTiming.find(d => d.level === fundraisingLevel).timing);
       
       // Animate river waves
       if (fundraisingLevel >= 50) { distanceTl.add(distance50, 0) }
