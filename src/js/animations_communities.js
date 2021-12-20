@@ -715,69 +715,77 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
   }
 
     
-  // /****************************/
-  // /*        Coloring          */
-  // /****************************/
-  // if (fundraisingLevel >= 25) {
-  //   const stColoring = {
-  //     trigger: `.village-${communityId} .section-coloring svg`,
-  //     start: 'top center',
-  //     end: 'bottom 0',
-  //     onEnterBack: () => coloringTl.restart(),
-  //     onLeave: () => coloringTl.pause()
-  //   };
-  //   const coloringTl = gsap.timeline({ scrollTrigger: stColoring });
+  /****************************/
+  /*        Coloring          */
+  /****************************/
+  if (fundraisingLevel >= 25) {
+    const stColoring = {
+      trigger: `.village-${communityId} .section-coloring svg`,
+      start: 'top center',
+      end: 'bottom 0',
+      onEnterBack: () => coloringTl.restart(),
+      onLeave: () => coloringTl.pause()
+    };
+    const coloringTl = gsap.timeline({ scrollTrigger: stColoring });
 
-  //   const coloringKids = document.querySelectorAll(`#${communityId}-coloring-kids path, #${communityId}-coloring-kids ellipse, #${communityId}-coloring-kids line, #${communityId}-coloring-kids circle`);
-  //   const coloringKidsSmiles = document.querySelectorAll(`#${communityId}-coloring-smile-1, #${communityId}-coloring-smile-2, #${communityId}-coloring-smile-3`);
-  //   const coloringErlenmeyers = document.querySelectorAll(`#${communityId}-coloring-erlenmeyers path, #${communityId}-coloring-erlenmeyers line`);
-  //   const coloringDrops = document.querySelectorAll(`#${communityId}-coloring-drops path`);
-  //   const coloringPencils = document.querySelectorAll(`#${communityId}-coloring-pencil-1, #${communityId}-coloring-pencil-2, #${communityId}-coloring-pencil-3, #${communityId}-coloring-pencil-4, #${communityId}-coloring-pencil-5`);
+    const coloringKids = document.querySelectorAll(`#${communityId}-coloring-kids path, #${communityId}-coloring-kids ellipse, #${communityId}-coloring-kids line, #${communityId}-coloring-kids circle`);
+    const coloringKidsSmiles = document.querySelectorAll(`#${communityId}-coloring-smile-1, #${communityId}-coloring-smile-2, #${communityId}-coloring-smile-3`);
+    const coloringErlenmeyers = document.querySelectorAll(`#${communityId}-coloring-erlenmeyers path, #${communityId}-coloring-erlenmeyers line`);
+    const coloringDrops = document.querySelectorAll(`#${communityId}-coloring-drops path`);
+    const coloringPencils = document.querySelectorAll(`#${communityId}-coloring-pencil-1, #${communityId}-coloring-pencil-2, #${communityId}-coloring-pencil-3, #${communityId}-coloring-pencil-4, #${communityId}-coloring-pencil-5`);
     
-  //   gsap.set(coloringDrops, {opacity:0, transformOrigin:'50% 50%'});
-  //   if (fundraisingLevel >= 50) {
-  //     gsap.set(coloringPencils, {x:'-=10', y:'+=10', opacity:0});
-  //   }
-  //   if (fundraisingLevel >= 75) {
-  //     gsap.set(`#${communityId}-coloring-windwheel`, {transformOrigin:'50% 50%'});
-  //   }
-  //   if (fundraisingLevel === 100) {
-  //     gsap.set(coloringKids, {drawSVG:0});
-  //     gsap.set(coloringKidsSmiles, {opacity:0});
-  //   }
+    gsap.set(coloringDrops, {opacity:0, transformOrigin:'50% 50%'});
+    if (fundraisingLevel >= 50) {
+      gsap.set(coloringPencils, {x:'-=10', y:'+=10', opacity:0});
+    }
+    if (fundraisingLevel >= 75) {
+      gsap.set(`#${communityId}-coloring-windwheel`, {transformOrigin:'50% 50%'});
+    }
+    if (fundraisingLevel === 100) {
+      gsap.set(coloringKids, {drawSVG:0});
+      gsap.set(coloringKidsSmiles, {opacity:0});
+    }
     
-  //   const startWindWheel = () => {
-  //     const coloringWindWheelTl = gsap.timeline();
-  //     coloringWindWheelTl
-  //       .to(`#${communityId}-coloring-windwheel`, {rotation:360, duration: 1.5, ease:'none'});
-  //     coloringWindWheelTl.repeat(-1);
-  //   };
+    const startWindWheel = () => {
+      const coloringWindWheelTl = gsap.timeline();
+      coloringWindWheelTl
+        .to(`#${communityId}-coloring-windwheel`, {rotation:360, duration: 1.5, ease:'none'});
+      coloringWindWheelTl.repeat(-1);
+    };
 
-  //   const coloring50 = () => {
-  //     const tl = gsap.timeline();
-  //     tl.to(coloringPencils, {x:'+=10', y:'-=10', opacity:1, stagger:{each:0.2, from:'end'}, duration:0.3, ease:'back.out(1.4)'});
-  //   };
+    const coloring50 = () => {
+      const tl = gsap.timeline();
+      tl.to(coloringPencils, {x:'+=10', y:'-=10', opacity:1, stagger:{each:0.2, from:'end'}, duration:0.3, ease:'back.out(1.4)'});
+    };
 
-  //   const coloring100 = () => {
-  //     const tl = gsap.timeline();
-  //     tl
-  //       .to(coloringKids, {drawSVG:'100%', duration:3})
-  //       .fromTo(coloringKidsSmiles, {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, '>-0.8');
-  //   };
+    const coloring100 = () => {
+      const tl = gsap.timeline();
+      tl
+        .to(coloringKids, {drawSVG:'100%', duration:3})
+        .fromTo(coloringKidsSmiles, {drawSVG:'50% 50%'}, {drawSVG:'0 100%', opacity:1, duration:1, ease:'sine.in'}, '>-0.8');
+    };
 
-  //   coloringTl
-  //     // Draw erlenmeyers + Make water drops appear
-  //     .from(coloringErlenmeyers, {drawSVG:0, duration:2}, 2)
-  //     .fromTo(coloringDrops, {scale:0}, {scale:1, opacity:1, stagger:{each:0.15, from:'random'}, duration:0.3, ease:'back.out(1.4)'}, '<+=1.8');
+    const coloringBookColoringRevealTiming = [
+      { level:25, timing:2 },
+      { level:50, timing:3 },
+      { level:75, timing:4 },
+      { level:100, timing:6 }
+    ];
+
+    coloringTl
+      // Draw erlenmeyers + Make water drops appear
+      .from(coloringErlenmeyers, {drawSVG:0, duration:2}, 2)
+      .fromTo(coloringDrops, {scale:0}, {scale:1, opacity:1, stagger:{each:0.15, from:'random'}, duration:0.3, ease:'back.out(1.4)'}, '<+=1.8')
+      .call(revealColoring, [communityId, 'coloring'], coloringBookColoringRevealTiming.find(d => d.level === fundraisingLevel).timing);
       
-  //     // Make pencils appear
-  //     if (fundraisingLevel >= 50) { coloringTl.add(coloring50, 3) }
+      // Make pencils appear
+      if (fundraisingLevel >= 50) { coloringTl.add(coloring50, 3) }
       
-  //     // Start windwheel
-  //     if (fundraisingLevel >= 75) { coloringTl.add(startWindWheel, 4) }
+      // Start windwheel
+      if (fundraisingLevel >= 75) { coloringTl.add(startWindWheel, 4) }
       
-  //     // Draw and Make kids smile
-  //     if (fundraisingLevel >= 100) { coloringTl.add(coloring100, 5) }
+      // Draw and Make kids smile
+      if (fundraisingLevel >= 100) { coloringTl.add(coloring100, 5) }
 
-  // }
+  }
 };

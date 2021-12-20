@@ -2276,696 +2276,836 @@ button {
   background-image: url(../assets/communities-coloring/cerro/cerro_solution-100.png);
 }
 
-/* line 65, src/sass/components/_villages.scss */
+/* line 63, src/sass/components/_villages.scss */
+.villages .village.village-cerro-de-leones.fund-level-100 .section-coloring .sct-illustration .coloring {
+  background-image: url(../assets/communities-coloring/cerro/cerro_coloring-100.png);
+}
+
+/* line 66, src/sass/components/_villages.scss */
 .villages .village.village-cerro-de-leones.fund-level-75 .section-community .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/cerro/cerro_community-75.png);
 }
 
-/* line 66, src/sass/components/_villages.scss */
+/* line 67, src/sass/components/_villages.scss */
 .villages .village.village-cerro-de-leones.fund-level-75 .section-school .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/cerro/cerro_school-75.png);
 }
 
-/* line 67, src/sass/components/_villages.scss */
+/* line 68, src/sass/components/_villages.scss */
 .villages .village.village-cerro-de-leones.fund-level-75 .section-distance .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/cerro/cerro_distance-75.png);
 }
 
-/* line 68, src/sass/components/_villages.scss */
+/* line 69, src/sass/components/_villages.scss */
 .villages .village.village-cerro-de-leones.fund-level-75 .section-waterMCL .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/cerro/cerro_waterMCL-50.png);
 }
 
-/* line 69, src/sass/components/_villages.scss */
+/* line 70, src/sass/components/_villages.scss */
 .villages .village.village-cerro-de-leones.fund-level-75 .section-solution .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/cerro/cerro_solution-75.png);
 }
 
-/* line 72, src/sass/components/_villages.scss */
+/* line 71, src/sass/components/_villages.scss */
+.villages .village.village-cerro-de-leones.fund-level-75 .section-coloring .sct-illustration .coloring {
+  background-image: url(../assets/communities-coloring/cerro/cerro_coloring-75.png);
+}
+
+/* line 74, src/sass/components/_villages.scss */
 .villages .village.village-cerro-de-leones.fund-level-50 .section-community .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/cerro/cerro_community-50.png);
 }
 
-/* line 73, src/sass/components/_villages.scss */
+/* line 75, src/sass/components/_villages.scss */
 .villages .village.village-cerro-de-leones.fund-level-50 .section-school .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/cerro/cerro_school-50.png);
 }
 
-/* line 74, src/sass/components/_villages.scss */
+/* line 76, src/sass/components/_villages.scss */
 .villages .village.village-cerro-de-leones.fund-level-50 .section-distance .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/cerro/cerro_distance-50.png);
 }
 
-/* line 75, src/sass/components/_villages.scss */
+/* line 77, src/sass/components/_villages.scss */
 .villages .village.village-cerro-de-leones.fund-level-50 .section-waterMCL .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/cerro/cerro_waterMCL-50.png);
 }
 
-/* line 76, src/sass/components/_villages.scss */
+/* line 78, src/sass/components/_villages.scss */
 .villages .village.village-cerro-de-leones.fund-level-50 .section-solution .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/cerro/cerro_solution-50.png);
 }
 
 /* line 79, src/sass/components/_villages.scss */
+.villages .village.village-cerro-de-leones.fund-level-50 .section-coloring .sct-illustration .coloring {
+  background-image: url(../assets/communities-coloring/cerro/cerro_coloring-50.png);
+}
+
+/* line 82, src/sass/components/_villages.scss */
 .villages .village.village-cerro-de-leones.fund-level-25 .section-community .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/cerro/cerro_community-25.png);
 }
 
-/* line 80, src/sass/components/_villages.scss */
+/* line 83, src/sass/components/_villages.scss */
 .villages .village.village-cerro-de-leones.fund-level-25 .section-school .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/cerro/cerro_school-25.png);
 }
 
-/* line 81, src/sass/components/_villages.scss */
+/* line 84, src/sass/components/_villages.scss */
 .villages .village.village-cerro-de-leones.fund-level-25 .section-distance .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/cerro/cerro_distance-25.png);
 }
 
-/* line 82, src/sass/components/_villages.scss */
+/* line 85, src/sass/components/_villages.scss */
 .villages .village.village-cerro-de-leones.fund-level-25 .section-solution .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/cerro/cerro_solution-25.png);
 }
 
-/* line 87, src/sass/components/_villages.scss */
+/* line 86, src/sass/components/_villages.scss */
+.villages .village.village-cerro-de-leones.fund-level-25 .section-coloring .sct-illustration .coloring {
+  background-image: url(../assets/communities-coloring/cerro/cerro_coloring-25.png);
+}
+
+/* line 91, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes-km11.fund-level-100 .section-community .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes_km11/las-mercedes-km11_community-100.png);
 }
 
-/* line 88, src/sass/components/_villages.scss */
+/* line 92, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes-km11.fund-level-100 .section-school .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes_km11/las-mercedes-km11_school-100.png);
 }
 
-/* line 89, src/sass/components/_villages.scss */
+/* line 93, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes-km11.fund-level-100 .section-distance .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes_km11/las-mercedes-km11_distance-100.png);
 }
 
-/* line 90, src/sass/components/_villages.scss */
+/* line 94, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes-km11.fund-level-100 .section-waterMCL .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes_km11/las-mercedes-km11_waterMCL-100.png);
 }
 
-/* line 91, src/sass/components/_villages.scss */
+/* line 95, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes-km11.fund-level-100 .section-solution .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes_km11/las-mercedes-km11_solution-100.png);
 }
 
-/* line 94, src/sass/components/_villages.scss */
+/* line 96, src/sass/components/_villages.scss */
+.villages .village.village-las-mercedes-km11.fund-level-100 .section-coloring .sct-illustration .coloring {
+  background-image: url(../assets/communities-coloring/las-mercedes_km11/las-mercedes-km11_coloring-100.png);
+}
+
+/* line 99, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes-km11.fund-level-75 .section-community .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes_km11/las-mercedes-km11_community-75.png);
 }
 
-/* line 95, src/sass/components/_villages.scss */
+/* line 100, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes-km11.fund-level-75 .section-school .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes_km11/las-mercedes-km11_school-75.png);
 }
 
-/* line 96, src/sass/components/_villages.scss */
+/* line 101, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes-km11.fund-level-75 .section-distance .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes_km11/las-mercedes-km11_distance-75.png);
 }
 
-/* line 97, src/sass/components/_villages.scss */
+/* line 102, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes-km11.fund-level-75 .section-waterMCL .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes_km11/las-mercedes-km11_waterMCL-50.png);
 }
 
-/* line 98, src/sass/components/_villages.scss */
+/* line 103, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes-km11.fund-level-75 .section-solution .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes_km11/las-mercedes-km11_solution-75.png);
 }
 
-/* line 101, src/sass/components/_villages.scss */
+/* line 104, src/sass/components/_villages.scss */
+.villages .village.village-las-mercedes-km11.fund-level-75 .section-coloring .sct-illustration .coloring {
+  background-image: url(../assets/communities-coloring/las-mercedes_km11/las-mercedes-km11_coloring-75.png);
+}
+
+/* line 107, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes-km11.fund-level-50 .section-community .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes_km11/las-mercedes-km11_community-50.png);
 }
 
-/* line 102, src/sass/components/_villages.scss */
+/* line 108, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes-km11.fund-level-50 .section-school .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes_km11/las-mercedes-km11_school-50.png);
 }
 
-/* line 103, src/sass/components/_villages.scss */
+/* line 109, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes-km11.fund-level-50 .section-distance .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes_km11/las-mercedes-km11_distance-50.png);
 }
 
-/* line 104, src/sass/components/_villages.scss */
+/* line 110, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes-km11.fund-level-50 .section-waterMCL .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes_km11/las-mercedes-km11_waterMCL-50.png);
 }
 
-/* line 105, src/sass/components/_villages.scss */
+/* line 111, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes-km11.fund-level-50 .section-solution .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes_km11/las-mercedes-km11_solution-50.png);
 }
 
-/* line 108, src/sass/components/_villages.scss */
+/* line 112, src/sass/components/_villages.scss */
+.villages .village.village-las-mercedes-km11.fund-level-50 .section-coloring .sct-illustration .coloring {
+  background-image: url(../assets/communities-coloring/las-mercedes_km11/las-mercedes-km11_coloring-50.png);
+}
+
+/* line 115, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes-km11.fund-level-25 .section-community .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes_km11/las-mercedes-km11_community-25.png);
 }
 
-/* line 109, src/sass/components/_villages.scss */
+/* line 116, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes-km11.fund-level-25 .section-school .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes_km11/las-mercedes-km11_school-25.png);
 }
 
-/* line 110, src/sass/components/_villages.scss */
+/* line 117, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes-km11.fund-level-25 .section-distance .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes_km11/las-mercedes-km11_distance-25.png);
 }
 
-/* line 111, src/sass/components/_villages.scss */
+/* line 118, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes-km11.fund-level-25 .section-solution .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes_km11/las-mercedes-km11_solution-25.png);
 }
 
-/* line 116, src/sass/components/_villages.scss */
+/* line 119, src/sass/components/_villages.scss */
+.villages .village.village-las-mercedes-km11.fund-level-25 .section-coloring .sct-illustration .coloring {
+  background-image: url(../assets/communities-coloring/las-mercedes_km11/las-mercedes-km11_coloring-25.png);
+}
+
+/* line 124, src/sass/components/_villages.scss */
 .villages .village.village-la-merced.fund-level-100 .section-community .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/la-merced/la-merced_community-100.png);
 }
 
-/* line 117, src/sass/components/_villages.scss */
+/* line 125, src/sass/components/_villages.scss */
 .villages .village.village-la-merced.fund-level-100 .section-school .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/la-merced/la-merced_school-100.png);
 }
 
-/* line 118, src/sass/components/_villages.scss */
+/* line 126, src/sass/components/_villages.scss */
 .villages .village.village-la-merced.fund-level-100 .section-distance .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/la-merced/la-merced_distance-100.png);
 }
 
-/* line 119, src/sass/components/_villages.scss */
+/* line 127, src/sass/components/_villages.scss */
 .villages .village.village-la-merced.fund-level-100 .section-waterMCL .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/la-merced/la-merced_waterMCL-100.png);
 }
 
-/* line 120, src/sass/components/_villages.scss */
+/* line 128, src/sass/components/_villages.scss */
 .villages .village.village-la-merced.fund-level-100 .section-solution .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/la-merced/la-merced_solution-100.png);
 }
 
-/* line 123, src/sass/components/_villages.scss */
+/* line 129, src/sass/components/_villages.scss */
+.villages .village.village-la-merced.fund-level-100 .section-coloring .sct-illustration .coloring {
+  background-image: url(../assets/communities-coloring/la-merced/la-merced_coloring-100.png);
+}
+
+/* line 132, src/sass/components/_villages.scss */
 .villages .village.village-la-merced.fund-level-75 .section-community .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/la-merced/la-merced_community-75.png);
 }
 
-/* line 124, src/sass/components/_villages.scss */
+/* line 133, src/sass/components/_villages.scss */
 .villages .village.village-la-merced.fund-level-75 .section-school .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/la-merced/la-merced_school-75.png);
 }
 
-/* line 125, src/sass/components/_villages.scss */
+/* line 134, src/sass/components/_villages.scss */
 .villages .village.village-la-merced.fund-level-75 .section-distance .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/la-merced/la-merced_distance-75.png);
 }
 
-/* line 126, src/sass/components/_villages.scss */
+/* line 135, src/sass/components/_villages.scss */
 .villages .village.village-la-merced.fund-level-75 .section-waterMCL .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/la-merced/la-merced_waterMCL-50.png);
 }
 
-/* line 127, src/sass/components/_villages.scss */
+/* line 136, src/sass/components/_villages.scss */
 .villages .village.village-la-merced.fund-level-75 .section-solution .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/la-merced/la-merced_solution-75.png);
 }
 
-/* line 130, src/sass/components/_villages.scss */
+/* line 137, src/sass/components/_villages.scss */
+.villages .village.village-la-merced.fund-level-75 .section-coloring .sct-illustration .coloring {
+  background-image: url(../assets/communities-coloring/la-merced/la-merced_coloring-75.png);
+}
+
+/* line 140, src/sass/components/_villages.scss */
 .villages .village.village-la-merced.fund-level-50 .section-community .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/la-merced/la-merced_community-50.png);
 }
 
-/* line 131, src/sass/components/_villages.scss */
+/* line 141, src/sass/components/_villages.scss */
 .villages .village.village-la-merced.fund-level-50 .section-school .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/la-merced/la-merced_school-50.png);
 }
 
-/* line 132, src/sass/components/_villages.scss */
+/* line 142, src/sass/components/_villages.scss */
 .villages .village.village-la-merced.fund-level-50 .section-distance .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/la-merced/la-merced_distance-50.png);
 }
 
-/* line 133, src/sass/components/_villages.scss */
+/* line 143, src/sass/components/_villages.scss */
 .villages .village.village-la-merced.fund-level-50 .section-waterMCL .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/la-merced/la-merced_waterMCL-50.png);
 }
 
-/* line 134, src/sass/components/_villages.scss */
+/* line 144, src/sass/components/_villages.scss */
 .villages .village.village-la-merced.fund-level-50 .section-solution .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/la-merced/la-merced_solution-50.png);
 }
 
-/* line 137, src/sass/components/_villages.scss */
+/* line 145, src/sass/components/_villages.scss */
+.villages .village.village-la-merced.fund-level-50 .section-coloring .sct-illustration .coloring {
+  background-image: url(../assets/communities-coloring/la-merced/la-merced_coloring-50.png);
+}
+
+/* line 148, src/sass/components/_villages.scss */
 .villages .village.village-la-merced.fund-level-25 .section-community .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/la-merced/la-merced_community-25.png);
 }
 
-/* line 138, src/sass/components/_villages.scss */
+/* line 149, src/sass/components/_villages.scss */
 .villages .village.village-la-merced.fund-level-25 .section-school .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/la-merced/la-merced_school-25.png);
 }
 
-/* line 139, src/sass/components/_villages.scss */
+/* line 150, src/sass/components/_villages.scss */
 .villages .village.village-la-merced.fund-level-25 .section-distance .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/la-merced/la-merced_distance-25.png);
 }
 
-/* line 140, src/sass/components/_villages.scss */
+/* line 151, src/sass/components/_villages.scss */
 .villages .village.village-la-merced.fund-level-25 .section-solution .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/la-merced/la-merced_solution-25.png);
 }
 
-/* line 145, src/sass/components/_villages.scss */
+/* line 152, src/sass/components/_villages.scss */
+.villages .village.village-la-merced.fund-level-25 .section-coloring .sct-illustration .coloring {
+  background-image: url(../assets/communities-coloring/la-merced/la-merced_coloring-25.png);
+}
+
+/* line 157, src/sass/components/_villages.scss */
 .villages .village.village-totoral-bajo.fund-level-100 .section-community .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-bajo/totoral-bajo_community-100.png);
 }
 
-/* line 146, src/sass/components/_villages.scss */
+/* line 158, src/sass/components/_villages.scss */
 .villages .village.village-totoral-bajo.fund-level-100 .section-school .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-bajo/totoral-bajo_school-100.png);
 }
 
-/* line 147, src/sass/components/_villages.scss */
+/* line 159, src/sass/components/_villages.scss */
 .villages .village.village-totoral-bajo.fund-level-100 .section-distance .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-bajo/totoral-bajo_distance-100.png);
 }
 
-/* line 148, src/sass/components/_villages.scss */
+/* line 160, src/sass/components/_villages.scss */
 .villages .village.village-totoral-bajo.fund-level-100 .section-waterMCL .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-bajo/totoral-bajo_waterMCL-100.png);
 }
 
-/* line 149, src/sass/components/_villages.scss */
+/* line 161, src/sass/components/_villages.scss */
 .villages .village.village-totoral-bajo.fund-level-100 .section-solution .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-bajo/totoral-bajo_solution-100.png);
 }
 
-/* line 152, src/sass/components/_villages.scss */
+/* line 162, src/sass/components/_villages.scss */
+.villages .village.village-totoral-bajo.fund-level-100 .section-coloring .sct-illustration .coloring {
+  background-image: url(../assets/communities-coloring/totoral-bajo/totoral-bajo_coloring-100.png);
+}
+
+/* line 165, src/sass/components/_villages.scss */
 .villages .village.village-totoral-bajo.fund-level-75 .section-community .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-bajo/totoral-bajo_community-75.png);
 }
 
-/* line 153, src/sass/components/_villages.scss */
+/* line 166, src/sass/components/_villages.scss */
 .villages .village.village-totoral-bajo.fund-level-75 .section-school .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-bajo/totoral-bajo_school-75.png);
 }
 
-/* line 154, src/sass/components/_villages.scss */
+/* line 167, src/sass/components/_villages.scss */
 .villages .village.village-totoral-bajo.fund-level-75 .section-distance .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-bajo/totoral-bajo_distance-75.png);
 }
 
-/* line 155, src/sass/components/_villages.scss */
+/* line 168, src/sass/components/_villages.scss */
 .villages .village.village-totoral-bajo.fund-level-75 .section-waterMCL .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-bajo/totoral-bajo_waterMCL-50.png);
 }
 
-/* line 156, src/sass/components/_villages.scss */
+/* line 169, src/sass/components/_villages.scss */
 .villages .village.village-totoral-bajo.fund-level-75 .section-solution .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-bajo/totoral-bajo_solution-75.png);
 }
 
-/* line 159, src/sass/components/_villages.scss */
+/* line 170, src/sass/components/_villages.scss */
+.villages .village.village-totoral-bajo.fund-level-75 .section-coloring .sct-illustration .coloring {
+  background-image: url(../assets/communities-coloring/totoral-bajo/totoral-bajo_coloring-75.png);
+}
+
+/* line 173, src/sass/components/_villages.scss */
 .villages .village.village-totoral-bajo.fund-level-50 .section-community .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-bajo/totoral-bajo_community-50.png);
 }
 
-/* line 160, src/sass/components/_villages.scss */
+/* line 174, src/sass/components/_villages.scss */
 .villages .village.village-totoral-bajo.fund-level-50 .section-school .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-bajo/totoral-bajo_school-50.png);
 }
 
-/* line 161, src/sass/components/_villages.scss */
+/* line 175, src/sass/components/_villages.scss */
 .villages .village.village-totoral-bajo.fund-level-50 .section-distance .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-bajo/totoral-bajo_distance-50.png);
 }
 
-/* line 162, src/sass/components/_villages.scss */
+/* line 176, src/sass/components/_villages.scss */
 .villages .village.village-totoral-bajo.fund-level-50 .section-waterMCL .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-bajo/totoral-bajo_waterMCL-50.png);
 }
 
-/* line 163, src/sass/components/_villages.scss */
+/* line 177, src/sass/components/_villages.scss */
 .villages .village.village-totoral-bajo.fund-level-50 .section-solution .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-bajo/totoral-bajo_solution-50.png);
 }
 
-/* line 166, src/sass/components/_villages.scss */
+/* line 178, src/sass/components/_villages.scss */
+.villages .village.village-totoral-bajo.fund-level-50 .section-coloring .sct-illustration .coloring {
+  background-image: url(../assets/communities-coloring/totoral-bajo/totoral-bajo_coloring-50.png);
+}
+
+/* line 181, src/sass/components/_villages.scss */
 .villages .village.village-totoral-bajo.fund-level-25 .section-community .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-bajo/totoral-bajo_community-25.png);
 }
 
-/* line 167, src/sass/components/_villages.scss */
+/* line 182, src/sass/components/_villages.scss */
 .villages .village.village-totoral-bajo.fund-level-25 .section-school .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-bajo/totoral-bajo_school-25.png);
 }
 
-/* line 168, src/sass/components/_villages.scss */
+/* line 183, src/sass/components/_villages.scss */
 .villages .village.village-totoral-bajo.fund-level-25 .section-distance .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-bajo/totoral-bajo_distance-25.png);
 }
 
-/* line 169, src/sass/components/_villages.scss */
+/* line 184, src/sass/components/_villages.scss */
 .villages .village.village-totoral-bajo.fund-level-25 .section-solution .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-bajo/totoral-bajo_solution-25.png);
 }
 
-/* line 174, src/sass/components/_villages.scss */
+/* line 185, src/sass/components/_villages.scss */
+.villages .village.village-totoral-bajo.fund-level-25 .section-coloring .sct-illustration .coloring {
+  background-image: url(../assets/communities-coloring/totoral-bajo/totoral-bajo_coloring-25.png);
+}
+
+/* line 190, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes.fund-level-100 .section-community .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes/las-mercedes_community-100.png);
 }
 
-/* line 175, src/sass/components/_villages.scss */
+/* line 191, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes.fund-level-100 .section-school .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes/las-mercedes_school-100.png);
 }
 
-/* line 176, src/sass/components/_villages.scss */
+/* line 192, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes.fund-level-100 .section-distance .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes/las-mercedes_distance-100.png);
 }
 
-/* line 177, src/sass/components/_villages.scss */
+/* line 193, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes.fund-level-100 .section-waterMCL .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes/las-mercedes_waterMCL-100.png);
 }
 
-/* line 178, src/sass/components/_villages.scss */
+/* line 194, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes.fund-level-100 .section-solution .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes/las-mercedes_solution-100.png);
 }
 
-/* line 181, src/sass/components/_villages.scss */
+/* line 195, src/sass/components/_villages.scss */
+.villages .village.village-las-mercedes.fund-level-100 .section-coloring .sct-illustration .coloring {
+  background-image: url(../assets/communities-coloring/las-mercedes/las-mercedes_coloring-100.png);
+}
+
+/* line 198, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes.fund-level-75 .section-community .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes/las-mercedes_community-75.png);
 }
 
-/* line 182, src/sass/components/_villages.scss */
+/* line 199, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes.fund-level-75 .section-school .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes/las-mercedes_school-75.png);
 }
 
-/* line 183, src/sass/components/_villages.scss */
+/* line 200, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes.fund-level-75 .section-distance .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes/las-mercedes_distance-75.png);
 }
 
-/* line 184, src/sass/components/_villages.scss */
+/* line 201, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes.fund-level-75 .section-waterMCL .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes/las-mercedes_waterMCL-50.png);
 }
 
-/* line 185, src/sass/components/_villages.scss */
+/* line 202, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes.fund-level-75 .section-solution .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes/las-mercedes_solution-75.png);
 }
 
-/* line 188, src/sass/components/_villages.scss */
+/* line 203, src/sass/components/_villages.scss */
+.villages .village.village-las-mercedes.fund-level-75 .section-coloring .sct-illustration .coloring {
+  background-image: url(../assets/communities-coloring/las-mercedes/las-mercedes_coloring-75.png);
+}
+
+/* line 206, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes.fund-level-50 .section-community .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes/las-mercedes_community-50.png);
 }
 
-/* line 189, src/sass/components/_villages.scss */
+/* line 207, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes.fund-level-50 .section-school .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes/las-mercedes_school-50.png);
 }
 
-/* line 190, src/sass/components/_villages.scss */
+/* line 208, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes.fund-level-50 .section-distance .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes/las-mercedes_distance-50.png);
 }
 
-/* line 191, src/sass/components/_villages.scss */
+/* line 209, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes.fund-level-50 .section-waterMCL .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes/las-mercedes_waterMCL-50.png);
 }
 
-/* line 192, src/sass/components/_villages.scss */
+/* line 210, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes.fund-level-50 .section-solution .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes/las-mercedes_solution-50.png);
 }
 
-/* line 195, src/sass/components/_villages.scss */
+/* line 211, src/sass/components/_villages.scss */
+.villages .village.village-las-mercedes.fund-level-50 .section-coloring .sct-illustration .coloring {
+  background-image: url(../assets/communities-coloring/las-mercedes/las-mercedes_coloring-50.png);
+}
+
+/* line 214, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes.fund-level-25 .section-community .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes/las-mercedes_community-25.png);
 }
 
-/* line 196, src/sass/components/_villages.scss */
+/* line 215, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes.fund-level-25 .section-school .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes/las-mercedes_school-25.png);
 }
 
-/* line 197, src/sass/components/_villages.scss */
+/* line 216, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes.fund-level-25 .section-distance .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes/las-mercedes_distance-25.png);
 }
 
-/* line 198, src/sass/components/_villages.scss */
+/* line 217, src/sass/components/_villages.scss */
 .villages .village.village-las-mercedes.fund-level-25 .section-solution .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/las-mercedes/las-mercedes_solution-25.png);
 }
 
-/* line 203, src/sass/components/_villages.scss */
+/* line 218, src/sass/components/_villages.scss */
+.villages .village.village-las-mercedes.fund-level-25 .section-coloring .sct-illustration .coloring {
+  background-image: url(../assets/communities-coloring/las-mercedes/las-mercedes_coloring-25.png);
+}
+
+/* line 223, src/sass/components/_villages.scss */
 .villages .village.village-totoral-alto.fund-level-100 .section-community .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-alto/totoral-alto_community-100.png);
 }
 
-/* line 204, src/sass/components/_villages.scss */
+/* line 224, src/sass/components/_villages.scss */
 .villages .village.village-totoral-alto.fund-level-100 .section-school .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-alto/totoral-alto_school-100.png);
 }
 
-/* line 205, src/sass/components/_villages.scss */
+/* line 225, src/sass/components/_villages.scss */
 .villages .village.village-totoral-alto.fund-level-100 .section-distance .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-alto/totoral-alto_distance-100.png);
 }
 
-/* line 206, src/sass/components/_villages.scss */
+/* line 226, src/sass/components/_villages.scss */
 .villages .village.village-totoral-alto.fund-level-100 .section-waterMCL .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-alto/totoral-alto_waterMCL-100.png);
 }
 
-/* line 207, src/sass/components/_villages.scss */
+/* line 227, src/sass/components/_villages.scss */
 .villages .village.village-totoral-alto.fund-level-100 .section-solution .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-alto/totoral-alto_solution-100.png);
 }
 
-/* line 210, src/sass/components/_villages.scss */
+/* line 228, src/sass/components/_villages.scss */
+.villages .village.village-totoral-alto.fund-level-100 .section-coloring .sct-illustration .coloring {
+  background-image: url(../assets/communities-coloring/totoral-alto/totoral-alto_coloring-100.png);
+}
+
+/* line 231, src/sass/components/_villages.scss */
 .villages .village.village-totoral-alto.fund-level-75 .section-community .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-alto/totoral-alto_community-75.png);
 }
 
-/* line 211, src/sass/components/_villages.scss */
+/* line 232, src/sass/components/_villages.scss */
 .villages .village.village-totoral-alto.fund-level-75 .section-school .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-alto/totoral-alto_school-75.png);
 }
 
-/* line 212, src/sass/components/_villages.scss */
+/* line 233, src/sass/components/_villages.scss */
 .villages .village.village-totoral-alto.fund-level-75 .section-distance .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-alto/totoral-alto_distance-75.png);
 }
 
-/* line 213, src/sass/components/_villages.scss */
+/* line 234, src/sass/components/_villages.scss */
 .villages .village.village-totoral-alto.fund-level-75 .section-waterMCL .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-alto/totoral-alto_waterMCL-50.png);
 }
 
-/* line 214, src/sass/components/_villages.scss */
+/* line 235, src/sass/components/_villages.scss */
 .villages .village.village-totoral-alto.fund-level-75 .section-solution .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-alto/totoral-alto_solution-75.png);
 }
 
-/* line 217, src/sass/components/_villages.scss */
+/* line 236, src/sass/components/_villages.scss */
+.villages .village.village-totoral-alto.fund-level-75 .section-coloring .sct-illustration .coloring {
+  background-image: url(../assets/communities-coloring/totoral-alto/totoral-alto_coloring-75.png);
+}
+
+/* line 239, src/sass/components/_villages.scss */
 .villages .village.village-totoral-alto.fund-level-50 .section-community .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-alto/totoral-alto_community-50.png);
 }
 
-/* line 218, src/sass/components/_villages.scss */
+/* line 240, src/sass/components/_villages.scss */
 .villages .village.village-totoral-alto.fund-level-50 .section-school .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-alto/totoral-alto_school-50.png);
 }
 
-/* line 219, src/sass/components/_villages.scss */
+/* line 241, src/sass/components/_villages.scss */
 .villages .village.village-totoral-alto.fund-level-50 .section-distance .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-alto/totoral-alto_distance-50.png);
 }
 
-/* line 220, src/sass/components/_villages.scss */
+/* line 242, src/sass/components/_villages.scss */
 .villages .village.village-totoral-alto.fund-level-50 .section-waterMCL .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-alto/totoral-alto_waterMCL-50.png);
 }
 
-/* line 221, src/sass/components/_villages.scss */
+/* line 243, src/sass/components/_villages.scss */
 .villages .village.village-totoral-alto.fund-level-50 .section-solution .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-alto/totoral-alto_solution-50.png);
 }
 
-/* line 224, src/sass/components/_villages.scss */
+/* line 244, src/sass/components/_villages.scss */
+.villages .village.village-totoral-alto.fund-level-50 .section-coloring .sct-illustration .coloring {
+  background-image: url(../assets/communities-coloring/totoral-alto/totoral-alto_coloring-50.png);
+}
+
+/* line 247, src/sass/components/_villages.scss */
 .villages .village.village-totoral-alto.fund-level-25 .section-community .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-alto/totoral-alto_community-25.png);
 }
 
-/* line 225, src/sass/components/_villages.scss */
+/* line 248, src/sass/components/_villages.scss */
 .villages .village.village-totoral-alto.fund-level-25 .section-school .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-alto/totoral-alto_school-25.png);
 }
 
-/* line 226, src/sass/components/_villages.scss */
+/* line 249, src/sass/components/_villages.scss */
 .villages .village.village-totoral-alto.fund-level-25 .section-distance .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-alto/totoral-alto_distance-25.png);
 }
 
-/* line 227, src/sass/components/_villages.scss */
+/* line 250, src/sass/components/_villages.scss */
 .villages .village.village-totoral-alto.fund-level-25 .section-solution .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/totoral-alto/totoral-alto_solution-25.png);
 }
 
-/* line 232, src/sass/components/_villages.scss */
+/* line 251, src/sass/components/_villages.scss */
+.villages .village.village-totoral-alto.fund-level-25 .section-coloring .sct-illustration .coloring {
+  background-image: url(../assets/communities-coloring/totoral-alto/totoral-alto_coloring-25.png);
+}
+
+/* line 256, src/sass/components/_villages.scss */
 .villages .village.village-carrizalillo.fund-level-100 .section-community .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/carrizalillo/carrizalillo_community-100.png);
 }
 
-/* line 233, src/sass/components/_villages.scss */
+/* line 257, src/sass/components/_villages.scss */
 .villages .village.village-carrizalillo.fund-level-100 .section-school .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/carrizalillo/carrizalillo_school-100.png);
 }
 
-/* line 234, src/sass/components/_villages.scss */
+/* line 258, src/sass/components/_villages.scss */
 .villages .village.village-carrizalillo.fund-level-100 .section-distance .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/carrizalillo/carrizalillo_distance-100.png);
 }
 
-/* line 235, src/sass/components/_villages.scss */
+/* line 259, src/sass/components/_villages.scss */
 .villages .village.village-carrizalillo.fund-level-100 .section-waterMCL .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/carrizalillo/carrizalillo_waterMCL-100.png);
 }
 
-/* line 236, src/sass/components/_villages.scss */
+/* line 260, src/sass/components/_villages.scss */
 .villages .village.village-carrizalillo.fund-level-100 .section-solution .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/carrizalillo/carrizalillo_solution-100.png);
 }
 
-/* line 239, src/sass/components/_villages.scss */
+/* line 261, src/sass/components/_villages.scss */
+.villages .village.village-carrizalillo.fund-level-100 .section-coloring .sct-illustration .coloring {
+  background-image: url(../assets/communities-coloring/carrizalillo/carrizalillo_coloring-100.png);
+}
+
+/* line 264, src/sass/components/_villages.scss */
 .villages .village.village-carrizalillo.fund-level-75 .section-community .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/carrizalillo/carrizalillo_community-75.png);
 }
 
-/* line 240, src/sass/components/_villages.scss */
+/* line 265, src/sass/components/_villages.scss */
 .villages .village.village-carrizalillo.fund-level-75 .section-school .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/carrizalillo/carrizalillo_school-75.png);
 }
 
-/* line 241, src/sass/components/_villages.scss */
+/* line 266, src/sass/components/_villages.scss */
 .villages .village.village-carrizalillo.fund-level-75 .section-distance .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/carrizalillo/carrizalillo_distance-75.png);
 }
 
-/* line 242, src/sass/components/_villages.scss */
+/* line 267, src/sass/components/_villages.scss */
 .villages .village.village-carrizalillo.fund-level-75 .section-waterMCL .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/carrizalillo/carrizalillo_waterMCL-50.png);
 }
 
-/* line 243, src/sass/components/_villages.scss */
+/* line 268, src/sass/components/_villages.scss */
 .villages .village.village-carrizalillo.fund-level-75 .section-solution .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/carrizalillo/carrizalillo_solution-75.png);
 }
 
-/* line 246, src/sass/components/_villages.scss */
+/* line 269, src/sass/components/_villages.scss */
+.villages .village.village-carrizalillo.fund-level-75 .section-coloring .sct-illustration .coloring {
+  background-image: url(../assets/communities-coloring/carrizalillo/carrizalillo_coloring-75.png);
+}
+
+/* line 272, src/sass/components/_villages.scss */
 .villages .village.village-carrizalillo.fund-level-50 .section-community .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/carrizalillo/carrizalillo_community-50.png);
 }
 
-/* line 247, src/sass/components/_villages.scss */
+/* line 273, src/sass/components/_villages.scss */
 .villages .village.village-carrizalillo.fund-level-50 .section-school .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/carrizalillo/carrizalillo_school-50.png);
 }
 
-/* line 248, src/sass/components/_villages.scss */
+/* line 274, src/sass/components/_villages.scss */
 .villages .village.village-carrizalillo.fund-level-50 .section-distance .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/carrizalillo/carrizalillo_distance-50.png);
 }
 
-/* line 249, src/sass/components/_villages.scss */
+/* line 275, src/sass/components/_villages.scss */
 .villages .village.village-carrizalillo.fund-level-50 .section-waterMCL .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/carrizalillo/carrizalillo_waterMCL-50.png);
 }
 
-/* line 250, src/sass/components/_villages.scss */
+/* line 276, src/sass/components/_villages.scss */
 .villages .village.village-carrizalillo.fund-level-50 .section-solution .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/carrizalillo/carrizalillo_solution-50.png);
 }
 
-/* line 253, src/sass/components/_villages.scss */
+/* line 277, src/sass/components/_villages.scss */
+.villages .village.village-carrizalillo.fund-level-50 .section-coloring .sct-illustration .coloring {
+  background-image: url(../assets/communities-coloring/carrizalillo/carrizalillo_coloring-50.png);
+}
+
+/* line 280, src/sass/components/_villages.scss */
 .villages .village.village-carrizalillo.fund-level-25 .section-community .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/carrizalillo/carrizalillo_community-25.png);
 }
 
-/* line 254, src/sass/components/_villages.scss */
+/* line 281, src/sass/components/_villages.scss */
 .villages .village.village-carrizalillo.fund-level-25 .section-school .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/carrizalillo/carrizalillo_school-25.png);
 }
 
-/* line 255, src/sass/components/_villages.scss */
+/* line 282, src/sass/components/_villages.scss */
 .villages .village.village-carrizalillo.fund-level-25 .section-distance .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/carrizalillo/carrizalillo_distance-25.png);
 }
 
-/* line 256, src/sass/components/_villages.scss */
+/* line 283, src/sass/components/_villages.scss */
 .villages .village.village-carrizalillo.fund-level-25 .section-solution .sct-illustration .coloring {
   background-image: url(../assets/communities-coloring/carrizalillo/carrizalillo_solution-25.png);
 }
 
-/* line 261, src/sass/components/_villages.scss */
+/* line 284, src/sass/components/_villages.scss */
+.villages .village.village-carrizalillo.fund-level-25 .section-coloring .sct-illustration .coloring {
+  background-image: url(../assets/communities-coloring/carrizalillo/carrizalillo_coloring-25.png);
+}
+
+/* line 289, src/sass/components/_villages.scss */
 .villages .village .sct-description {
   margin: -1.5rem auto;
   max-width: 340px;
 }
 
 @media screen and (max-width: 768px) {
-  /* line 261, src/sass/components/_villages.scss */
+  /* line 289, src/sass/components/_villages.scss */
   .villages .village .sct-description {
     padding-right: 10px;
     padding-left: 10px;
   }
 }
 
-/* line 269, src/sass/components/_villages.scss */
+/* line 297, src/sass/components/_villages.scss */
 .villages .village .section-community .sct-description {
   min-height: 76px;
 }
 
-/* line 270, src/sass/components/_villages.scss */
+/* line 298, src/sass/components/_villages.scss */
 .villages .village .section-school .sct-description {
   min-height: 141px;
 }
 
-/* line 271, src/sass/components/_villages.scss */
+/* line 299, src/sass/components/_villages.scss */
 .villages .village .section-distance .sct-description {
   min-height: 166px;
 }
 
-/* line 272, src/sass/components/_villages.scss */
+/* line 300, src/sass/components/_villages.scss */
 .villages .village .section-waterMCL .sct-description {
   min-height: 464px;
 }
 
-/* line 273, src/sass/components/_villages.scss */
+/* line 301, src/sass/components/_villages.scss */
 .villages .village .section-solution .sct-description {
   min-height: 416px;
 }
 
-/* line 274, src/sass/components/_villages.scss */
+/* line 302, src/sass/components/_villages.scss */
 .villages .village .section-coloring .sct-description {
   min-height: 308px;
 }
 
-/* line 278, src/sass/components/_villages.scss */
+/* line 306, src/sass/components/_villages.scss */
 .villages-wrapper {
   position: relative;
 }
 
-/* line 281, src/sass/components/_villages.scss */
+/* line 309, src/sass/components/_villages.scss */
 .current-village {
   position: fixed;
   z-index: 100;
@@ -2980,19 +3120,19 @@ button {
   transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), -webkit-transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* line 289, src/sass/components/_villages.scss */
+/* line 317, src/sass/components/_villages.scss */
 .current-village h2 {
   margin: 0;
   padding: 30px 0;
 }
 
-/* line 293, src/sass/components/_villages.scss */
+/* line 321, src/sass/components/_villages.scss */
 .current-village.visible {
   -webkit-transform: translateY(0);
           transform: translateY(0);
 }
 
-/* line 299, src/sass/components/_villages.scss */
+/* line 327, src/sass/components/_villages.scss */
 .village h2,
 .current-village h2 {
   background: white;
@@ -3000,17 +3140,17 @@ button {
   background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, white 15%, white 100%);
 }
 
-/* line 306, src/sass/components/_villages.scss */
+/* line 334, src/sass/components/_villages.scss */
 .illustration-instructions.touch {
   display: none;
 }
 
 @media screen and (max-width: 768px) {
-  /* line 310, src/sass/components/_villages.scss */
+  /* line 338, src/sass/components/_villages.scss */
   .illustration-instructions.touch {
     display: block;
   }
-  /* line 313, src/sass/components/_villages.scss */
+  /* line 341, src/sass/components/_villages.scss */
   .illustration-instructions.mouse {
     display: none;
   }
