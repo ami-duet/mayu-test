@@ -798,7 +798,7 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
 
     coloringTl
       // Draw erlenmeyers + Make water drops appear
-      .from(coloringErlenmeyers, {drawSVG:0, duration:2}, 2)
+      .from(coloringErlenmeyers, {drawSVG:0, opacity:0, duration:2}, 2)
       .fromTo(coloringDrops, {scale:0}, {scale:1, opacity:1, stagger:{each:0.15, from:'random'}, duration:0.3, ease:'back.out(1.4)'}, '<+=1.8')
       .call(revealColoring, [communityId, 'coloring'], coloringBookColoringRevealTiming.find(d => d.level === fundraisingLevel).timing);
       
