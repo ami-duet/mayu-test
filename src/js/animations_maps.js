@@ -15,8 +15,8 @@ const triggerMapAnimations = () => {
         return `bottom ${mapHeight + (height - mapHeight) / 2 - margin}px`;
       },
       pin: true,
-      // pinSpacing: false
-      // markers: true
+      pinSpacing: false,
+      markers: true
     }
   });
 

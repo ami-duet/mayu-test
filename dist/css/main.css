@@ -3208,7 +3208,14 @@ button {
   text-indent: 35px;
 }
 
-/* line 40, src/sass/components/_map.scss */
+@media screen and (max-width: 576px) {
+  /* line 41, src/sass/components/_map.scss */
+  .maps-section .maps-bridge {
+    padding-top: 70px;
+  }
+}
+
+/* line 47, src/sass/components/_map.scss */
 .maps-section .map-piura {
   position: relative;
   margin: 60px -20px;
@@ -3219,7 +3226,7 @@ button {
   background-size: contain;
 }
 
-/* line 48, src/sass/components/_map.scss */
+/* line 55, src/sass/components/_map.scss */
 .maps-section .map-piura svg {
   position: absolute;
   top: 0;
@@ -3227,28 +3234,28 @@ button {
   width: 100%;
 }
 
-/* line 53, src/sass/components/_map.scss */
+/* line 60, src/sass/components/_map.scss */
 .maps-section .map-piura svg.piura-bg {
   z-index: 1;
 }
 
-/* line 56, src/sass/components/_map.scss */
+/* line 63, src/sass/components/_map.scss */
 .maps-section .map-piura svg.piura-path {
   z-index: 2;
   top: 1px;
 }
 
-/* line 60, src/sass/components/_map.scss */
+/* line 67, src/sass/components/_map.scss */
 .maps-section .map-piura svg.piura-communities {
   z-index: 3;
 }
 
-/* line 63, src/sass/components/_map.scss */
+/* line 70, src/sass/components/_map.scss */
 .maps-section .map-piura svg.piura-communities-cerro {
   z-index: 4;
 }
 
-/* line 70, src/sass/components/_map.scss */
+/* line 77, src/sass/components/_map.scss */
 #pathRecrut.animate {
   -webkit-animation: dash 0.8s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
           animation: dash 0.8s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;

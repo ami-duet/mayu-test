@@ -36,6 +36,13 @@
     }
   }
 
+  // Bridge text between maps
+  @media screen and (max-width: $sm) {
+    .maps-bridge {
+      padding-top: 70px;
+    }
+  }
+
   // Map Piura
   .map-piura {
     position: relative;
