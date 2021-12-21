@@ -3299,13 +3299,14 @@ button {
 /* line 1, src/sass/components/_plane.scss */
 .plane-container {
   position: relative;
+  z-index: 10;
   margin-bottom: -30px;
   padding: 20px 10%;
   font-size: 2.1rem;
   font-weight: 400;
 }
 
-/* line 7, src/sass/components/_plane.scss */
+/* line 8, src/sass/components/_plane.scss */
 .plane-container a {
   color: #383838;
   -webkit-transition-property: color;
@@ -3314,12 +3315,12 @@ button {
           box-shadow: none;
 }
 
-/* line 11, src/sass/components/_plane.scss */
+/* line 12, src/sass/components/_plane.scss */
 .plane-container a:hover, .plane-container a:focus {
   color: #DD5F3D;
 }
 
-/* line 15, src/sass/components/_plane.scss */
+/* line 16, src/sass/components/_plane.scss */
 .plane-container .plane-banner {
   position: relative;
   display: inline-block;
@@ -3329,18 +3330,18 @@ button {
   border-left: none;
 }
 
-/* line 22, src/sass/components/_plane.scss */
+/* line 23, src/sass/components/_plane.scss */
 .plane-container .plane-banner .community {
   font-weight: 600;
 }
 
-/* line 25, src/sass/components/_plane.scss */
+/* line 26, src/sass/components/_plane.scss */
 .plane-container .plane-banner:before, .plane-container .plane-banner:after {
   content: '';
   position: absolute;
 }
 
-/* line 30, src/sass/components/_plane.scss */
+/* line 31, src/sass/components/_plane.scss */
 .plane-container .plane-banner:before {
   top: -1px;
   left: 0;
@@ -3352,7 +3353,7 @@ button {
   background-size: contain;
 }
 
-/* line 40, src/sass/components/_plane.scss */
+/* line 41, src/sass/components/_plane.scss */
 .plane-container .plane-banner:after {
   top: -11px;
   right: -164px;
@@ -3362,4 +3363,39 @@ button {
   background-repeat: no-repeat;
   background-position: left center;
   background-size: contain;
+}
+
+@media screen and (max-width: 576px) {
+  /* line 1, src/sass/components/_plane.scss */
+  .plane-container {
+    font-size: 1.8rem;
+    line-height: 1.1;
+  }
+  /* line 55, src/sass/components/_plane.scss */
+  .plane-container .plane-banner {
+    max-width: 170px;
+    height: 56px;
+    padding: 9px 12px 8px 30px;
+  }
+  /* line 59, src/sass/components/_plane.scss */
+  .plane-container .plane-banner:before {
+    left: -1px;
+    height: 56px;
+    background-image: url(../assets/banner-end-large.svg);
+  }
+  /* line 64, src/sass/components/_plane.scss */
+  .plane-container .plane-banner:after {
+    top: 5px;
+    right: -120px;
+    width: 120px;
+    height: 54px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  /* line 1, src/sass/components/_plane.scss */
+  .plane-container {
+    padding-left: 4%;
+    padding-right: 4%;
+  }
 }
