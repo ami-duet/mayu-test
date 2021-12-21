@@ -113,6 +113,28 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
     tl.repeat(-1);
   };
 
+
+  /****************************/
+  /*         Planes           */
+  /****************************/
+  const stPlaneTop = {
+    trigger: `.village-${communityId} .plane-top`,
+    start: 'top center',
+  };
+  const stPlaneBottom = {
+    trigger: `.village-${communityId} .plane-bottom`,
+    start: 'top center'
+  };
+
+  // Plane top timeline
+  const planeTopTl = gsap.timeline({ scrollTrigger: stPlaneTop });
+  planeTopTl.from(`.village-${communityId} .plane-top`, {left:-window.innerWidth/2 - 230, duration:window.innerWidth/100, ease:'sine.out'});
+
+  // Plane bottom timeline
+  const planeBottomTl = gsap.timeline({ scrollTrigger: stPlaneBottom });
+  planeBottomTl.from(`.village-${communityId} .plane-bottom`, {right:-window.innerWidth/2 - 230, duration:window.innerWidth/100, ease:'sine.out'});
+    
+
   
   /****************************/
   /*         Community        */
