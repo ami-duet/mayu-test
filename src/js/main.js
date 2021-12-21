@@ -45,6 +45,8 @@ const appendCommunities = () => {
     .append('div')
       .attr('class', 'sections');
 
+  const fundLevels = [25, 50, 75, 100];
+  const fundLevelColors = ['cream', 'blue', 'green'];
   const planeTop = sections
     .append('div')
       .attr('class', d => `plane-container plane-top plane-${d.village_id}`)
@@ -54,6 +56,20 @@ const appendCommunities = () => {
     .append('div')
       .attr('class', 'plane-banner')
     .append('div');
+  const planeFundLevels = planeTop
+    .append('div')
+      .attr('class', d => `plane-fund-levels color-${fundLevelColors[Math.floor(Math.random()*fundLevelColors.length)]}`);
+  fundLevels.forEach(l => {
+    planeFundLevels
+      .append('div')
+        .attr('class', d => {
+          const fundLevel = fundLevelParam !== null
+              ? fundLevelParam 
+              : dataFundraising.find(el => el.community === d.village_id).fundraising_level;
+          const fundLevelClass = fundLevel >=+l ? 'active' : '';
+          return `level level-${l} ${fundLevelClass}`;
+        });
+  });
   planeTop
     .append('span')
       .attr('class', 'label')

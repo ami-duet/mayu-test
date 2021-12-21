@@ -3351,7 +3351,7 @@ button {
   left: 0;
   height: 40px;
   width: 24px;
-  background-image: url(../assets/banner-end.svg);
+  background-image: url(../assets/plane/banner-end.svg);
   background-repeat: no-repeat;
   background-position: left center;
   background-size: contain;
@@ -3363,10 +3363,51 @@ button {
   right: -164px;
   width: 164px;
   height: 74px;
-  background-image: url(../assets/plane-outline.svg), url(../assets/plane-color.png);
+  background-image: url(../assets/plane/plane-outline.svg), url(../assets/plane/plane-color.png);
   background-repeat: no-repeat;
   background-position: left center;
   background-size: contain;
+}
+
+/* line 54, src/sass/components/_plane.scss */
+.plane-container .plane-banner .plane-fund-levels {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: -3px;
+  bottom: 0;
+  left: 22px;
+}
+
+/* line 58, src/sass/components/_plane.scss */
+.plane-container .plane-banner .plane-fund-levels .level {
+  display: inline-block;
+  margin-right: -3%;
+  margin-left: -11%;
+  width: 38%;
+  height: 100%;
+}
+
+/* line 64, src/sass/components/_plane.scss */
+.plane-container .plane-banner .plane-fund-levels .level.active {
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+}
+
+/* line 70, src/sass/components/_plane.scss */
+.plane-container .plane-banner .plane-fund-levels.color-cream .level.active {
+  background-image: url(../assets/plane/level-indicator-cream.png);
+}
+
+/* line 71, src/sass/components/_plane.scss */
+.plane-container .plane-banner .plane-fund-levels.color-blue .level.active {
+  background-image: url(../assets/plane/level-indicator-blue.png);
+}
+
+/* line 72, src/sass/components/_plane.scss */
+.plane-container .plane-banner .plane-fund-levels.color-green .level.active {
+  background-image: url(../assets/plane/level-indicator-green.png);
 }
 
 @media screen and (max-width: 576px) {
@@ -3375,7 +3416,7 @@ button {
     font-size: 1.8rem;
     line-height: 1.1;
   }
-  /* line 58, src/sass/components/_plane.scss */
+  /* line 78, src/sass/components/_plane.scss */
   .plane-container .plane-banner {
     max-width: 170px;
     height: 56px;
@@ -3383,17 +3424,37 @@ button {
     -webkit-transform: translateX(-50px);
             transform: translateX(-50px);
   }
-  /* line 63, src/sass/components/_plane.scss */
+  /* line 83, src/sass/components/_plane.scss */
   .plane-container .plane-banner:before {
     left: -1px;
     height: 56px;
-    background-image: url(../assets/banner-end-large.svg);
+    background-image: url(../assets/plane/banner-end-large.svg);
   }
-  /* line 68, src/sass/components/_plane.scss */
+  /* line 88, src/sass/components/_plane.scss */
   .plane-container .plane-banner:after {
     top: 5px;
     right: -120px;
     width: 120px;
     height: 54px;
+  }
+  /* line 94, src/sass/components/_plane.scss */
+  .plane-container .plane-banner .plane-fund-levels {
+    left: 20px;
+  }
+  /* line 96, src/sass/components/_plane.scss */
+  .plane-container .plane-banner .plane-fund-levels .level {
+    width: 39%;
+  }
+  /* line 99, src/sass/components/_plane.scss */
+  .plane-container .plane-banner .plane-fund-levels.color-cream .level.active {
+    background-image: url(../assets/plane/level-indicator-cream-tall.png);
+  }
+  /* line 100, src/sass/components/_plane.scss */
+  .plane-container .plane-banner .plane-fund-levels.color-blue .level.active {
+    background-image: url(../assets/plane/level-indicator-blue-tall.png);
+  }
+  /* line 101, src/sass/components/_plane.scss */
+  .plane-container .plane-banner .plane-fund-levels.color-green .level.active {
+    background-image: url(../assets/plane/level-indicator-green-tall.png);
   }
 }
