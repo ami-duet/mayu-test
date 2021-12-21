@@ -2,9 +2,11 @@
   position: relative;
   z-index: 10;
   margin-bottom: -30px;
-  padding: 20px 10%;
+  padding-top: 20px;
+  padding-bottom: 20px;
   font-size: 2.1rem;
   font-weight: 400;
+  text-align: center;
   a {
     color: $text;
     transition-property: color;
@@ -20,6 +22,7 @@
     padding: 5px 17px 4px 40px;
     border: 1px solid $text;
     border-left: none;
+    transform: translateX(-88px);
     .community {
       font-weight: 600;
     }
@@ -56,6 +59,7 @@
       max-width: 170px;
       height: 56px;
       padding: 9px 12px 8px 30px;
+      transform: translateX(-50px);
       &:before {
         left: -1px;
         height: 56px;
@@ -68,9 +72,5 @@
         height: 54px;
       }
     }
-  }
-  @media screen and (max-width: 350px) {
-    padding-left: 4%;
-    padding-right: 4%;
   }
 }
