@@ -3295,3 +3295,71 @@ button {
 .villages .def p {
   margin: 0.7rem 0;
 }
+
+/* line 1, src/sass/components/_plane.scss */
+.plane-container {
+  position: relative;
+  margin-bottom: -30px;
+  padding: 20px 10%;
+  font-size: 2.1rem;
+  font-weight: 400;
+}
+
+/* line 7, src/sass/components/_plane.scss */
+.plane-container a {
+  color: #383838;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+/* line 11, src/sass/components/_plane.scss */
+.plane-container a:hover, .plane-container a:focus {
+  color: #DD5F3D;
+}
+
+/* line 15, src/sass/components/_plane.scss */
+.plane-container .plane-banner {
+  position: relative;
+  display: inline-block;
+  height: 40px;
+  padding: 5px 17px 4px 40px;
+  border: 1px solid #383838;
+  border-left: none;
+}
+
+/* line 22, src/sass/components/_plane.scss */
+.plane-container .plane-banner .community {
+  font-weight: 600;
+}
+
+/* line 25, src/sass/components/_plane.scss */
+.plane-container .plane-banner:before, .plane-container .plane-banner:after {
+  content: '';
+  position: absolute;
+}
+
+/* line 30, src/sass/components/_plane.scss */
+.plane-container .plane-banner:before {
+  top: -1px;
+  left: 0;
+  height: 40px;
+  width: 24px;
+  background-image: url(../assets/banner-end.svg);
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: contain;
+}
+
+/* line 40, src/sass/components/_plane.scss */
+.plane-container .plane-banner:after {
+  top: -11px;
+  right: -164px;
+  width: 164px;
+  height: 74px;
+  background-image: url(../assets/plane-outline.svg), url(../assets/plane-color.png);
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: contain;
+}

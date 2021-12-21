@@ -1,0 +1,51 @@
+.plane-container {
+  position: relative;
+  margin-bottom: -30px;
+  padding: 20px 10%;
+  font-size: 2.1rem;
+  font-weight: 400;
+  a {
+    color: $text;
+    transition-property: color;
+    box-shadow: none;
+    &:hover, &:focus {
+      color: $peach;
+    }
+  }
+  .plane-banner {
+    position: relative;
+    display: inline-block;
+    height: 40px;
+    padding: 5px 17px 4px 40px;
+    border: 1px solid $text;
+    border-left: none;
+    .community {
+      font-weight: 600;
+    }
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+    }
+    &:before {
+      top: -1px;
+      left: 0;
+      height: 40px;
+      width: 24px;
+      background-image: url(../assets/banner-end.svg);
+      background-repeat: no-repeat;
+      background-position: left center;
+      background-size: contain;
+    }
+    &:after {
+      top: -11px;
+      right: -164px;
+      width: 164px;
+      height: 74px;
+      background-image: url(../assets/plane-outline.svg), url(../assets/plane-color.png);
+      background-repeat: no-repeat;
+      background-position: left center;
+      background-size: contain;
+    }
+  }
+}

@@ -45,6 +45,25 @@ const appendCommunities = () => {
   const sections = villages
     .append('div')
       .attr('class', 'sections');
+
+  const planeTop = sections
+    .append('div')
+      .attr('class', d => `plane-container plane-top plane-${d.village_id}`)
+    .append('a')
+      .attr('href', 'https://veraaquaveravita.org/donate')
+      .attr('target', '_blank')
+    .append('div')
+      .attr('class', 'plane-banner')
+    .append('div');
+  planeTop
+    .append('span')
+      .attr('class', 'label')
+      .text(d => lang === 'en' ? planeLabelEn : planeLabelEs);
+  planeTop
+    .append('span')
+      .attr('class', 'community')
+      .text(d => `${d.village_name}!`)
+  
   const section = sections
     .selectAll('.section')
     .data(d => d.sections)

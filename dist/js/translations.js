@@ -13,6 +13,8 @@ const translations = {
   aboutvavv_en: 'About VAVV',
   aboutvavv_es: 'Sobre VAVV',
 }
+const planeLabelEn = "Let's help ";
+const planeLabelEs = "¡Ayudemos a ";
 
 // Get url parameters
 const urlParams = new URLSearchParams(window.location.search);
@@ -56,6 +58,7 @@ const appendContent = () => {
         return lang === 'es' ? d.description_es : d.description_en;
       }
     });
+  d3.selectAll('.plane .label').text(d => lang === 'es' ? planeLabelEs : planeLabelEn);
   updateIllustrationsLanguage();
 
   // Append our story section
