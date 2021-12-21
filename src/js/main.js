@@ -45,39 +45,43 @@ const appendCommunities = () => {
     .append('div')
       .attr('class', 'sections');
 
+  // Append planes
   const fundLevels = [25, 50, 75, 100];
   const fundLevelColors = ['cream', 'blue', 'green'];
-  const planeTop = sections
-    .append('div')
-      .attr('class', d => `plane-container plane-top plane-${d.village_id}`)
-    .append('a')
-      .attr('href', 'https://veraaquaveravita.org/donate')
-      .attr('target', '_blank')
-    .append('div')
-      .attr('class', 'plane-banner')
-    .append('div');
-  const planeFundLevels = planeTop
-    .append('div')
-      .attr('class', d => `plane-fund-levels color-${fundLevelColors[Math.floor(Math.random()*fundLevelColors.length)]}`);
-  fundLevels.forEach(l => {
-    planeFundLevels
+  const appendPlane = (position) => {
+    const plane = sections
       .append('div')
-        .attr('class', d => {
-          const fundLevel = fundLevelParam !== null
-              ? fundLevelParam 
-              : dataFundraising.find(el => el.community === d.village_id).fundraising_level;
-          const fundLevelClass = fundLevel >=+l ? 'active' : '';
-          return `level level-${l} ${fundLevelClass}`;
-        });
-  });
-  planeTop
-    .append('span')
-      .attr('class', 'label')
-      .text(d => lang === 'en' ? planeLabelEn : planeLabelEs);
-  planeTop
-    .append('span')
-      .attr('class', 'community')
-      .text(d => `${d.village_name}!`)
+        .attr('class', d => `plane-container plane-${position} plane-${d.village_id}`)
+      .append('a')
+        .attr('href', 'https://veraaquaveravita.org/donate')
+        .attr('target', '_blank')
+      .append('div')
+        .attr('class', 'plane-banner')
+      .append('div');
+    const planeFundLevels = plane
+      .append('div')
+        .attr('class', d => `plane-fund-levels color-${fundLevelColors[Math.floor(Math.random()*fundLevelColors.length)]}`);
+    fundLevels.forEach(l => {
+      planeFundLevels
+        .append('div')
+          .attr('class', d => {
+            const fundLevel = fundLevelParam !== null
+                ? fundLevelParam 
+                : dataFundraising.find(el => el.community === d.village_id).fundraising_level;
+            const fundLevelClass = fundLevel >=+l ? 'active' : '';
+            return `level level-${l} ${fundLevelClass}`;
+          });
+    });
+    plane
+      .append('span')
+        .attr('class', 'label')
+        .text(d => lang === 'en' ? planeLabelEn : planeLabelEs);
+    plane
+      .append('span')
+        .attr('class', 'community')
+        .text(d => `${d.village_name}!`);
+  }
+  appendPlane('top');
   
   const section = sections
     .selectAll('.section')
@@ -94,6 +98,8 @@ const appendCommunities = () => {
     .append('div')
       .attr('class', 'sct-description')
     .html(d => lang === 'es' ? d.description_es : d.description_en);
+
+  appendPlane('bottom');
   
   currentVillage = d3.select('.current-village');
   currentVillage
