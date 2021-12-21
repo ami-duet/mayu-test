@@ -125,14 +125,16 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
     trigger: `.village-${communityId} .plane-bottom`,
     start: 'top center'
   };
+  const translation = (window.innerWidth - 90) < 1310 ? (window.innerWidth - 90)/2 : 1310/2;
+  const planeWidth = window.innerWidth > 576 ? 184 : -200;
 
   // Plane top timeline
   const planeTopTl = gsap.timeline({ scrollTrigger: stPlaneTop });
-  planeTopTl.from(`.village-${communityId} .plane-top`, {left:-window.innerWidth/2 - 230, duration:window.innerWidth/100, ease:'sine.out'});
+  planeTopTl.from(`.village-${communityId} .plane-top`, {left:-translation + planeWidth, duration:window.innerWidth/100, ease:'sine.out'});
 
   // Plane bottom timeline
   const planeBottomTl = gsap.timeline({ scrollTrigger: stPlaneBottom });
-  planeBottomTl.from(`.village-${communityId} .plane-bottom`, {right:-window.innerWidth/2 - 230, duration:window.innerWidth/100, ease:'sine.out'});
+  planeBottomTl.from(`.village-${communityId} .plane-bottom`, {right:-translation + planeWidth, duration:window.innerWidth/100, ease:'sine.out'});
     
 
   
