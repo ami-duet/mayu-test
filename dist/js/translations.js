@@ -58,7 +58,7 @@ const appendContent = () => {
         return lang === 'es' ? d.description_es : d.description_en;
       }
     });
-  d3.selectAll('.plane .label').text(d => lang === 'es' ? planeLabelEs : planeLabelEn);
+  d3.selectAll('.plane-banner .label').text(d => lang === 'es' ? planeLabelEs : planeLabelEn);
   updateIllustrationsLanguage();
 
   // Append our story section
