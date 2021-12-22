@@ -3487,56 +3487,52 @@ button {
     left: 20px;
   }
   /* line 146, src/sass/components/_plane.scss */
-  .plane-container .plane-banner .plane-fund-levels .level {
-    width: 39%;
-  }
-  /* line 149, src/sass/components/_plane.scss */
   .plane-container .plane-banner .plane-fund-levels.color-cream .level.active {
     background-image: url(../assets/plane/level-indicator-cream-tall.png);
   }
-  /* line 150, src/sass/components/_plane.scss */
+  /* line 147, src/sass/components/_plane.scss */
   .plane-container .plane-banner .plane-fund-levels.color-blue .level.active {
     background-image: url(../assets/plane/level-indicator-blue-tall.png);
   }
-  /* line 151, src/sass/components/_plane.scss */
+  /* line 148, src/sass/components/_plane.scss */
   .plane-container .plane-banner .plane-fund-levels.color-green .level.active {
     background-image: url(../assets/plane/level-indicator-green-tall.png);
   }
-  /* line 157, src/sass/components/_plane.scss */
+  /* line 154, src/sass/components/_plane.scss */
   .plane-container.plane-top .plane-banner {
     padding-right: 12px;
     padding-left: 30px;
     -webkit-transform: translateX(-50px);
             transform: translateX(-50px);
   }
-  /* line 161, src/sass/components/_plane.scss */
+  /* line 158, src/sass/components/_plane.scss */
   .plane-container.plane-top .plane-banner:before {
     left: -1px;
   }
-  /* line 164, src/sass/components/_plane.scss */
+  /* line 161, src/sass/components/_plane.scss */
   .plane-container.plane-top .plane-banner:after {
     right: -120px;
   }
-  /* line 167, src/sass/components/_plane.scss */
+  /* line 164, src/sass/components/_plane.scss */
   .plane-container.plane-top .plane-banner .plane-fund-levels {
     left: 20px;
   }
-  /* line 175, src/sass/components/_plane.scss */
+  /* line 172, src/sass/components/_plane.scss */
   .plane-container.plane-bottom .plane-banner {
     padding-right: 30px;
     padding-left: 12px;
     -webkit-transform: translateX(50px);
             transform: translateX(50px);
   }
-  /* line 179, src/sass/components/_plane.scss */
+  /* line 176, src/sass/components/_plane.scss */
   .plane-container.plane-bottom .plane-banner:before {
     right: -1px;
   }
-  /* line 182, src/sass/components/_plane.scss */
+  /* line 179, src/sass/components/_plane.scss */
   .plane-container.plane-bottom .plane-banner:after {
     left: -120px;
   }
-  /* line 185, src/sass/components/_plane.scss */
+  /* line 182, src/sass/components/_plane.scss */
   .plane-container.plane-bottom .plane-banner .plane-fund-levels {
     right: 20px;
   }

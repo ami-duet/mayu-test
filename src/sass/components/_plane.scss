@@ -143,9 +143,6 @@
       // Fund levels
       .plane-fund-levels {
         left: 20px;
-        .level {
-          width: 39%;
-        }
         &.color-cream .level.active { background-image: url(../assets/plane/level-indicator-cream-tall.png) }
         &.color-blue .level.active { background-image: url(../assets/plane/level-indicator-blue-tall.png) }
         &.color-green .level.active { background-image: url(../assets/plane/level-indicator-green-tall.png) }
