@@ -513,7 +513,7 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
     const contaminantsBiologicalCircles = document.querySelectorAll(`.${communityId}-water-contaminant-biological circle`);
     const contaminantsBiologicalLegs = document.querySelectorAll(`.${communityId}-water-contaminant-biological .leg-0`);
     gsap.set(contaminantsBiologicalCircles, {opacity:0, transformOrigin:'50% 50%'});
-    gsap.set(contaminantsBiologicalLegs, {drawSVG:'100% 100%'});
+    gsap.set(contaminantsBiologicalLegs, {drawSVG:'100% 100%', opacity:0});
     const contaminantsInorganic = document.querySelectorAll(`#${communityId}-water-contaminants-inorganic rect, #${communityId}-water-contaminants-inorganic path`);
     gsap.set(contaminantsInorganic, {opacity:0, scale:0, transformOrigin:'50% 50%'});
 
@@ -643,6 +643,7 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
     waterMCLTl
       .to(contaminantsInorganic, {opacity:1, scale:1, duration:0.2, ease:'back.out(1.7)', stagger:{each:0.1, from:'random'}}, 1)
       .fromTo(contaminantsBiologicalCircles, {scale:0}, {scale:1, opacity:1, stagger:{each:0.05, from:'random'}, duration:0.2, ease:'back.out(1.4)'}, 2)
+      .set(contaminantsBiologicalLegs, {opacity:1})
       .to(contaminantsBiologicalLegs, {drawSVG:'0 100%', stagger:{each:0.03, from:'random'}, duration:0.5, ease:'sine.in'});
 
       // Make inorganic contaminants float
