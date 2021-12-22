@@ -86,11 +86,12 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
   }
 
   // Rive waves animation
-  const animateRiverTides = (section) => {
+  const animateRiverTides = (section, type) => {
+    const distance = type === 'canal' ? '20' : '23';
     const tidesTl = gsap.timeline();
     tidesTl
-      .to(`#${communityId}-${section}-river-tides`, {x:'+=30', opacity:1, duration:4, ease:'none'})
-      .to(`#${communityId}-${section}-river-tides`, {x:'+=30', opacity:0, duration:4, ease:'none'});
+      .to(`#${communityId}-${section}-river-tides`, {x:`+=${distance}`, opacity:1, duration:4, ease:'none'})
+      .to(`#${communityId}-${section}-river-tides`, {x:`+=${distance}`, opacity:0, duration:4, ease:'none'});
     tidesTl
       .repeat(-1)
       .repeatDelay(2);
@@ -430,7 +431,7 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
       if (communityId === 'carrizalillo') {
         tl.to(well, {drawSVG:'100%', duration:2}, 2)
       } else {
-        tl.call(animateRiverTides, ['distance']);
+        tl.call(animateRiverTides, ['distance', illustrationInfo.sourceTypeDistance]);
       }
     };
 
@@ -724,9 +725,9 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
       } else if (communityId === 'totoral-bajo') {
         solutionTl
           .call(animateRaindrops, ['solution'], 0.1)
-          .call(animateRiverTides, ['solution'], 0.1);
+          .call(animateRiverTides, ['solution', illustrationInfo.sourceTypeDistance], 0.1);
       } else {
-        solutionTl.call(animateRiverTides, ['solution'], 0.1);
+        solutionTl.call(animateRiverTides, ['solution', illustrationInfo.sourceTypeDistance], 0.1);
       }
 
       // Trace animals
