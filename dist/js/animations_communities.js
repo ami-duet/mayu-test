@@ -41,20 +41,20 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
       case 2:
         birdsTl
           .call(makeBirdFly, [`#${communityId}-${section}-bird1-state1`, `#${communityId}-${section}-bird1-state2`, directionBird])
-          .call(makeBirdFly, [`#${communityId}-${section}-bird2-state1`, `#${communityId}-${section}-bird2-state2`, directionBird], '>+0.5');
+          .call(makeBirdFly, [`#${communityId}-${section}-bird2-state1`, `#${communityId}-${section}-bird2-state2`, directionBird], '>+0.4');
         break;
       case 3:
         birdsTl
           .call(makeBirdFly, [`#${communityId}-${section}-bird1-state1`, `#${communityId}-${section}-bird1-state2`, directionBird])
-          .call(makeBirdFly, [`#${communityId}-${section}-bird2-state1`, `#${communityId}-${section}-bird2-state2`, directionBird], '>+0.5')
-          .call(makeBirdFly, [`#${communityId}-${section}-bird3-state1`, `#${communityId}-${section}-bird3-state2`, directionBird], '>+0.5');
+          .call(makeBirdFly, [`#${communityId}-${section}-bird2-state1`, `#${communityId}-${section}-bird2-state2`, directionBird], '>+0.4')
+          .call(makeBirdFly, [`#${communityId}-${section}-bird3-state1`, `#${communityId}-${section}-bird3-state2`, directionBird], '>+0.2');
         break;
       case 4:
         birdsTl
           .call(makeBirdFly, [`#${communityId}-${section}-bird1-state1`, `#${communityId}-${section}-bird1-state2`, directionBird])
-          .call(makeBirdFly, [`#${communityId}-${section}-bird2-state1`, `#${communityId}-${section}-bird2-state2`, directionBird], '>+0.5')
-          .call(makeBirdFly, [`#${communityId}-${section}-bird3-state1`, `#${communityId}-${section}-bird3-state2`, directionBird], '>+0.5')
-          .call(makeBirdFly, [`#${communityId}-${section}-bird4-state1`, `#${communityId}-${section}-bird4-state2`, directionBird], '>+0.5');
+          .call(makeBirdFly, [`#${communityId}-${section}-bird2-state1`, `#${communityId}-${section}-bird2-state2`, directionBird], '>+0.4')
+          .call(makeBirdFly, [`#${communityId}-${section}-bird3-state1`, `#${communityId}-${section}-bird3-state2`, directionBird], '>+0.2')
+          .call(makeBirdFly, [`#${communityId}-${section}-bird4-state1`, `#${communityId}-${section}-bird4-state2`, directionBird], '>+0.1');
         break;
     }
   };
@@ -65,25 +65,25 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
     let easeIn;
     let easeOut;
     if ((section === 'community' && communityId === 'las-mercedes') || section === 'solution') {
-      easeIn = 'back.in(1.2)';
-      easeOut = 'back.out(1.1)';
+      easeIn = 'back.in(1.05)';
+      easeOut = 'back.out(1.05)';
     } else {
       easeIn = 'back.in(1.7)';
       easeOut = 'back.out(1.4)';
     }
     const directionOpposite = direction === '+' ? '-' : '+';
     const durationIn = communityId === 'las-mercedes' ? 3 : 2;
-    const durationOut = communityId === 'las-mercedes' ? 2.5 : 1;
+    const durationOut = communityId === 'las-mercedes' ? 2 : 1;
 
     const vehicleTl = gsap.timeline();
     vehicleTl
-      .to(`#${communityId}-${section}-wheel-back`, {rotation:`${direction}=${rotationWheelBack}`, duration:durationIn, ease:easeIn}, 3.1)
-      .to(`#${communityId}-${section}-wheel-front`, {rotation:`${direction}=${rotationWheelFront}`, duration:durationIn, ease:easeIn}, 3.1)
-      .to(`#${communityId}-${section}-tractor`, {x:`${direction}${distance}`, duration:durationIn, ease:easeIn}, 3.1)
+      .to(`#${communityId}-${section}-wheel-back`, {rotation:`${direction}=${rotationWheelBack}`, duration:durationIn, ease:easeIn}, 0)
+      .to(`#${communityId}-${section}-wheel-front`, {rotation:`${direction}=${rotationWheelFront}`, duration:durationIn, ease:easeIn}, 0)
+      .to(`#${communityId}-${section}-tractor`, {x:`${direction}${distance}`, duration:durationIn, ease:easeIn}, 0)
   
-      .to(`#${communityId}-${section}-wheel-back`, {rotation:`${directionOpposite}=${rotationWheelBack}`, duration:durationOut, ease:easeOut}, durationIn + 5)
-      .to(`#${communityId}-${section}-wheel-front`, {rotation:`${directionOpposite}=${rotationWheelFront}`, duration:durationOut, ease:easeOut}, durationIn + 5)
-      .to(`#${communityId}-${section}-tractor`, {x:0, duration:durationOut, ease:easeOut}, durationIn + 5);
+      .to(`#${communityId}-${section}-wheel-back`, {rotation:`${directionOpposite}=${rotationWheelBack}`, duration:durationOut, ease:easeOut}, durationIn + 2)
+      .to(`#${communityId}-${section}-wheel-front`, {rotation:`${directionOpposite}=${rotationWheelFront}`, duration:durationOut, ease:easeOut}, durationIn + 2)
+      .to(`#${communityId}-${section}-tractor`, {x:0, duration:durationOut, ease:easeOut}, durationIn + 2);
   }
 
   // Rive waves animation
@@ -239,15 +239,19 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
 
     const communityColoringRevealTiming = [
       { level:25, timing:2 },
-      { level:50, timing:5 },
-      { level:75, timing:6 },
+      { level:50, timing:8 },
+      { level:75, timing:8 },
       { level:100, timing:9 }
     ];
+    let revealCommunityColors = communityColoringRevealTiming.find(d => d.level === fundraisingLevel).timing;
+    if (communityId === 'las-mercedes' && fundraisingLevel >= 50) {
+      revealCommunityColors = 9.5;
+    }
 
     communityTl
       // Clouds move horizontally
       .call(communityCloudsMove, null, 1)
-      .call(revealColoring, [communityId, 'community'], communityColoringRevealTiming.find(d => d.level === fundraisingLevel).timing);
+      .call(revealColoring, [communityId, 'community'], revealCommunityColors);
 
       // Tractor starts moving
       if (fundraisingLevel >= 50) { communityTl.add(community50, 3) }
@@ -708,9 +712,13 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
       { level:75, timing:8 },
       { level:100, timing:11 }
     ];
+    let revealSolutionColoring = solutionColoringRevealTiming.find(d => d.level === fundraisingLevel).timing;
+    if ((communityId === 'la-merced' || communityId === 'totoral-bajo' || communityId === 'carrizalillo') && fundraisingLevel >= 75) {
+      revealSolutionColoring = 11;
+    }
 
     solutionTl
-      .call(revealColoring, [communityId, 'solution'], solutionColoringRevealTiming.find(d => d.level === fundraisingLevel).timing);
+      .call(revealColoring, [communityId, 'solution'], revealSolutionColoring);
       
       if (communityId === 'carrizalillo') {
         solutionTl.call(animateRaindrops, ['solution'], 0.1);
