@@ -636,8 +636,8 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
 
     const waterColoringRevealTiming = [
       { level:50, timing:6 },
-      { level:75, timing:8 },
-      { level:100, timing:10 }
+      { level:75, timing:6 },
+      { level:100, timing:6 }
     ];
     
     waterMCLTl
