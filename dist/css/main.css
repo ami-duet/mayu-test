@@ -3255,24 +3255,6 @@ button {
   z-index: 4;
 }
 
-/* line 77, src/sass/components/_map.scss */
-#pathRecrut.animate {
-  -webkit-animation: dash 0.8s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
-          animation: dash 0.8s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
-}
-
-@-webkit-keyframes dash {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes dash {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
 /* line 1, src/sass/components/_glossary.scss */
 .defs {
   position: relative;

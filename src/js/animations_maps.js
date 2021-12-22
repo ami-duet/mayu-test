@@ -53,19 +53,13 @@ const triggerMapAnimations = () => {
     .to('.map-piura-dots path', {scale:1, ease:'back.out(1.7)', duration:0.3});
 
   // Animate path on Piura's map on click
-  var path = document.querySelector('#pathRecrut');
-  var pathLength = path.getTotalLength();
-  path.style.strokeDasharray = pathLength + ' ' + pathLength;
-  path.style.strokeDashoffset = pathLength;
+  gsap.set('#pathRecrut', {drawSVG:'0 0'});
 
   const animatePiuraPath = () => {
-    d3.select('#pathRecrut').classed('animate', true);
-    gsap.to('.community-cerro', {
-      fill: '#DD5F3D',
-      duration: 0.2,
-      delay: 0.9,
-      ease: Power3.easeOut
-    });
+    const tl = gsap.timeline();
+    tl
+      .to('#pathRecrut', {drawSVG:'100% 0%', duration:0.8, ease:'sine.out'})
+      .to('.community-cerro', {fill: '#DD5F3D', duration: 0.2, ease: 'Power3.easeOut'}, '>+0.1');
   };
 
   let piuraAnimationIsComplete = false;
