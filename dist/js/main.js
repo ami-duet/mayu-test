@@ -1,4 +1,4 @@
-/*! project-name v0.0.1 | (c) 2021 YOUR NAME | MIT License | http://link-to-your-git-repo.com */
+/*! project-name v0.0.1 | (c) 2022 YOUR NAME | MIT License | http://link-to-your-git-repo.com */
 const arrowsToggle = document.querySelector('.arrows-toggle');
 const aboutToggle = document.querySelector('.about');
 const carouselArrows = document.querySelector('.glide__arrows');
