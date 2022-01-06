@@ -80,9 +80,9 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
       .to(`#${communityId}-${section}-wheel-front`, {rotation:`${direction}=${rotationWheelFront}`, duration:durationIn, ease:easeIn}, 0)
       .to(`#${communityId}-${section}-tractor`, {x:`${direction}${distance}`, duration:durationIn, ease:easeIn}, 0)
   
-      .to(`#${communityId}-${section}-wheel-back`, {rotation:`${directionOpposite}=${rotationWheelBack}`, duration:durationOut, ease:easeOut}, durationIn + 2)
-      .to(`#${communityId}-${section}-wheel-front`, {rotation:`${directionOpposite}=${rotationWheelFront}`, duration:durationOut, ease:easeOut}, durationIn + 2)
-      .to(`#${communityId}-${section}-tractor`, {x:0, duration:durationOut, ease:easeOut}, durationIn + 2);
+      .to(`#${communityId}-${section}-wheel-back`, {rotation:`${directionOpposite}=${rotationWheelBack}`, duration:durationOut, ease:easeOut}, durationIn + 1.5)
+      .to(`#${communityId}-${section}-wheel-front`, {rotation:`${directionOpposite}=${rotationWheelFront}`, duration:durationOut, ease:easeOut}, durationIn + 1.5)
+      .to(`#${communityId}-${section}-tractor`, {x:0, duration:durationOut, ease:easeOut}, durationIn + 1.5);
   }
 
   // Rive waves animation
@@ -239,28 +239,28 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
 
     const communityColoringRevealTiming = [
       { level:25, timing:2 },
-      { level:50, timing:8 },
-      { level:75, timing:8 },
-      { level:100, timing:9 }
+      { level:50, timing:4 },
+      { level:75, timing:4 },
+      { level:100, timing:4 }
     ];
     let revealCommunityColors = communityColoringRevealTiming.find(d => d.level === fundraisingLevel).timing;
     if (communityId === 'las-mercedes' && fundraisingLevel >= 50) {
-      revealCommunityColors = 9.5;
+      revealCommunityColors = 5;
     }
 
     communityTl
       // Clouds move horizontally
-      .call(communityCloudsMove, null, 1)
+      .call(communityCloudsMove, null, 0)
       .call(revealColoring, [communityId, 'community'], revealCommunityColors);
 
       // Tractor starts moving
-      if (fundraisingLevel >= 50) { communityTl.add(community50, 3) }
+      if (fundraisingLevel >= 50) { communityTl.add(community50, 0) }
 
       // Trace animals
-      if (fundraisingLevel >= 75) { communityTl.add(community75, 5) }
+      if (fundraisingLevel >= 75) { communityTl.add(community75, 3) }
 
       // Animate birds
-      if (fundraisingLevel === 100) { communityTl.add(community100, 8) }
+      if (fundraisingLevel === 100) { communityTl.add(community100, 4) }
   }
 
 
@@ -277,7 +277,7 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
   const schoolTl = gsap.timeline({ scrollTrigger: stSchool });
 
   const clockAnimationDuration = illustrationInfo.missedSchoolHours.max / 3;
-  const clockAnimationDelay = 2;
+  const clockAnimationDelay = 0.5;
   const tearsEnd = 9;
   
   gsap.set(`#${communityId}-school-clock-small-hand`, {transformOrigin:"bottom center"}, 0);
@@ -364,10 +364,10 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
   };
 
   const schoolColoringRevealTiming = [
-    { level:25, timing:4 },
-    { level:50, timing:4 },
-    { level:75, timing:8 },
-    { level:100, timing:11 }
+    { level:25, timing:1 },
+    { level:50, timing:1 },
+    { level:75, timing:2 },
+    { level:100, timing:3 }
   ];
 
   // Timeline
@@ -382,10 +382,10 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
     if (fundraisingLevel >= 50) { schoolTl.add(makeFlagsFly, 0) }
 
     // School doors open
-    if (fundraisingLevel >= 75) { schoolTl.add(school75, 6) }
+    if (fundraisingLevel >= 75) { schoolTl.add(school75, 3) }
 
     // Draw Kids and make clock smile
-    if (fundraisingLevel === 100) { schoolTl.add(school100, tearsEnd) }
+    if (fundraisingLevel === 100) { schoolTl.add(school100, 3) }
     
 
 
@@ -446,10 +446,10 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
     };
 
     const distanceColoringRevealTiming = [
-      { level:25, timing:4 },
-      { level:50, timing:4 },
-      { level:75, timing:8 },
-      { level:100, timing:11 }
+      { level:25, timing:2 },
+      { level:50, timing:2 },
+      { level:75, timing:3 },
+      { level:100, timing:4 }
     ];
     
     distanceTl
@@ -467,10 +467,10 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
       if (fundraisingLevel >= 50) { distanceTl.add(distance50, 0) }
       
       // Animate birds
-      if (fundraisingLevel >= 75) { distanceTl.add(distance75, 6) }
+      if (fundraisingLevel >= 75) { distanceTl.add(distance75, 3) }
       
       // Trace animals
-      if (fundraisingLevel === 100) { distanceTl.add(distance100, 9) }
+      if (fundraisingLevel === 100) { distanceTl.add(distance100, 4) }
   }
 
 
@@ -635,9 +635,9 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
     };
 
     const waterColoringRevealTiming = [
-      { level:50, timing:6 },
-      { level:75, timing:6 },
-      { level:100, timing:6 }
+      { level:50, timing:2 },
+      { level:75, timing:2 },
+      { level:100, timing:2 }
     ];
     
     waterMCLTl
@@ -654,10 +654,10 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
       }
       
       // Make biologic contaminants float
-      if (fundraisingLevel >= 75) { waterMCLTl.add(waterMCL75, 7) }
+      if (fundraisingLevel >= 75) { waterMCLTl.add(waterMCL75, 5) }
 
       // Make drops flot
-      if (fundraisingLevel === 100) { waterMCLTl.add(dropsFloat, 10) }
+      if (fundraisingLevel === 100) { waterMCLTl.add(dropsFloat, 5) }
 
   }
 
@@ -708,14 +708,14 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
     };
 
     const solutionColoringRevealTiming = [
-      { level:25, timing:3 },
-      { level:50, timing:5},
-      { level:75, timing:8 },
-      { level:100, timing:11 }
+      { level:25, timing:1 },
+      { level:50, timing:3},
+      { level:75, timing:3 },
+      { level:100, timing:3 }
     ];
     let revealSolutionColoring = solutionColoringRevealTiming.find(d => d.level === fundraisingLevel).timing;
     if ((communityId === 'la-merced' || communityId === 'totoral-bajo' || communityId === 'carrizalillo') && fundraisingLevel >= 75) {
-      revealSolutionColoring = 11;
+      revealSolutionColoring = 5;
     }
 
     solutionTl
@@ -732,19 +732,19 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
       }
 
       // Trace animals
-      if (fundraisingLevel >= 50) { solutionTl.add(solution50, 4) }
+      if (fundraisingLevel >= 50) { solutionTl.add(solution50, 2) }
       
       // Animate birds
       if (fundraisingLevel >= 75) {
         if (communityId === 'la-merced' || communityId === 'totoral-bajo' || communityId === 'carrizalillo') {
-          solutionTl.call(vehicleAnimation, ['solution', illustrationInfo.vehicleSolution.distance, illustrationInfo.vehicleSolution.direction, illustrationInfo.vehicleSolution.rotationWheelBack, illustrationInfo.vehicleSolution.rotationWheelFront], 6);
+          solutionTl.call(vehicleAnimation, ['solution', illustrationInfo.vehicleSolution.distance, illustrationInfo.vehicleSolution.direction, illustrationInfo.vehicleSolution.rotationWheelBack, illustrationInfo.vehicleSolution.rotationWheelFront], 1);
         } else if (illustrationInfo.numberOfBirdsSolution > 0) {
-          solutionTl.add(solutionBirdsAnimation, 6);
+          solutionTl.add(solutionBirdsAnimation, 3);
         }
       }
     
       // Draw water treatment facility
-      if (fundraisingLevel === 100) { solutionTl.add(solution100, 10) }
+      if (fundraisingLevel === 100) { solutionTl.add(solution100, 3) }
 
   }
 
@@ -802,24 +802,24 @@ const triggerAnimations = (communityId, fundraisingLevel) => {
     const coloringBookColoringRevealTiming = [
       { level:25, timing:2 },
       { level:50, timing:3 },
-      { level:75, timing:4 },
-      { level:100, timing:6 }
+      { level:75, timing:3 },
+      { level:100, timing:3 }
     ];
 
     coloringTl
       // Draw erlenmeyers + Make water drops appear
-      .from(coloringErlenmeyers, {drawSVG:0, opacity:0, duration:2}, 2)
+      .from(coloringErlenmeyers, {drawSVG:0, opacity:0, duration:2}, 1)
       .fromTo(coloringDrops, {scale:0}, {scale:1, opacity:1, stagger:{each:0.15, from:'random'}, duration:0.3, ease:'back.out(1.4)'}, '<+=1.8')
       .call(revealColoring, [communityId, 'coloring'], coloringBookColoringRevealTiming.find(d => d.level === fundraisingLevel).timing);
       
       // Make pencils appear
-      if (fundraisingLevel >= 50) { coloringTl.add(coloring50, 3) }
+      if (fundraisingLevel >= 50) { coloringTl.add(coloring50, 2) }
       
       // Start windwheel
-      if (fundraisingLevel >= 75) { coloringTl.add(startWindWheel, 4) }
+      if (fundraisingLevel >= 75) { coloringTl.add(startWindWheel, 2.5) }
       
       // Draw and Make kids smile
-      if (fundraisingLevel >= 100) { coloringTl.add(coloring100, 5) }
+      if (fundraisingLevel >= 100) { coloringTl.add(coloring100, 3) }
 
   }
 };
