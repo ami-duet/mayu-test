@@ -23,9 +23,13 @@ const updateIllustrationsLanguage = () => {
   if (lang === 'es') {
     d3.selectAll('.illustration-text-en').style('opacity', 0);
     d3.selectAll('.illustration-text-es').style('opacity', 1);
+    d3.selectAll('.illustration-link-en').style('display', 'none');
+    d3.selectAll('.illustration-link-es').style('display', 'block');
   } else {
-    d3.selectAll('.illustration-text-es').style('opacity', 0);
     d3.selectAll('.illustration-text-en').style('opacity', 1);
+    d3.selectAll('.illustration-text-es').style('opacity', 0);
+    d3.selectAll('.illustration-link-en').style('display', 'block');
+    d3.selectAll('.illustration-link-es').style('display', 'none');
   }
 };
 
